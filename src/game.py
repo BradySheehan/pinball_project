@@ -1,12 +1,18 @@
 class Game():
 
+	def __init__(self):
+		self.max_balls = 5
+		self.balls_used = 0
+		self.score = 0
 
-if __name__ == '__main__':
-	Game game = new Game()
+	def start_game(self):
+		play_game()
 
-	if event_takes_place:
-		game.start_new_game()
 
-	#neeed to decide on a number of "lives" or balls
-	#need to figure out where the ball gets "generated", how the ball gets released, the typical trajectory it follows
-	#will there be any aspects of our game that are animate? any moving objects other than the balls?
+
+if ball_lost #this is code that needs to be triggered by an event listener
+	self.balls_used = self.balls_used + 1
+	if balls_used > 4
+		self.end_game()
+	else:
+		self.spawn_new_ball()
