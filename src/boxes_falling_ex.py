@@ -8,7 +8,7 @@ from panda3d.core import BitMask32, CardMaker, Vec4, Quat
 from random import randint, random
 # Change resolution
 loadPrcFileData("", "win-size 1024 768")
-# make full screen
+# make full screen 
 loadPrcFileData("", "fullscreen t")
 
 class World(DirectObject):
@@ -37,19 +37,19 @@ contactgroup = OdeJointGroup()
 space.setAutoCollideJointGroup(contactgroup)
 
 # Load the box
-box = loader.loadModel("box.egg")
+box = loader.loadModel("models/cube.egg")
 
-cube = loader.loadModel("models/test_green2.egg")
+# cube = loader.loadModel("models/test_green2.egg")
 
-# make the table visible
-cube.setPos(1,1,1)
-cube.reparentTo(render)
+# # make the table visible
+# cube.setPos(1,1,1)
+# cube.reparentTo(render)
 
 
 # Make sure its center is at 0, 0, 0 like OdeBoxGeom
 box.setPos(-.5, -.5, -.5)
-box.flattenLight() # Apply transform
-box.setTextureOff()
+# box.flattenLight() # Apply transform
+# box.setTextureOff()
 
 # Add a random amount of boxes
 boxes = []
@@ -74,14 +74,14 @@ for i in range(randint(15, 30)):
     boxes.append((boxNP, boxBody))
 
 # Add a plane to collide with
-# cm = CardMaker("ground")
-# cm.setFrame(-20, 20, -20, 20)
-# ground = render.attachNewNode(cm.generate())
-# ground.setPos(0, 0, 0)
-# ground.lookAt(0, 0, -1)
-# groundGeom = OdePlaneGeom(space, Vec4(0, 0, 1, 0))
-# groundGeom.setCollideBits(BitMask32(0x00000001))
-# groundGeom.setCategoryBits(BitMask32(0x00000002))
+cm = CardMaker("ground")
+cm.setFrame(-20, 20, -20, 20)
+ground = render.attachNewNode(cm.generate())
+ground.setPos(0, 0, 0)
+ground.lookAt(0, 0, -1)
+groundGeom = OdePlaneGeom(space, Vec4(0, 0, 1, 0))
+groundGeom.setCollideBits(BitMask32(0x00000001))
+groundGeom.setCategoryBits(BitMask32(0x00000002))
 
 # Set the camera position
 base.disableMouse()
