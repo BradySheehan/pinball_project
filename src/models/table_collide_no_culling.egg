@@ -7110,7 +7110,7 @@
     
   }
   <Group> Cube.001 {
-    <Collide> collision { Polygon descend }
+    <Collide> wall_collide { Polygon descend }
     <Transform> {
       <Matrix4> {
         3.8333513736724854 0.0 0.0 0.0 
