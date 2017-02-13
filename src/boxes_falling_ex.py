@@ -8,7 +8,7 @@ from panda3d.core import BitMask32, CardMaker, Vec4, Quat, Light, AmbientLight, 
 from random import randint, random
 # Change resolution
 loadPrcFileData("", "win-size 1024 768")
-# make full screen
+# make full screen 
 loadPrcFileData("", "fullscreen t")
 
 class World(DirectObject):
@@ -37,14 +37,21 @@ contactgroup = OdeJointGroup()
 space.setAutoCollideJointGroup(contactgroup)
 
 # Load the box
-box = loader.loadModel("box.egg")
+box = loader.loadModel("models/cube.egg")
 
-cube = loader.loadModel("models/test_green2.egg")
+# cube = loader.loadModel("models/test_green2.egg")
 
+<<<<<<< HEAD
+# # make the table visible
+# cube.setPos(1,1,1)
+# cube.reparentTo(render)
+
+=======
 # make the table visible, 
 # cube.setPos(1,1,1)
 # cube.reparentTo(render)
 # cube.setScale(10); 
+>>>>>>> b2118d61e23dcf35aa454603b7e573217326f3f1
 
 # Make sure its center is at 0, 0, 0 like OdeBoxGeom
 box.setPos(-.5, -.5, -.5)

@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-
+	
 	if start_button_pressed:
 		game = new Game() #could pass player name here for saving high score?
 		game.start_new_game()
