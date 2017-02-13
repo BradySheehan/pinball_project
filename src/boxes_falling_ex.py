@@ -4,7 +4,7 @@ import sys
 from panda3d.core import loadPrcFileData
 from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup
 from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdePlaneGeom
-from panda3d.core import BitMask32, CardMaker, Vec4, Quat
+from panda3d.core import BitMask32, CardMaker, Vec4, Quat, Light, AmbientLight, DirectionalLight
 from random import randint, random
 # Change resolution
 loadPrcFileData("", "win-size 1024 768")
@@ -41,10 +41,17 @@ box = loader.loadModel("models/cube.egg")
 
 # cube = loader.loadModel("models/test_green2.egg")
 
+<<<<<<< HEAD
 # # make the table visible
 # cube.setPos(1,1,1)
 # cube.reparentTo(render)
 
+=======
+# make the table visible, 
+# cube.setPos(1,1,1)
+# cube.reparentTo(render)
+# cube.setScale(10); 
+>>>>>>> b2118d61e23dcf35aa454603b7e573217326f3f1
 
 # Make sure its center is at 0, 0, 0 like OdeBoxGeom
 box.setPos(-.5, -.5, -.5)
@@ -57,7 +64,7 @@ for i in range(randint(15, 30)):
     # Setup the geometry
     boxNP = box.copyTo(render)
     boxNP.setPos(randint(-10, 10), randint(-10, 10), 10 + random())
-    boxNP.setColor(random(), random(), random(), 1)
+   # boxNP.setColor(random(), random(), random(), 1)
     boxNP.setHpr(randint(-45, 45), randint(-45, 45), randint(-45, 45))
     # Create the body and set the mass
     boxBody = OdeBody(world)
@@ -99,35 +106,36 @@ def simulationTask(task):
     return task.cont
 
 
-# # Create Ambient Light
-# ambientLight = AmbientLight('ambientLight')
-# ambientLight.setColor(Vec4(0.1, 0.1, 0.1, 1))
-# ambientLightNP = render.attachNewNode(ambientLight)
-# render.setLight(ambientLightNP)
+# Create Ambient Light
+ambientLight = AmbientLight('ambientLight')
+ambientLight.setColor(Vec4(1.0, 0.0, 0.0, 1))
+ambientLightNP = render.attachNewNode(ambientLight)
+render.setLight(ambientLightNP)
 
-# # Directional light 01
-# directionalLight = DirectionalLight('directionalLight')
-# directionalLight.setColor(Vec4(0.8, 0.2, 0.2, 1))
-# directionalLightNP = render.attachNewNode(directionalLight)
-# # This light is facing backwards, towards the camera.
-# directionalLightNP.setHpr(180, -20, 0)
-# render.setLight(directionalLightNP)
+# Directional light 01
+directionalLight = DirectionalLight('directionalLight')
+directionalLight.setColor(Vec4(0.0, 0.0, 0.0, 1))
+directionalLightNP = render.attachNewNode(directionalLight)
+# This light is facing backwards, towards the camera.
+directionalLightNP.setHpr(180, -20, 0)
+render.setLight(directionalLightNP)
 
-# # Directional light 02
-# directionalLight = DirectionalLight('directionalLight')
-# directionalLight.setColor(Vec4(0.2, 0.2, 0.8, 1))
-# directionalLightNP = render.attachNewNode(directionalLight)
-# # This light is facing forwards, away from the camera.
-# directionalLightNP.setHpr(0, -20, 0)
-# render.setLight(directionalLightNP)
+# Directional light 02
+directionalLight = DirectionalLight('directionalLight')
+directionalLight.setColor(Vec4(0.0, 0.0, 0.0, 1))
+directionalLightNP = render.attachNewNode(directionalLight)
+# This light is facing forwards, away from the camera.
+directionalLightNP.setHpr(0, -20, 0)
+render.setLight(directionalLightNP)
 
-# # Now attach a green light only to object x.
-# ambient = AmbientLight('ambient')
-# ambient.setColor(Vec4(1, 1, 1, 1))
-# ambientNP = cube.attachNewNode(ambient)
+# Now attach a green light only to object x.
+ambient = AmbientLight('ambient')
+ambient.setColor(Vec4(1, 1, 1, 1))
+ambientNP = box.attachNewNode(ambient)
 
-# cube.setLightOff() 
-# cube.setLight(ambientNP)
+#box.setLightOff() 
+box.setLight(ambientNP)
+
 
 # Wait a split second, then start the simulation  
 taskMgr.doMethodLater(0.5, simulationTask, "Physics Simulation")
