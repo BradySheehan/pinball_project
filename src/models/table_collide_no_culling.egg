@@ -7110,7 +7110,7 @@
     
   }
   <Group> Cube.001 {
-    <Tag> collision { 0.0 }
+    <Collide> collision { Polygon descend }
     <Transform> {
       <Matrix4> {
         3.8333513736724854 0.0 0.0 0.0 
