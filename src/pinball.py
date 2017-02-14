@@ -1,35 +1,21 @@
 from direct.showbase.DirectObject import DirectObject
 from direct.showbase.ShowBase import ShowBase
+from panda3d.core import loadPrcFileData
 from panda3d.core import CollisionTraverser, CollisionNode
 from panda3d.core import CollisionHandlerQueue, CollisionRay
 from panda3d.core import Material, LRotationf, NodePath
 from panda3d.core import LVector3, BitMask32
-from panda3d.core import loadPrcFileData
 from panda3d.core import Vec4, Quat, Light, AmbientLight, DirectionalLight
 from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup
 from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdePlaneGeom
 import sys
-
-
-# Change resolution
-loadPrcFileData("", "win-size 1024 768")
-# make full screen
-loadPrcFileData("", "fullscreen t")
-
-# class World(DirectObject):
-
-#     def __init__(self):
-#         self.accept("escape", sys.exit)
-
-# w = World()
-
 
 class Pinball(ShowBase):
 	def __init__(self):
 		ShowBase.__init__(self)
 
 		self.accept("escape", sys.exit)  # Escape quits
-
+		# Change resolution
 
 		# Disable default mouse-based camera control.  This is a method on the
 		# ShowBase class from which we inherit.
@@ -71,7 +57,6 @@ class Pinball(ShowBase):
 		self.setup_gravity_world()
 
 		self.set_light()
-
 
 	def setup_gravity_world(self):
 
@@ -129,5 +114,25 @@ class Pinball(ShowBase):
 
 		#box.setLightOff()
 		self.table.setLight(ambientNP)
-demo = Pinball()
-demo.run()
+
+	def start():
+		pass
+		#need to assign the ball a position when the game starts
+		#and any time they lose, we need to replace the ball to the correct position
+		#in between, we need to ensure the ball ROLLS (Somehow), gravity should take care of this as long
+		#as the board is titled and the objects on the table are "collision" objects
+
+	def lose(): #some kind of task handler (collision handler)
+		pass
+		#this should manage what happens when the ball collides between the triggers or gets stuck somehwere
+		#it will need to check and see how many ball lives are left
+		#and if we can continue to play, it will update the number of balls left, 
+		#then it will "respawn" the ball an dplace it in the right position so that another game can be played
+
+if __name__ == '__main__':
+
+	loadPrcFileData("", "win-size 1024 768")
+	# make full screen
+	loadPrcFileData("", "fullscreen t")
+	demo = Pinball()
+	demo.run()
