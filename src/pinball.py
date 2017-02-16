@@ -20,6 +20,7 @@ class Pinball(ShowBase):
 		# Disable default mouse-based camera control.  This is a method on the
 		# ShowBase class from which we inherit.
 		self.disableMouse()
+		# camera.setPosHpr(0, 0, 25, 0, -90, 0)  # Place the camera
 		camera.setPosHpr(0, 0, 25, 0, -90, 0)  # Place the camera
 
 		# Load the maze and place it in the scene
@@ -38,7 +39,8 @@ class Pinball(ShowBase):
 		self.walls.show()
 
 		self.ball = self.table.find("**/Sphere")
-		self.ball.reparentTo(render);
+		self.ball.reparentTo(render)
+		self.ball.setPos(0,0,20)
 		# print self.ball
 
 		# self.ball = loader.loadModel("models/ball")
@@ -53,6 +55,7 @@ class Pinball(ShowBase):
 		# Notice that it has a from collision mask of bit 0, and an into collison
 		# mask of no bits. This means that the ball can only cause collisions, not
 		# be collided into
+
 		# self.ballSphere = self.ball.find("**/ball")
 		# self.ballSphere.node().setFromCollideMask(BitMask32.bit(0))
 		# self.ballSphere.node().setIntoCollideMask(BitMask32.allOff())
@@ -65,7 +68,7 @@ class Pinball(ShowBase):
 
 		world = OdeWorld()
 		#world.setGravity(0, 0, -9.81)
-		world.setGravity(0, -9.81, 0)
+		world.setGravity(-9.81, -9.81, -9.81)
 		# The surface table is needed for autoCollide
 		world.initSurfaceTable(1)
 		world.setSurfaceEntry(0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 0.0, 0.002)
@@ -79,11 +82,12 @@ class Pinball(ShowBase):
 
 		body = OdeBody(world)
 		M = OdeMass()
-		M.setSphere(1, 1.0)
+		M.setSphere(500, 0.2)
 		body.setMass(M)
 		body.setPosition(self.ball.getPos(render))
 		body.setQuaternion(self.ball.getQuat(render))
-		body.setForce(0,0,10)
+		body.setForce(0,10,0)
+
 		print M
 
 	def set_light(self):
