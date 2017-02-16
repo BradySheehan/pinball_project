@@ -25,8 +25,10 @@ class Pinball(ShowBase):
 		# Load the maze and place it in the scene
 		self.table = loader.loadModel("models/table_collide_no_culling.egg")
 		print self.table
-		#self.table.ls()
-		self.table.reparentTo(render)
+		self.table.ls()
+		# self.table.reparentTo(render)
+		self.table_inner = self.table.find("**/Cube");
+		self.table_inner.reparentTo(render)
 
 		self.walls = self.table.find("**/Cube.001")
 		print self.walls
@@ -36,23 +38,24 @@ class Pinball(ShowBase):
 		self.walls.show()
 
 		self.ball = self.table.find("**/Sphere")
-		print self.ball
+		self.ball.reparentTo(render);
+		# print self.ball
 
-		self.ball2 = loader.loadModel("models/ball")
+		# self.ball = loader.loadModel("models/ball")
 		# Load the ball and attach it to the scene
 		# It is on a root dummy node so that we can rotate the ball itself without
 		# rotating the ray that will be attached to it
-		self.ballRoot = render.attachNewNode("ballRoot")
-		self.ball = loader.loadModel("models/ball")
-		self.ball.reparentTo(self.ballRoot)
+		# self.ballRoot = render.attachNewNode("ballRoot")
+		# self.ball = loader.loadModel("models/ball")
+		# self.ball.reparentTo(self.ballRoot)
 
 		# Find the collison sphere for the ball which was created in the egg file
 		# Notice that it has a from collision mask of bit 0, and an into collison
 		# mask of no bits. This means that the ball can only cause collisions, not
 		# be collided into
-		self.ballSphere = self.ball.find("**/ball")
-		self.ballSphere.node().setFromCollideMask(BitMask32.bit(0))
-		self.ballSphere.node().setIntoCollideMask(BitMask32.allOff())
+		# self.ballSphere = self.ball.find("**/ball")
+		# self.ballSphere.node().setFromCollideMask(BitMask32.bit(0))
+		# self.ballSphere.node().setIntoCollideMask(BitMask32.allOff())
 
 		self.setup_gravity_world()
 
@@ -76,13 +79,12 @@ class Pinball(ShowBase):
 
 		body = OdeBody(world)
 		M = OdeMass()
-		M.setSphere(7874, 1.0)
+		M.setSphere(1, 1.0)
 		body.setMass(M)
 		body.setPosition(self.ball.getPos(render))
 		body.setQuaternion(self.ball.getQuat(render))
-
-		
-
+		body.setForce(0,0,10)
+		print M
 
 	def set_light(self):
 		# Create Ambient Light
