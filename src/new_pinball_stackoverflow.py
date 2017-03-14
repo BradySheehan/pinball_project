@@ -5,7 +5,9 @@ from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeo
 from panda3d.core import BitMask32, CardMaker, Vec4, Quat
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import Light, AmbientLight, DirectionalLight, LMatrix3f
+from visualizeGeoms import wireGeom
 import sys
+
 world = OdeWorld()
 world.setGravity(0, 0, -9.81)
 
@@ -23,10 +25,11 @@ space1.setAutoCollideJointGroup(contactgroup1)
 #load the egg file created in Blender
 egg = loader.loadModel("models/table_collide_no_culling.egg")
 
-#Extract the Sphere 
+#Extract the Sphere
 ball = egg.find("**/Sphere")
 ball_NP = ball.copyTo(render)
-ball_NP.setPos(0, 0, 0.45)
+# ball_NP.setPos(0, 0, 0.45)
+ball_NP.setPos(0,0, 0.25)
 #Setup the sphere's physics
 mass = OdeMass()
 mass.setSphere(50, 0.1)
@@ -39,6 +42,11 @@ ball_geom.setCollideBits(BitMask32(0x00000002))
 ball_geom.setCategoryBits(BitMask32(0x00000001))
 ball_geom.setBody(ball_body)
 
+sphere = wireGeom().generate ('sphere', radius=0.1)
+sphere.setPos (ball_NP.getPos(render))
+sphere.reparentTo(render)
+# sphere.setHpr (0, 0, 0)
+
 #extract the cube from the egg file
 cube = egg.find("**/Cube")
 cube.reparentTo(render)  # make this stuff visible
@@ -48,8 +56,10 @@ cube.reparentTo(render)  # make this stuff visible
 cube_geom = OdeBoxGeom(space1, 7.332, 10.744, 0.676)
 cube_geom.setCollideBits(BitMask32(0x00000002))
 cube_geom.setCategoryBits(BitMask32(0x00000001))
-# cube_geom.setPosition(cube.getPos(render))
-# cube_geom.setQuaternion(cube.getQuat(render))
+cube_geom.setPosition(cube.getPos(render))
+cube_geom.setPosition(cube.getPos(render))
+#the hpr of the geom does not agree with the hpr of the wireframe (despite visually)
+cube_geom.setQuaternion(cube.getQuat(render))
 cube_geom.setCollideBits(BitMask32(0x00000001))
 cube_geom.setCategoryBits(BitMask32(0x00000002))
 
@@ -82,7 +92,8 @@ def set_light():
 def set_camera():
     # Set the camera position
     base.disableMouse()
-    base.camera.setPos(0, 9, 20)
+    base.camera.setPos(20, 7, 4)
+    # base.camera.setPos(2, 9, 20)
     base.camera.lookAt(0, 0, 0)
 
 
@@ -92,7 +103,10 @@ def simulationTask(task):
     world.quickStep(globalClock.getDt())
     ball_NP.setPosQuat(render, ball_body.getPosition(),
                        Quat(ball_body.getQuaternion()))
-    ball_body.setForce(1, -1, -1)
+    sphere.setPos (ball_body.getPosition(
+        ))
+    # ball_body.setForce(0, 1, -1)
+    ball_body.setForce(1, 1, -1)
     contactgroup1.empty()  # Clear the contact joints
     return task.cont
 
@@ -101,4 +115,9 @@ set_light()
 base.accept("escape", sys.exit)  # Escape quit
 # Wait a split second, then start the simulation
 taskMgr.doMethodLater(0.5, simulationTask, "Physics Simulation")
+box = wireGeom().generate ('box', extents=(7.332, 10.744, 0.676))
+box.setPos(cube.getPos(render))
+box.setHpr (cube.getHpr(render))
+box.reparentTo( render )
+
 base.run()
