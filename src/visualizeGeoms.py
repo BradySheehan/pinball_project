@@ -28,51 +28,51 @@ planeNodepath = wireGeom().generate ('plane')
 
 """
 class wireGeom:
-  
-  def __init__ (self):    
+
+  def __init__ (self):
     # GeomNode to hold our individual geoms
     self.gnode = GeomNode ('wirePrim')
-    
+
     # How many times to subdivide our spheres/cylinders resulting vertices.  Keep low
     # because this is supposed to be an approximate representation
     self.subdiv = 12
 
-  def line (self, start, end):  
-    
+  def line (self, start, end):
+
     # since we're doing line segments, just vertices in our geom
     format = GeomVertexFormat.getV3()
-    
+
     # build our data structure and get a handle to the vertex column
     vdata = GeomVertexData ('', format, Geom.UHStatic)
     vertices = GeomVertexWriter (vdata, 'vertex')
-        
+
     # build a linestrip vertex buffer
     lines = GeomLinestrips (Geom.UHStatic)
-    
+
     vertices.addData3f (start[0], start[1], start[2])
     vertices.addData3f (end[0], end[1], end[2])
-    
+
     lines.addVertices (0, 1)
-      
+
     lines.closePrimitive()
-    
+
     geom = Geom (vdata)
     geom.addPrimitive (lines)
     # Add our primitive to the geomnode
     self.gnode.addGeom (geom)
 
-  def circle (self, radius, axis, offset):  
-    
+  def circle (self, radius, axis, offset):
+
     # since we're doing line segments, just vertices in our geom
     format = GeomVertexFormat.getV3()
-    
+
     # build our data structure and get a handle to the vertex column
     vdata = GeomVertexData ('', format, Geom.UHStatic)
     vertices = GeomVertexWriter (vdata, 'vertex')
-        
+
     # build a linestrip vertex buffer
     lines = GeomLinestrips (Geom.UHStatic)
-    
+
     for i in range (0, self.subdiv):
       angle = i / float(self.subdiv) * 2.0 * math.pi
       ca = math.cos (angle)
@@ -83,30 +83,30 @@ class wireGeom:
         vertices.addData3f (radius * ca, 0, radius * sa + offset)
       if axis == "z":
         vertices.addData3f (radius * ca, radius * sa, offset)
-    
+
     for i in range (1, self.subdiv):
       lines.addVertices(i - 1, i)
     lines.addVertices (self.subdiv - 1, 0)
-      
+
     lines.closePrimitive()
-    
+
     geom = Geom (vdata)
     geom.addPrimitive (lines)
     # Add our primitive to the geomnode
     self.gnode.addGeom (geom)
 
   def capsule (self, radius, length, axis):
-    
+
     # since we're doing line segments, just vertices in our geom
     format = GeomVertexFormat.getV3()
-    
+
     # build our data structure and get a handle to the vertex column
     vdata = GeomVertexData ('', format, Geom.UHStatic)
     vertices = GeomVertexWriter (vdata, 'vertex')
-        
+
     # build a linestrip vertex buffer
     lines = GeomLinestrips (Geom.UHStatic)
-    
+
     # draw upper dome
     for i in range (0, self.subdiv / 2 + 1):
       angle = i / float(self.subdiv) * 2.0 * math.pi
@@ -126,30 +126,30 @@ class wireGeom:
         vertices.addData3f (0, radius * ca, radius * sa - (length / 2))
       if axis == "y":
         vertices.addData3f (radius * ca, 0, radius * sa - (length / 2))
-    
+
     for i in range (1, self.subdiv + 1):
       lines.addVertices(i - 1, i)
     lines.addVertices (self.subdiv + 1, 0)
-      
+
     lines.closePrimitive()
-    
+
     geom = Geom (vdata)
     geom.addPrimitive (lines)
     # Add our primitive to the geomnode
     self.gnode.addGeom (geom)
 
   def rect (self, width, height, axis):
-    
+
     # since we're doing line segments, just vertices in our geom
     format = GeomVertexFormat.getV3()
-    
+
     # build our data structure and get a handle to the vertex column
     vdata = GeomVertexData ('', format, Geom.UHStatic)
     vertices = GeomVertexWriter (vdata, 'vertex')
-        
+
     # build a linestrip vertex buffer
     lines = GeomLinestrips (Geom.UHStatic)
-    
+
     # draw a box
     if axis == "x":
       vertices.addData3f (0, -width, -height)
@@ -170,16 +170,15 @@ class wireGeom:
     for i in range (1, 3):
       lines.addVertices(i - 1, i)
     lines.addVertices (3, 0)
-      
+
     lines.closePrimitive()
-    
+
     geom = Geom (vdata)
     geom.addPrimitive (lines)
     # Add our primitive to the geomnode
     self.gnode.addGeom (geom)
 
   def generate (self, type, radius=1.0, length=1.0, extents=Point3(1, 1, 1)):
-            
     if type == 'sphere':
       # generate a simple sphere
       self.circle (radius, "x", 0)
@@ -193,11 +192,17 @@ class wireGeom:
       self.circle (radius, "z", -length / 2)
       self.circle (radius, "z", length / 2)
 
+    # if type == 'box':
+    #   # generate a simple box
+    #   self.rect (extents[1], extents[2], "x")
+    #   self.rect (extents[0], extents[2], "y")
+    #   self.rect (extents[0], extents[1], "z")
+
     if type == 'box':
       # generate a simple box
-      self.rect (extents[1], extents[2], "x")
-      self.rect (extents[0], extents[2], "y")
-      self.rect (extents[0], extents[1], "z")
+      self.rect (extents[1]/2, extents[2]/2, "x")
+      self.rect (extents[0]/2, extents[2]/2, "y")
+      self.rect (extents[0]/2, extents[1]/2, "z")
 
     if type == 'cylinder':
       # generate a simple cylinder
@@ -207,7 +212,7 @@ class wireGeom:
       self.line ((radius, 0, -length / 2), (radius, 0, length/2))
       self.circle (radius, "z", -length / 2)
       self.circle (radius, "z", length / 2)
-    
+
     if type == 'ray':
       # generate a ray
       self.circle (length / 10, "x", 0)
@@ -223,60 +228,59 @@ class wireGeom:
       self.line ((0, 0, 0), (0, 0, length))
       self.line ((0, 0, length), (0, -length/10, length*0.9))
       self.line ((0, 0, length), (0, length/10, length*0.9))
-    
+
     # rename ourselves to wirePrimBox, etc.
     name = self.gnode.getName()
     self.gnode.setName(name + type.capitalize())
-    
     NP = NodePath (self.gnode)  # Finally, make a nodepath to our geom
     NP.setColor(0.0, 1.0, 0.0)   # Set default color
-    
+
     return NP
-  
-  
+
+
 # demonstration code below
 
-allGeoms = render.attachNewNode ("allWireGeoms")
+# allGeoms = render.attachNewNode ("allWireGeoms")
 
-plane = wireGeom().generate ('plane')
-plane.setPos (0, 0, 0)
-plane.setHpr (0, 0, 0)
-plane.reparentTo( allGeoms )
+# plane = wireGeom().generate ('plane')
+# plane.setPos (0, 0, 0)
+# plane.setHpr (0, 0, 0)
+# plane.reparentTo( allGeoms )
 
-sphere = wireGeom().generate ('sphere', radius=1.0)
-sphere.setPos (0, 3, 1)
-sphere.setHpr (0, 0, 0)
-sphere.reparentTo( allGeoms )
+# sphere = wireGeom().generate ('sphere', radius=1.0)
+# sphere.setPos (0, 3, 1)
+# sphere.setHpr (0, 0, 0)
+# sphere.reparentTo( allGeoms )
 
-capsule = wireGeom().generate ('capsule', radius=1.0, length=3.0)
-capsule.setPos (0, 6, 1)
-capsule.setHpr (0, 0, 0)
-capsule.reparentTo( allGeoms )
+# capsule = wireGeom().generate ('capsule', radius=1.0, length=3.0)
+# capsule.setPos (0, 6, 1)
+# capsule.setHpr (0, 0, 0)
+# capsule.reparentTo( allGeoms )
 
-box = wireGeom().generate ('box', extents=(1, 1, 1))
-box.setPos (0, 9, 1)
-box.setHpr (0, 0, 0)
-box.reparentTo( allGeoms )
+# box = wireGeom().generate ('box', extents=(5, 5, 5))
+# box.setPos (5, 5, 5)
+# box.setHpr (0, 0, 0)
+# box.reparentTo( allGeoms )
 
-cylinder = wireGeom().generate ('cylinder', radius=1.0, length=3.0)
-cylinder.setPos (0, -3, 1)
-cylinder.setHpr (0, 0, 0)
-cylinder.reparentTo( allGeoms )
+# # cylinder = wireGeom().generate ('cylinder', radius=1.0, length=3.0)
+# # cylinder.setPos (0, -3, 1)
+# # cylinder.setHpr (0, 0, 0)
+# # cylinder.reparentTo( allGeoms )
 
-ray = wireGeom().generate ('ray', length=3.0)
-ray.setPos (0, -6, 1)
-ray.setHpr (0, 0, 0)
-ray.reparentTo( allGeoms )
+# # ray = wireGeom().generate ('ray', length=3.0)
+# # ray.setPos (0, -6, 1)
+# # ray.setHpr (0, 0, 0)
+# # ray.reparentTo( allGeoms )
 
-allGeoms.reparentTo( base.render )
+# allGeoms.reparentTo( base.render )
 
-# Set the camera position
-base.disableMouse()
-base.camera.setPos(40, 0, 0)
-base.camera.lookAt(0, 0, 0)
+# # Set the camera position
+# base.disableMouse()
+# base.camera.setPos(40, 0, 0)
+# base.camera.lookAt(0, 0, 0)
 
-# Spin all of the wireGeoms around so you can see 'em
-i = allGeoms.hprInterval (0.0, Vec3(360, 360, 0))
-i.loop()
+# # Spin all of the wireGeoms around so you can see 'em
+# i = allGeoms.hprInterval (0.0, Vec3(360, 360, 0))
+# i.loop()
 
-run()
+# run()
