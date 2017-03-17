@@ -28,7 +28,7 @@ print type(ball)
 
 ball_NP = ball.copyTo(render)
 # ball_NP.setPos(0, 0, 0.45)
-ball_NP.setPos(0,0, 0.5)
+ball_NP.setPos(3,0, 0.5)
 #Setup the sphere's physics
 mass = OdeMass()
 mass.setSphere(50, 0.1)
@@ -47,22 +47,22 @@ sphere.reparentTo(render)
 # sphere.setHpr (0, 0, 0)
 
 #extract the cube from the egg file
-egg2 = loader.loadModel("models/box_in_edit_mode.egg")
+egg2 = loader.loadModel("models/box_in_edit_mode_plane2.egg")
 plane1 = egg2.find("**/Plane.001")
 # print "plane1", plane1, type(plane1)
 plane1.reparentTo(render)
 plane2 = egg2.find("**/Plane.002")
 print "plane2", plane2, type(plane2)
 plane2.reparentTo(render)
-# plane3 = egg2.find("**/Plane.003")
-# print "plane3", plane3, type(plane3)
-# plane3.reparentTo(render)
-# plane4 = egg2.find("**/Plane.004")
-# print "plane4", plane4, type(plane4)
-# plane4.reparentTo(render)
-# plane5 = egg2.find("**/Plane.005")
-# print "plane5", plane5, type(plane5)
-# plane5.reparentTo(render)
+plane3 = egg2.find("**/Plane.003")
+print "plane3", plane3, type(plane3)
+plane3.reparentTo(render)
+plane4 = egg2.find("**/Plane.004")
+print "plane4", plane4, type(plane4)
+plane4.reparentTo(render)
+plane5 = egg2.find("**/Plane.005")
+print "plane5", plane5, type(plane5)
+plane5.reparentTo(render)
 
 def add_plane_to_physics(planeNP, space, params1, params2, params3, params4):
     #create the plane
@@ -83,9 +83,9 @@ def add_plane_to_physics(planeNP, space, params1, params2, params3, params4):
     return plane
 
 ground_plane = add_plane_to_physics(plane1, space1, 0, 0, 1, 0)
-wall2 = add_plane_to_physics(plane2, space1, 12, -20, 0, 0)
-wall2 = add_plane_to_physics(plane2, space1, 12, -20, 0, 0)
-wall2 = add_plane_to_physics(plane2, space1, 12, -20, 0, 0)
+wall2 = add_plane_to_physics(plane2, space1, 12, -20, 0, 1)
+wall3 = add_plane_to_physics(plane2, space1, -12, 20, 0, 45)
+# wall2 = add_plane_to_physics(plane2, space1, 12, -20, 0, 0)
 # wall2 = add_plane_to_physics(plane2, space1, 1, 1, 1, 1)
 # wall2 = add_plane_to_physics(plane2, space1, )
 #this is the equation of the x-y plane... so with physics enabled, the ball should sit on this surface
@@ -132,8 +132,8 @@ def set_camera():
     base.disableMouse()
     # base.camera.setPos(20, 7, 4)
     # base.camera.setPos(10, 9, 20)
-    # base.camera.setPos(18, -10, 15)
-    base.camera.setPos(18, 0, 15)
+    base.camera.setPos(9, 0, 15)
+    # base.camera.setPos(18, 0, 15)
     # base.camera.setPos(0,-10,0)
     base.camera.lookAt(0, 0, 0)
 
