@@ -72,6 +72,7 @@ def add_plane_to_physics(planeNP, space, params1, params2, params3, params4):
     return plane
 
 def add_wall_to_physics(space, dimx, dimy, dimz, locx, locy, locz):
+    #Returns a handle to the OdeBoxGeom object with the specified parameters
     box = OdeBoxGeom(space, dimx, dimy, dimz)
     box.setPosition(locx, locy, locz)
     box.setCollideBits(BitMask32(0x00000002))
@@ -135,6 +136,23 @@ def simulationTask(task):
     # ball_body.setForce(1, 1, 0)
     contactgroup1.empty()  # Clear the contact joints
     return task.cont
+
+def onCollision(entry):
+  # global groundImgChanged
+  # geom1 = entry.getGeom1()
+  # geom2 = entry.getGeom2()
+  # body1 = entry.getBody1()
+  # body2 = entry.getBody2()
+  # # Look up the NodePath to destroy it
+  # for np, geom, sound in balls:
+  #   if geom == geom1 or geom == geom2:
+  #     velocity = body1.getLinearVel().length()
+  #     if velocity > 2.5 and sound.status != sound.PLAYING:
+  #       sound.setVolume(velocity / 2.0)
+  #       sound.play()
+
+space.setCollisionEvent("ode-collision")
+base.accept("ode-collision", onCollision)
 
 set_camera()
 set_light()
