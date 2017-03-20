@@ -138,6 +138,7 @@ def simulationTask(task):
     return task.cont
 
 def onCollision(entry):
+    pass
   # global groundImgChanged
   # geom1 = entry.getGeom1()
   # geom2 = entry.getGeom2()
@@ -151,7 +152,7 @@ def onCollision(entry):
   #       sound.setVolume(velocity / 2.0)
   #       sound.play()
 
-space.setCollisionEvent("ode-collision")
+space1.setCollisionEvent("ode-collision")
 base.accept("ode-collision", onCollision)
 
 set_camera()
