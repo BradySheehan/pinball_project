@@ -46,7 +46,8 @@ sphere.setPos (ball_NP.getPos(render))
 sphere.reparentTo(render)
 
 #extract the cube from the egg file
-egg2 = loader.loadModel("models/box_in_edit_mode_plane2.egg")
+# /src/models/box_in_edit_mode_with_wall.egg
+egg2 = loader.loadModel("models/visible_table_inner_wall.egg")
 plane1 = egg2.find("**/Plane.001")
 plane1.reparentTo(render)
 plane2 = egg2.find("**/Plane.002")
@@ -57,6 +58,12 @@ plane4 = egg2.find("**/Plane.004")
 plane4.reparentTo(render)
 plane5 = egg2.find("**/Plane.005")
 plane5.reparentTo(render)
+
+inner_wall = egg2.find("**/Cube")
+inner_wall.reparentTo(render)
+# egg3 = loader.loadModel("models/box_in_edit_mode_with_wall.egg")
+# plane6 = egg3.find("**/Plane.006")
+# plane6.reparentTo(render)
 
 
 
@@ -83,6 +90,7 @@ wall_west = add_wall_to_physics(space1, 10, 0.1, 2, 0, -3, 1)
 wall_east = add_wall_to_physics(space1, 10, 0.1, 2, 0, 3, 1)
 wall_north = add_wall_to_physics(space1, 0.1, 5, 2, -5, 0, 1)
 wall_south = add_wall_to_physics(space1, 1, 5, 2, 5, 0, 1)
+bumper_wall = add_wall_to_physics(space1, 3.5, 0.2, 0.5, 3.25, 2.6, 0.25)
 
 def set_light():
     # Create Ambient Light
@@ -128,7 +136,7 @@ def simulationTask(task):
     sphere.setPos(ball_body.getPosition())
     # ball_body.set_force(0,176.689,-1000)
     # ball_body.set_force(0,0, -100)
-    ball_body.setForce(1, 0, 0)
+    ball_body.setForce(1, 1, 0)
     # ball_body.setForce(1, 1, 0)
     contactgroup1.empty()  # Clear the contact joints
     return task.cont
