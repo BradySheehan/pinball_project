@@ -27,8 +27,8 @@ print ball.getName()
 print type(ball)
 
 ball_NP = ball.copyTo(render)
-# ball_NP.setPos(0, 0, 0.45)
-ball_NP.setPos(0,0, 0.01)
+# ball_NP.setPos(0, 0, 0.1)
+ball_NP.setPos(4.3,2.85, 0.12)
 #Setup the sphere's physics
 mass = OdeMass()
 mass.setSphere(50, 0.1)
@@ -61,15 +61,10 @@ plane5.reparentTo(render)
 
 inner_wall = egg2.find("**/Cube")
 inner_wall.reparentTo(render)
-# egg3 = loader.loadModel("models/box_in_edit_mode_with_wall.egg")
-# plane6 = egg3.find("**/Plane.006")
-# plane6.reparentTo(render)
-
 
 
 def add_plane_to_physics(planeNP, space, params1, params2, params3, params4):
     plane = OdePlaneGeom(space, params1, params2, params3, params4)
-    pos = planeNP.getPos(render)
     plane.setCollideBits(BitMask32(0x00000002))
     plane.setCategoryBits(BitMask32(0x00000001))
     plane.setCollideBits(BitMask32(0x00000001))
@@ -88,7 +83,7 @@ def add_wall_to_physics(space, dimx, dimy, dimz, locx, locy, locz):
 ground_plane = add_plane_to_physics(plane1, space1, 0, 0, 1, 0)
 wall_west = add_wall_to_physics(space1, 10, 0.1, 2, 0, -3, 1)
 wall_east = add_wall_to_physics(space1, 10, 0.1, 2, 0, 3, 1)
-wall_north = add_wall_to_physics(space1, 0.1, 5, 2, -5, 0, 1)
+wall_north = add_wall_to_physics(space1, 0.1, 6, 2, -5, 0, 1)
 wall_south = add_wall_to_physics(space1, 1, 5, 2, 5, 0, 1)
 bumper_wall = add_wall_to_physics(space1, 3.5, 0.2, 0.5, 3.25, 2.6, 0.25)
 
@@ -136,7 +131,7 @@ def simulationTask(task):
     sphere.setPos(ball_body.getPosition())
     # ball_body.set_force(0,176.689,-1000)
     # ball_body.set_force(0,0, -100)
-    ball_body.setForce(1, 1, 0)
+    ball_body.setForce(-1, -1, 0)
     # ball_body.setForce(1, 1, 0)
     contactgroup1.empty()  # Clear the contact joints
     return task.cont
