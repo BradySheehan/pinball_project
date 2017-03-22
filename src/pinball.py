@@ -17,7 +17,7 @@ class Table():
 
     def setup_camera(self):
         print "setup camera"
-        base.camera.setPos(9, 0, 15)
+        base.camera.setPos(10, 0, 15)
         base.camera.lookAt(0, 0, 0)
 
     def setup_light(self):
@@ -56,9 +56,10 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(50, 0.1)
         self.table_egg = loader.loadModel(
-            "models/visible_table_inner_wall.egg")
+            "models/visible_table_inner_wall_bumpers.egg")
         self.import_table(self.table_egg)
         self.setup_table_physics()
+        self.import_innards(self.table_egg)
 
     def add_plane_to_physics(self, params1, params2, params3, params4):
         # Returns a handle to the OdePlaneGeom object with the specified
@@ -73,14 +74,21 @@ class Table():
         box.setPosition(locx, locy, locz)
         return box
 
+    def add_innard_cube_to_physics(self, innardNP, dimx, dimy, dimz):
+        innard = OdeBoxGeom(self.space1, 1.5, 0.05, 0.5)
+        innard.setPosition(innardNP.getPos())
+        innard.setQuaternion(innardNP.getQuat())
+        return innard
+
+
     def setup_table_physics(self):
         print "\t \t setup table physics"
         self.ground_plane = self.add_plane_to_physics(0, 0, 1, 0)
         self.wall_west = self.add_wall_to_physics(10, 0.1, 2, 0, -3, 1)
         self.wall_east = self.add_wall_to_physics(10, 0.1, 2, 0, 3, 1)
         self.wall_north = self.add_wall_to_physics(0.1, 6, 2, -5, 0, 1)
-        self.wall_south = self.add_wall_to_physics(1, 5, 2, 5, 0, 1)
-        self.bumper_wall = self.add_wall_to_physics(
+        self.wall_south = self.add_wall_to_physics(0.5, 6, 2, 5, 0, 1)
+        self.launch_wall = self.add_wall_to_physics(
             3.5, 0.2, 0.5, 3.25, 2.6, 0.25)
 
     def import_table(self, table_egg):
@@ -105,6 +113,28 @@ class Table():
         inner_wall.reparentTo(render)
         inner_wall.flattenLight()
 
+    def import_innards(self, table_egg):
+#        print 'trigger_r_wall', trigger_r_wall.getPos(), ' ', trigger_r_wall.getQuat()
+        trigger_r_wall = table_egg.find("**/Cube.002")
+        trigger_r_wall_geom = self.add_innard_cube_to_physics(trigger_r_wall, 1.5, 0.05, 0.5)
+        trigger_r_wall.reparentTo(render)
+        trigger_r_wall.flattenLight()
+
+        trigger_l_wall = table_egg.find("**/Cube.001")
+        trigger_l_wall_geom = self.add_innard_cube_to_physics(trigger_l_wall, 1.5, 0.05, 0.5)
+        trigger_l_wall.reparentTo(render)
+        trigger_l_wall.flattenLight()
+
+        l_bumper_wall = table_egg.find("**/Cube.003")
+        l_bumper_wall_geom = self.add_innard_cube_to_physics(l_bumper_wall, 0.75, 0.2, 0.5)
+        l_bumper_wall.reparentTo(render)
+        l_bumper_wall.flattenLight()
+
+        r_bumper_wall = table_egg.find("**/Cube.004")
+        r_bumper_wall_geom = self.add_innard_cube_to_physics(r_bumper_wall, 0.75, 0.2, 0.5)
+        r_bumper_wall.reparentTo(render)
+        r_bumper_wall.flattenLight()
+
     def import_ball(self, ball_egg):
         print "\t import ball egg"
         sphere = ball_egg.find("**/Sphere")
@@ -113,7 +143,8 @@ class Table():
 
     def setup_ball_physics(self, radius, mass):
         print "\t \t setup ball physics"
-        self.ball.set_pos(4.3, 2.85, 0.1)
+        # self.ball.set_pos(4.3, 2.85, 0.1)
+        self.ball.setPos(-4, -2.85, 0.1)
         self.ball_mass = OdeMass()
         self.ball_mass.setSphere(50, 0.1)
         self.ball_body = OdeBody(self.world)
@@ -125,7 +156,8 @@ class Table():
 
     def place_ball(self):
         # pass
-        self.ball.set_pos(4.3, 2.85, 0.1)
+        # self.ball.setPos(4.3, 2.85, 0.1)
+        self.ball.setPos(-4, -2.85, 0.1)
         # self.ball.setPos(0,0,2.12)
         self.ball_body.setPosition(self.ball.getPos(render))
         self.ball_body.setQuaternion(self.ball.getQuat(render))
@@ -137,7 +169,7 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
-        self.ball_body.setForce(-1, -1, 0)
+        self.ball_body.setForce(1, 0.5, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
