@@ -22,6 +22,7 @@ class Table():
 
     def setup_light(self):
         print "setup light"
+        #set light in panda3d from blender
         ambientLight = AmbientLight('ambientLight')
         ambientLight.setColor(Vec4(0.0, 0.0, 0.0, 1))
         ambientLightNP = render.attachNewNode(ambientLight)
@@ -41,7 +42,7 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(0, 0, -9.81)
+        self.world.setGravity(0.1, 0, -1)
         self.world.initSurfaceTable(1)
         self.world.setSurfaceEntry(
             0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 0.0, 0.002)
@@ -54,9 +55,9 @@ class Table():
         print "load models"
         self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.ball = self.import_ball(self.ball_egg)
-        self.setup_ball_physics(50, 0.1)
+        self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/visible_table_first_attempt_bumpers.egg")
+            "models/visible_table_first_attempt_bumpers_color.egg")
         self.import_table(self.table_egg)
         self.setup_table_physics()
         self.import_innards(self.table_egg)
@@ -157,8 +158,9 @@ class Table():
 
     def setup_ball_physics(self, radius, mass):
         print "\t \t setup ball physics"
-        # self.ball.set_pos(4.3, 2.85, 0.1)
-        self.ball.setPos(-4, -2.85, 0.1)
+        self.ball.set_pos(4.3, 2.85, 0.1)
+        # self.ball.setPos(-4, -2.85, 0.1)
+        # self.ball.setPos(0,0,0)
         self.ball_mass = OdeMass()
         self.ball_mass.setSphere(50, 0.1)
         self.ball_body = OdeBody(self.world)
@@ -170,8 +172,9 @@ class Table():
 
     def place_ball(self):
         # pass
-        # self.ball.setPos(4.3, 2.85, 0.1)
-        self.ball.setPos(-4, -2.85, 0.1)
+        self.ball.setPos(4.3, 2.85, 0.1)
+        # self.ball.setPos(-4, -2.85, 0.1)
+        # self.ball.setPos(0,0,0.1)
         # self.ball.setPos(0,0,2.12)
         self.ball_body.setPosition(self.ball.getPos(render))
         self.ball_body.setQuaternion(self.ball.getQuat(render))
@@ -183,10 +186,22 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
-        self.ball_body.setForce(1, 0.5, 0)
+        self.ball_body.setForce(-5, 0, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
+    def gravity_task(self, task):
+        self.space1.autoCollide()  # Setup the contact joints
+        # Step the simulation and set the new positions
+        self.world.quickStep(globalClock.getDt())
+        self.ball.setPosQuat(
+            render, self.ball_body.getPosition(), Quat(
+                self.ball_body.getQuaternion()))
+        self.contactgroup.empty()  # Clear the contact joints
+        return task.cont
+
+    def stop_launch_ball_task(self, task):
+        taskMgr.remove('launch_ball')
 
 class Game():
 
@@ -199,6 +214,7 @@ class Game():
     def start(self):
         self.reset_score()
         self.table.place_ball()
+        self.start_gravity_task()
         self.launch_ball()
         base.disableMouse()
         base.accept("escape", sys.exit)  # Escape quits
@@ -211,9 +227,16 @@ class Game():
     def launch_ball(self):
         # pass
         taskMgr.doMethodLater(
-            2,
+            0,
             self.table.launch_ball_task,
             'launch_ball')
+        taskMgr.doMethodLater(
+            1,
+            self.table.stop_launch_ball_task,
+            'stop_launch_ball')
+
+    def start_gravity_task(self):
+        taskMgr.add(self.table.gravity_task, 'gravity_task')
 
 if __name__ == '__main__':
     game = Game()
