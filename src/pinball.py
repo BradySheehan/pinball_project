@@ -56,7 +56,7 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(50, 0.1)
         self.table_egg = loader.loadModel(
-            "models/visible_table_inner_wall_bumpers.egg")
+            "models/visible_table_first_attempt_bumpers.egg")
         self.import_table(self.table_egg)
         self.setup_table_physics()
         self.import_innards(self.table_egg)
@@ -79,7 +79,6 @@ class Table():
         innard.setPosition(innardNP.getPos())
         innard.setQuaternion(innardNP.getQuat())
         return innard
-
 
     def setup_table_physics(self):
         print "\t \t setup table physics"
@@ -114,26 +113,41 @@ class Table():
         inner_wall.flattenLight()
 
     def import_innards(self, table_egg):
-#        print 'trigger_r_wall', trigger_r_wall.getPos(), ' ', trigger_r_wall.getQuat()
+        # print 'trigger_r_wall', trigger_r_wall.getPos(), ' ',
+        # trigger_r_wall.getQuat()
         trigger_r_wall = table_egg.find("**/Cube.002")
-        trigger_r_wall_geom = self.add_innard_cube_to_physics(trigger_r_wall, 1.5, 0.05, 0.5)
+        trigger_r_wall_geom = self.add_innard_cube_to_physics(
+            trigger_r_wall, 1.5, 0.05, 0.5)
         trigger_r_wall.reparentTo(render)
         trigger_r_wall.flattenLight()
 
         trigger_l_wall = table_egg.find("**/Cube.001")
-        trigger_l_wall_geom = self.add_innard_cube_to_physics(trigger_l_wall, 1.5, 0.05, 0.5)
+        trigger_l_wall_geom = self.add_innard_cube_to_physics(
+            trigger_l_wall, 1.5, 0.05, 0.5)
         trigger_l_wall.reparentTo(render)
         trigger_l_wall.flattenLight()
 
         l_bumper_wall = table_egg.find("**/Cube.003")
-        l_bumper_wall_geom = self.add_innard_cube_to_physics(l_bumper_wall, 0.75, 0.2, 0.5)
+        l_bumper_wall_geom = self.add_innard_cube_to_physics(
+            l_bumper_wall, 0.75, 0.2, 0.5)
         l_bumper_wall.reparentTo(render)
         l_bumper_wall.flattenLight()
 
         r_bumper_wall = table_egg.find("**/Cube.004")
-        r_bumper_wall_geom = self.add_innard_cube_to_physics(r_bumper_wall, 0.75, 0.2, 0.5)
+        r_bumper_wall_geom = self.add_innard_cube_to_physics(
+            r_bumper_wall, 0.75, 0.2, 0.5)
         r_bumper_wall.reparentTo(render)
         r_bumper_wall.flattenLight()
+
+        rb_bumper = table_egg.find("**/Cylinder")
+        rb_bumper.reparentTo(render)
+        rb_bumper.flattenLight()
+
+
+        lb_bumper = table_egg.find("**/Cylinder.001")
+        lb_bumper.reparentTo(render)
+        lb_bumper.flattenLight()
+
 
     def import_ball(self, ball_egg):
         print "\t import ball egg"
@@ -197,7 +211,7 @@ class Game():
     def launch_ball(self):
         # pass
         taskMgr.doMethodLater(
-            1,
+            2,
             self.table.launch_ball_task,
             'launch_ball')
 
