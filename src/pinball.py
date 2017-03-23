@@ -47,7 +47,7 @@ class Table():
         taskMgr.doMethodLater(
             0,
             self.move_right_flipper_down,
-            'move_right_flipper_down')        
+            'move_right_flipper_down')
 
 
     def setup_camera(self):
@@ -77,10 +77,10 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(0.1, 0, -1)
+        self.world.setGravity(0.25, 0, -4.5)
         self.world.initSurfaceTable(1)
         self.world.setSurfaceEntry(
-            0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 0.0, 0.002)
+            0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 1.0, 0.002)
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
