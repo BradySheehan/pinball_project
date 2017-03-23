@@ -210,7 +210,7 @@ class Table():
 
         angled_launch_wall = table_egg.find("**/Cube.005")
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
-            angled_launch_wall, 1, 0.05, 0.5)
+            angled_launch_wall, 1, 1, 1)
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
@@ -222,9 +222,6 @@ class Table():
 
     def setup_ball_physics(self, radius, mass):
         print "\t \t setup ball physics"
-        self.ball.set_pos(4.3, 2.85, 0.1)
-        # self.ball.setPos(-4, -2.85, 0.1)
-        # self.ball.setPos(0,0,0)
         ball_mass = OdeMass()
         ball_mass.setSphere(50, 0.1)
         self.ball_body = OdeBody(self.world)
@@ -236,8 +233,8 @@ class Table():
 
     def place_ball(self):
         # pass
-        self.ball.setPos(4.3, 2.85, 0.1)
-        # self.ball.setPos(-4, -2.85, 0.1)
+        # self.ball.setPos(4.3, 2.85, 0.1)
+        self.ball.setPos(-4, -2.85, 0.1)
         # self.ball.setPos(0,0,0.1)
         # self.ball.setPos(0,0,2.12)
         self.ball_body.setPosition(self.ball.getPos(render))
@@ -250,7 +247,7 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
-        self.ball_body.setForce(-2, 0, 0)
+        self.ball_body.setForce(1.5, 1.1, 0)
         # self.ball_body.setForce(2, 1, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
@@ -319,7 +316,6 @@ class Game():
         self.score = 0
 
     def launch_ball(self):
-        # pass
         taskMgr.doMethodLater(
             0,
             self.table.launch_ball_task,
