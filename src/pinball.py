@@ -15,6 +15,41 @@ class Table():
         self.setup_light()
         self.load_models()
 
+        self.h_left = 0; # rotation for left flipper
+        self.h_right = 0;
+
+        base.accept('a', self.move_left_flipper)
+        base.accept('a-up', self.stop_left_flipper)
+
+        base.accept('d', self.move_right_flipper)
+        base.accept('d-up', self.stop_right_flipper)
+
+    def move_left_flipper(self):
+        taskMgr.doMethodLater(
+            0,
+            self.move_left_flipper_up,
+            'move_left_flipper_up')
+
+    def stop_left_flipper(self):
+        taskMgr.remove('move_left_flipper_up')
+        taskMgr.doMethodLater(
+            0,
+            self.move_left_flipper_down,
+            'move_left_flipper_down')
+    def move_right_flipper(self):
+        taskMgr.doMethodLater(
+            0,
+            self.move_right_flipper_up,
+            'move_right_flipper_up')
+
+    def stop_right_flipper(self):
+        taskMgr.remove('move_right_flipper_up')
+        taskMgr.doMethodLater(
+            0,
+            self.move_right_flipper_down,
+            'move_right_flipper_down')        
+
+
     def setup_camera(self):
         print "setup camera"
         base.camera.setPos(10, 0, 15)
@@ -58,6 +93,35 @@ class Table():
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
             "models/visible_table_first_attempt_bumpers_color.egg")
+
+        #extract bumper
+        self.egg_flipper = loader.loadModel("models/bumper3.egg")
+        self.egg_flipper2= loader.loadModel("models/bumper3.egg")
+        self.pivot_left = render.attachNewNode("pivot_left")
+        self.pivot_right = render.attachNewNode("pivot_right")
+
+        self.flipper = self.egg_flipper.find("**/Cube")
+        self.flipper2 = self.egg_flipper2.find("**/Cube")
+
+        self.flipper.setPos(0.18,-0.4, 0)
+        self.flipper.setH(110)
+
+
+        # I want this at 4.3, -.6, .25 about
+        self.flipper2.setPos(0.18,0.4, 0)
+        self.flipper2.setH(-110)
+
+        self.pivot_left.setPos(4.12,-1.0, .25)
+        self.pivot_right.setPos(4.12,0.6, .25)
+        # pivot_left.setH(-110)
+
+
+        self.flipper.reparentTo(self.pivot_right)
+        self.flipper2.reparentTo(self.pivot_left)
+
+
+
+
         self.import_table(self.table_egg)
         self.setup_table_physics()
         self.import_innards(self.table_egg)
@@ -114,19 +178,19 @@ class Table():
         inner_wall.flattenLight()
 
     def import_innards(self, table_egg):
-        # print 'trigger_r_wall', trigger_r_wall.getPos(), ' ',
-        # trigger_r_wall.getQuat()
-        trigger_r_wall = table_egg.find("**/Cube.002")
-        trigger_r_wall_geom = self.add_innard_cube_to_physics(
-            trigger_r_wall, 1.5, 0.05, 0.5)
-        trigger_r_wall.reparentTo(render)
-        trigger_r_wall.flattenLight()
+        # print 'flipper_r_wall', flipper_r_wall.getPos(), ' ',
+        # flipper_r_wall.getQuat()
+        flipper_r_wall = table_egg.find("**/Cube.002")
+        flipper_r_wall_geom = self.add_innard_cube_to_physics(
+            flipper_r_wall, 1.5, 0.05, 0.5)
+        flipper_r_wall.reparentTo(render)
+        flipper_r_wall.flattenLight()
 
-        trigger_l_wall = table_egg.find("**/Cube.001")
-        trigger_l_wall_geom = self.add_innard_cube_to_physics(
-            trigger_l_wall, 1.5, 0.05, 0.5)
-        trigger_l_wall.reparentTo(render)
-        trigger_l_wall.flattenLight()
+        flipper_l_wall = table_egg.find("**/Cube.001")
+        flipper_l_wall_geom = self.add_innard_cube_to_physics(
+            flipper_l_wall, 1.5, 0.05, 0.5)
+        flipper_l_wall.reparentTo(render)
+        flipper_l_wall.flattenLight()
 
         l_bumper_wall = table_egg.find("**/Cube.003")
         l_bumper_wall_geom = self.add_innard_cube_to_physics(
@@ -186,7 +250,7 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
-        self.ball_body.setForce(-5, 0, 0)
+        self.ball_body.setForce(-2, 0, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -202,6 +266,34 @@ class Table():
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
+
+    def move_left_flipper_up(self, task):
+            self.h_left = self.h_left + 5
+            self.pivot_left.setPos(4.12,-1.0, .25)
+            self.pivot_left.setH(self.h_left)
+            if (self.h_left < 90):
+                return task.cont
+
+    def move_left_flipper_down(self, task):
+        self.h_left = self.h_left - 5
+        self.pivot_left.setPos(4.12,-1.0, .25)
+        self.pivot_left.setH(self.h_left)
+        if (self.h_left > 0):
+            return task.cont
+
+    def move_right_flipper_up(self, task):
+        self.h_right = self.h_right  - 5
+        self.pivot_right.setPos(4.12, 0.6, .25)
+        self.pivot_right.setH(self.h_right)
+        if (self.h_right > -90):
+            return task.cont
+
+    def move_right_flipper_down(self, task):
+        self.h_right = self.h_right  + 5
+        self.pivot_right.setPos(4.12, 0.6, .25)
+        self.pivot_right.setH(self.h_right)
+        if (self.h_right < 0):
+            return task.cont
 
 class Game():
 
