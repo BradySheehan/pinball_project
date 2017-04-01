@@ -176,6 +176,8 @@ class Table():
     def import_innards(self, table_egg):
         # print 'flipper_r_wall', flipper_r_wall.getPos(), ' ',
         # flipper_r_wall.getQuat()
+        invisible_stopper_for_ball = self.add_wall_to_physics(0.1, 0.1, 1, 4.75, 2.80, 0.5)
+
         flipper_r_wall = table_egg.find("**/Cube.002")
         flipper_r_wall_geom = self.add_innard_cube_to_physics(
             flipper_r_wall, 1.5, 0.05, 0.5)
@@ -232,9 +234,8 @@ class Table():
         ball_geom.setBody(self.ball_body)
 
     def place_ball(self):
-        # pass
-        # self.ball.setPos(4.3, 2.85, 0.1)
-        self.ball.setPos(-4, -2.85, 0.1)
+        self.ball.setPos(4.4, 2.85, 0.1)
+        # self.ball.setPos(-4, -2.85, 0.1)
         # self.ball.setPos(0,0,0.1)
         # self.ball.setPos(0,0,2.12)
         self.ball_body.setPosition(self.ball.getPos(render))
@@ -247,8 +248,8 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
-        self.ball_body.setForce(1.5, 1.1, 0)
-        # self.ball_body.setForce(2, 1, 0)
+        # self.ball_body.setForce(1.4, 1.1, 0)
+        self.ball_body.setForce(-2.5, 0, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -264,6 +265,10 @@ class Table():
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
+
+    def start_trigger_miss_task(self):
+        self.space1.setCollisionEvent("trigger_miss")
+        base.accept("trigger_miss", self.trigger_miss_event)
 
     def move_left_flipper_up(self, task):
         self.h_left = self.h_left + 5
@@ -293,6 +298,19 @@ class Table():
         if (self.h_right < 0):
             return task.cont
 
+# Setup collision event
+    def trigger_miss_event(self, entry):
+        # print 'inside trigger miss event'
+        geom1 = entry.getGeom1()
+        geom2 = entry.getGeom2()
+        body1 = entry.getBody1()
+        body2 = entry.getBody2()
+        if ( (geom1 and geom1 == self.wall_south) and ( (body1 and body1 == self.ball_body) or (body2 and body2 == self.ball_body) ) ) or ( (geom2 and geom2 == self.wall_south) and ( (body1 and body1 == self.ball_body) or (body2 and body2 == self.ball_body) ) ):
+        # if (geom2 and geom2 == self.wall_south):
+            #now the Game needs to be made aware of the ball being "lost" and
+            #the ball needs to be placed back at the start position
+            print 'collision has happened'
+            self.place_ball()
 
 class Game():
 
@@ -305,10 +323,13 @@ class Game():
     def start(self):
         self.reset_score()
         self.table.place_ball()
+        self.table.start_trigger_miss_task()
         self.start_gravity_task()
-        self.launch_ball()
+        # self.launch_ball()
         base.disableMouse()
         base.accept("escape", sys.exit)  # Escape quits
+        # base.accept("ode-collision", onCollision)
+        base.accept('space', self.launch_ball)
         base.run()
 
     def reset_score(self):
@@ -316,6 +337,7 @@ class Game():
         self.score = 0
 
     def launch_ball(self):
+        print "called"
         taskMgr.doMethodLater(
             0,
             self.table.launch_ball_task,
