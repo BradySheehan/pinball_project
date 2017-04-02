@@ -82,9 +82,9 @@ class Table():
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
         self.world.setGravity(0.75, 0, -9.8)
-        self.world.initSurfaceTable(1)
+        self.world.initSurfaceTable(1) #we need to figure out what this does
         self.world.setSurfaceEntry(
-            0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 1.0, 0.002)
+            0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 1.0, 0.002) #and what this does
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
@@ -96,7 +96,7 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/visible_table_first_bumpers_attempt_color_launch_wall.egg")
+            "models/visible_table_first_bumpers_attempt_color_launch_wall2.egg")
 
         # extract bumper
         self.egg_flipper = loader.loadModel("models/bumper3.egg")
@@ -214,12 +214,12 @@ class Table():
         boxNodepath = wireGeom().generate ('box', extents=(1.0, 0.05, 0.5))
         print angled_launch_wall.getPos()
         print angled_launch_wall.getQuat()
-        boxNodepath.setPos(-0.3, 2.7, 0.25)
+        boxNodepath.setPos(-0.35, 2.85, 0.25)
         boxNodepath.setQuat(angled_launch_wall.getQuat())
         boxNodepath.reparentTo(render)
 
         angled_launch_wall_geom = self.add_wall_to_physics(
-            1.0, 0.1, 0.5, -0.3, 2.75, 0.25)
+            1.0, 0.1, 0.5, -0.35, 2.85, 0.25)
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
