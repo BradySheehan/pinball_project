@@ -356,7 +356,6 @@ class Game():
             print 'collision has happened'
             self.remove_gravity_task()
             self.lose_ball()
-            self.place_ball()
 
     def start_trigger_miss_task(self, task):
         print "start trigger miss task"
