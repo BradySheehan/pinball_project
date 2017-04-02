@@ -178,10 +178,6 @@ class Table():
         inner_wall.flattenLight()
 
     def import_innards(self, table_egg):
-        # print 'flipper_r_wall', flipper_r_wall.getPos(), ' ',
-        # flipper_r_wall.getQuat()
-        # invisible_stopper_for_ball = self.add_wall_to_physics(0.1, 0.1, 1, 4.75, 2.80, 0.5)
-
         flipper_r_wall = table_egg.find("**/Cube.002")
         flipper_r_wall_geom = self.add_innard_cube_to_physics(
             flipper_r_wall, 1.5, 0.05, 0.5)
@@ -213,8 +209,6 @@ class Table():
         lb_bumper = table_egg.find("**/Cylinder.001")
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
-
-
 
         angled_launch_wall = table_egg.find("**/Cube.005")
         boxNodepath = wireGeom().generate ('box', extents=(1, 0.05, 0.5))
@@ -301,28 +295,23 @@ class Table():
 class Game():
 
     def __init__(self):
-        self.max_balls = 5
+        base.disableMouse()
+        base.accept("escape", sys.exit)  # Escape quits
+        self.max_balls = 1
         self.balls_used = 0
         self.score = 0
         self.table = Table()
 
-    def lose_ball(self):
-        self.balls_used = self.balls_used + 1;
-        if self.balls_used >= self.max_balls:
-            self.scoreboard.displayLostGame(self.score)
-            self.accept('keystroke', self.start())
-        self.scoreboard.updateDisplay(self.score, self.balls_used)
-
     def start(self):
-        self.reset_score()
         self.scoreboard = Scoreboard(self.score, self.max_balls, self.balls_used)
         self.place_ball()
-        # self.launch_ball()
-        base.disableMouse()
-        base.accept("escape", sys.exit)  # Escape quits
-        # base.accept("ode-collision", onCollision)
         base.run()
 
+    def restart(self):
+        self.reset_score()
+        self.scoreboard.text_object.destroy()
+        self.scoreboard = Scoreboard(self.score, self.max_balls, self.balls_used)
+        self.place_ball()
 
     def place_ball(self):
         self.table.ball.setPos(4.4, 2.85, 0.1)
@@ -357,7 +346,6 @@ class Game():
         taskMgr.remove('gravity_task')
 
     def trigger_miss_event(self, entry):
-        # print 'inside trigger miss event'
         geom1 = entry.getGeom1()
         geom2 = entry.getGeom2()
         body1 = entry.getBody1()
@@ -373,6 +361,15 @@ class Game():
         self.table.space1.setCollisionEvent("trigger_miss")
         base.accept("trigger_miss", self.trigger_miss_event)
 
+    def lose_ball(self):
+        self.balls_used = self.balls_used + 1;
+        if self.balls_used >= self.max_balls:
+            self.scoreboard.displayLostGame(self.score, self.balls_used)
+            # taskMgr.doMethodLater(3, self.start())
+            base.accept('enter', self.restart)
+            return()
+        self.scoreboard.updateDisplay(self.score, self.balls_used)
+
 class Scoreboard():
     def __init__(self, score, max_balls, balls_used):
         self.max_balls = max_balls
@@ -384,8 +381,7 @@ class Scoreboard():
 
     def displayLostGame(self, score, balls_used):
         self.text_object.destroy()
-        self.text_object = OnscreenText(text = 'YOU LOST! \n Your final score is ' + str(score) + "\n Press any key to play again ", pos = (-1, 0.75), scale = 0.07)
-
+        self.text_object = OnscreenText(text = 'Your weak father should be ashamed of you! \n Your final score is ' + str(score) + "\n Press enter to play again ", pos = (0, 0), scale = 0.1)
 
 
 
