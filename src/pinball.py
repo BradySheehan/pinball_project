@@ -7,6 +7,9 @@ import sys
 
 sys.path.append('../scripts/')
 from visualizeGeoms import wireGeom
+
+from direct.gui.OnscreenText import OnscreenText
+
 class Table():
     # class that sets up the graphics and physics
 
@@ -78,7 +81,7 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(0.25, 0, -4.5)
+        self.world.setGravity(0.75, 0, -9.8)
         self.world.initSurfaceTable(1)
         self.world.setSurfaceEntry(
             0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 1.0, 0.002)
@@ -249,7 +252,7 @@ class Table():
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
-        self.ball_body.setForce(-2.5, -0.50, 0)
+        self.ball_body.setForce(-3.5, -0.50, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -294,8 +297,6 @@ class Table():
         if (self.h_right < 0):
             return task.cont
 
-# Setup collision event
-
 
 class Game():
 
@@ -305,14 +306,21 @@ class Game():
         self.score = 0
         self.table = Table()
 
+    def lose_ball(self):
+        self.balls_used = self.balls_used + 1;
+        if self.balls_used >= self.max_balls:
+            self.scoreboard.displayLostGame(self.score)
+            self.accept('keystroke', self.start())
+        self.scoreboard.updateDisplay(self.score, self.balls_used)
+
     def start(self):
         self.reset_score()
+        self.scoreboard = Scoreboard(self.score, self.max_balls, self.balls_used)
         self.place_ball()
         # self.launch_ball()
         base.disableMouse()
         base.accept("escape", sys.exit)  # Escape quits
         # base.accept("ode-collision", onCollision)
-        base.acceptOnce('space', self.launch_ball)
         base.run()
 
 
@@ -323,6 +331,7 @@ class Game():
         # self.ball.setPos(0,0,2.12)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
+        base.acceptOnce('space', self.launch_ball)
 
     def reset_score(self):
         self.balls_used = 0
@@ -354,18 +363,31 @@ class Game():
         body1 = entry.getBody1()
         body2 = entry.getBody2()
         if ( (geom1 and geom1 == self.table.wall_south) and ( (body1 and body1 == self.table.ball_body) or (body2 and body2 == self.table.ball_body) ) ) or ( (geom2 and geom2 == self.table.wall_south) and ( (body1 and body1 == self.table.ball_body) or (body2 and body2 == self.table.ball_body) ) ):
-        # if (geom2 and geom2 == self.wall_south):
-            #now the Game needs to be made aware of the ball being "lost" and
-            #the ball needs to be placed back at the start position
             print 'collision has happened'
             self.remove_gravity_task()
+            self.lose_ball()
             self.place_ball()
-            base.acceptOnce('space', self.launch_ball)
 
     def start_trigger_miss_task(self, task):
         print "start trigger miss task"
         self.table.space1.setCollisionEvent("trigger_miss")
         base.accept("trigger_miss", self.trigger_miss_event)
+
+class Scoreboard():
+    def __init__(self, score, max_balls, balls_used):
+        self.max_balls = max_balls
+        self.text_object = OnscreenText(text = 'Your score is ' + str(score) + "\n Balls Available: "  + str(max_balls - balls_used) , pos = (-1, 0.75), scale = 0.07)
+
+    def updateDisplay(self, score, balls_used):
+        self.text_object.destroy()
+        self.text_object = OnscreenText(text = 'Your score is ' + str(score) + "\n Balls Available: "  + str(self.max_balls - balls_used) , pos = (-1, 0.75), scale = 0.07)
+
+    def displayLostGame(self, score, balls_used):
+        self.text_object.destroy()
+        self.text_object = OnscreenText(text = 'YOU LOST! \n Your final score is ' + str(score) + "\n Press any key to play again ", pos = (-1, 0.75), scale = 0.07)
+
+
+
 
 if __name__ == '__main__':
     game = Game()
