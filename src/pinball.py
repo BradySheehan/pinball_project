@@ -211,13 +211,15 @@ class Table():
         lb_bumper.flattenLight()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
-        boxNodepath = wireGeom().generate ('box', extents=(1, 0.05, 0.5))
-        boxNodepath.setPos(angled_launch_wall.getPos())
+        boxNodepath = wireGeom().generate ('box', extents=(1.0, 0.05, 0.5))
+        print angled_launch_wall.getPos()
+        print angled_launch_wall.getQuat()
+        boxNodepath.setPos(-0.3, 2.7, 0.25)
         boxNodepath.setQuat(angled_launch_wall.getQuat())
         boxNodepath.reparentTo(render)
 
-        angled_launch_wall_geom = self.add_innard_cube_to_physics(
-            angled_launch_wall, 1, 0.05, 0.5)
+        angled_launch_wall_geom = self.add_wall_to_physics(
+            1.0, 0.1, 0.5, -0.3, 2.75, 0.25)
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
