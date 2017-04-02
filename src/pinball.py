@@ -10,6 +10,7 @@ from visualizeGeoms import wireGeom
 
 from direct.gui.OnscreenText import OnscreenText
 
+
 class Table():
     # class that sets up the graphics and physics
 
@@ -82,9 +83,17 @@ class Table():
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
         self.world.setGravity(0.75, 0, -9.8)
-        self.world.initSurfaceTable(1) #we need to figure out what this does
+        self.world.initSurfaceTable(1)  # we need to figure out what this does
         self.world.setSurfaceEntry(
-            0, 0, 150, 0.0, 9.1, 0.9, 0.00001, 1.0, 0.002) #and what this does
+            0,
+            0,
+            150,
+            0.0,
+            9.1,
+            0.9,
+            0.00001,
+            1.0,
+            0.002)  # and what this does
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
@@ -211,7 +220,7 @@ class Table():
         lb_bumper.flattenLight()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
-        boxNodepath = wireGeom().generate ('box', extents=(1.0, 0.05, 0.5))
+        boxNodepath = wireGeom().generate('box', extents=(1.0, 0.05, 0.5))
         print angled_launch_wall.getPos()
         print angled_launch_wall.getQuat()
         boxNodepath.setPos(-0.35, 2.85, 0.25)
@@ -305,14 +314,16 @@ class Game():
         self.table = Table()
 
     def start(self):
-        self.scoreboard = Scoreboard(self.score, self.max_balls, self.balls_used)
+        self.scoreboard = Scoreboard(
+            self.score, self.max_balls, self.balls_used)
         self.place_ball()
         base.run()
 
     def restart(self):
         self.reset_score()
         self.scoreboard.text_object.destroy()
-        self.scoreboard = Scoreboard(self.score, self.max_balls, self.balls_used)
+        self.scoreboard = Scoreboard(
+            self.score, self.max_balls, self.balls_used)
         self.place_ball()
 
     def place_ball(self):
@@ -339,7 +350,10 @@ class Game():
             1,
             self.table.stop_launch_ball_task,
             'stop_launch_ball')
-        taskMgr.doMethodLater(0.5, self.start_trigger_miss_task, 'trigger_miss_task')
+        taskMgr.doMethodLater(
+            0.5,
+            self.start_trigger_miss_task,
+            'trigger_miss_task')
 
     def start_gravity_task(self):
         taskMgr.add(self.table.gravity_task, 'gravity_task')
@@ -352,7 +366,14 @@ class Game():
         geom2 = entry.getGeom2()
         body1 = entry.getBody1()
         body2 = entry.getBody2()
-        if ( (geom1 and geom1 == self.table.wall_south) and ( (body1 and body1 == self.table.ball_body) or (body2 and body2 == self.table.ball_body) ) ) or ( (geom2 and geom2 == self.table.wall_south) and ( (body1 and body1 == self.table.ball_body) or (body2 and body2 == self.table.ball_body) ) ):
+        if (
+            (
+                geom1 and geom1 == self.table.wall_south) and (
+                (body1 and body1 == self.table.ball_body) or (
+                body2 and body2 == self.table.ball_body))) or (
+                    (geom2 and geom2 == self.table.wall_south) and (
+                        (body1 and body1 == self.table.ball_body) or (
+                            body2 and body2 == self.table.ball_body))):
             print 'collision has happened'
             self.remove_gravity_task()
             self.lose_ball()
@@ -363,7 +384,7 @@ class Game():
         base.accept("trigger_miss", self.trigger_miss_event)
 
     def lose_ball(self):
-        self.balls_used = self.balls_used + 1;
+        self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             self.scoreboard.displayLostGame(self.score, self.balls_used)
             # taskMgr.doMethodLater(3, self.start())
@@ -371,19 +392,29 @@ class Game():
             return()
         self.scoreboard.updateDisplay(self.score, self.balls_used)
 
+
 class Scoreboard():
+
     def __init__(self, score, max_balls, balls_used):
         self.max_balls = max_balls
-        self.text_object = OnscreenText(text = 'Your score is ' + str(score) + "\n Balls Available: "  + str(max_balls - balls_used) + "\n ESC to quit", pos = (-1, 0.75), scale = 0.07)
+        self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
+            max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07)
 
     def updateDisplay(self, score, balls_used):
         self.text_object.destroy()
-        self.text_object = OnscreenText(text = 'Your score is ' + str(score) + "\n Balls Available: "  + str(self.max_balls - balls_used) + "\n ESC to quit", pos = (-1, 0.75), scale = 0.07)
+        self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
+            self.max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07)
 
     def displayLostGame(self, score, balls_used):
         self.text_object.destroy()
-        self.text_object = OnscreenText(text = 'Your weak father should be ashamed of you! \n Your final score is ' + str(score) + "\n Press enter to play again \n ESC to quit", pos = (0, 0), scale = 0.1)
-
+        self.text_object = OnscreenText(
+            text='Your weak father should be ashamed of you! \n Your final score is ' +
+            str(score) +
+            "\n Press enter to play again \n ESC to quit",
+            pos=(
+                0,
+                0),
+            scale=0.1)
 
 
 if __name__ == '__main__':
