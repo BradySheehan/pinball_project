@@ -98,7 +98,6 @@ class Game():
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             self.scoreboard.displayLostGame(self.score, self.balls_used)
-            # taskMgr.doMethodLater(3, self.start())
             base.acceptOnce('enter', self.restart)
             return()
         self.scoreboard.updateDisplay(self.score, self.balls_used)
