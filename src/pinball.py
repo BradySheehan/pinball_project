@@ -81,7 +81,7 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(0.75, 0, -9.8)
+        self.world.setGravity(1, 0, -10)
         self.world.initSurfaceTable(1)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
@@ -90,7 +90,7 @@ class Table():
             0.0,
             9.1,
             0.9,
-            0.00001,
+            0.0000,
             1.0,
             0.002)  # and what this does
         self.space1 = OdeSimpleSpace()
@@ -148,10 +148,10 @@ class Table():
     def setup_table_physics(self):
         print "\t \t setup table physics"
         self.ground_plane = self.add_plane_to_physics(0, 0, 1, 0)
-        self.wall_west = self.add_wall_to_physics(10, 0.1, 2, 0, -3, 1)
-        self.wall_east = self.add_wall_to_physics(10, 0.1, 2, 0, 3, 1)
-        self.wall_north = self.add_wall_to_physics(0.1, 6, 2, -5, 0, 1)
-        self.wall_south = self.add_wall_to_physics(0.5, 6, 2, 5, 0, 1)
+        self.wall_west = self.add_wall_to_physics(10, 0.1, 2.5, 0, -3, 1)
+        self.wall_east = self.add_wall_to_physics(10, 0.1, 2.5, 0, 3, 1)
+        self.wall_north = self.add_wall_to_physics(0.1, 6, 2.5, -5, 0, 1)
+        self.wall_south = self.add_wall_to_physics(0.5, 6, 2.5, 5, 0, 1)
         self.launch_wall = self.add_wall_to_physics(
             3.5, 0.2, 0.5, 3.25, 2.6, 0.25)
 
@@ -327,7 +327,7 @@ class Table():
     def setup_ball_physics(self, radius, mass):
         print "\t \t setup ball physics"
         ball_mass = OdeMass()
-        ball_mass.setSphere(50, 0.1)
+        ball_mass.setSphere(25, 0.1)
         self.ball_body = OdeBody(self.world)
         self.ball_body.setMass(ball_mass)
         self.ball_body.setPosition(self.ball.getPos(render))
@@ -343,7 +343,7 @@ class Table():
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
-        self.ball_body.setForce(-3.5, -0.0, 0)
+        self.ball_body.setForce(-3.0, -0.0, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -514,12 +514,12 @@ class Scoreboard():
     def __init__(self, score, max_balls, balls_used):
         self.max_balls = max_balls
         self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
-            max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
+            max_balls - balls_used) + '\n \n Space to lauch ball \n ESC to quit', pos=(-1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
     def updateDisplay(self, score, balls_used):
         self.text_object.destroy()
         self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
-            self.max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
+            self.max_balls - balls_used) + "\n ESC to quit", pos=(1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
     def displayLostGame(self, score, balls_used):
         self.text_object.destroy()
