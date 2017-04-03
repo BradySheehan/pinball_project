@@ -1,14 +1,13 @@
 from direct.directbase import DirectStart
+from direct.gui.OnscreenText import OnscreenText
 from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup
 from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeom
-from panda3d.core import BitMask32, Vec4, Quat
+from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
 
 sys.path.append('../scripts/')
 from visualizeGeoms import wireGeom
-
-from direct.gui.OnscreenText import OnscreenText
 
 
 class Table():
@@ -204,23 +203,37 @@ class Table():
         r_bumper_wall.flattenLight()
 
         rb_bumper = table_egg.find("**/Cylinder")
+
+        self.setup_physics_rb_bumper(rb_bumper)
+
+        boxNodepath2 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
+        boxNodepath2.setPos(2.6,1.45, 0.25)
+        boxNodepath2.setQuat(rb_bumper.getQuat())
+        boxNodepath2.reparentTo(render)
+
         rb_bumper.reparentTo(render)
         rb_bumper.flattenLight()
 
         lb_bumper = table_egg.find("**/Cylinder.001")
+        self.setup_physics_lb_bumper(lb_bumper)
+
+        boxNodepath3 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
+        boxNodepath3.setPos(2.6,-1.95, 0.25)
+        boxNodepath3.setQuat(lb_bumper.getQuat())
+        boxNodepath3.reparentTo(render)
+
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
 
+
         angled_launch_wall = table_egg.find("**/Cube.005")
         boxNodepath = wireGeom().generate('box', extents=(1.0, 0.05, 0.5))
-        print angled_launch_wall.getPos()
-        print angled_launch_wall.getQuat()
-        boxNodepath.setPos(-0.35, 2.85, 0.25)
+        boxNodepath.setPos(angled_launch_wall.getPos())
         boxNodepath.setQuat(angled_launch_wall.getQuat())
         boxNodepath.reparentTo(render)
 
-        angled_launch_wall_geom = self.add_wall_to_physics(
-            1.0, 0.1, 0.5, -0.35, 2.85, 0.25)
+        angled_launch_wall_geom = self.add_innard_cube_to_physics(
+            angled_launch_wall, 1.0, 0.1, 0.5)
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
@@ -258,6 +271,52 @@ class Table():
         flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
+    def setup_physics_lb_bumper(self, node_path):
+        l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6,-1.95, 0.25)
+        rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
+        quat = Quat(0.0,0.0,0.0,0.0)
+        v = VBase3(55.0,0.0,0.0)
+        quat.setHpr(v)
+        rb_wall.setQuaternion(quat)
+        rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
+        quat2 = Quat(0.0,0.0,0.0,0.0)
+        v2 = VBase3(125, 0, 0)
+        quat2.setHpr(v2)
+        rt_wall.setQuaternion(quat2)
+
+        boxNodepath1 = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
+        boxNodepath1.setPos(2.375, -1.8, .25)
+        boxNodepath1.setHpr(55, 0, 0)
+        boxNodepath1.reparentTo(render)
+
+        boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        boxNodepath2.setPos(2.79, -1.75, .25)
+        boxNodepath2.setHpr(125, 0, 0)
+        boxNodepath2.reparentTo(render)
+
+
+    def setup_physics_rb_bumper(self, node_path):
+        r_wall = self.add_wall_to_physics(0.75, 0.05, 0.5, 2.6, 1.45, 0.25)
+        lb_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.4, 1.2, 0.25)
+        quat = Quat(0.0,0.0,0.0,0.0)
+        v = VBase3(-55.0,0.0,0.0)
+        quat.setHpr(v)
+        lb_wall.setQuaternion(quat)
+        rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.75, 1.2, 0.25)
+        quat2 = Quat(0.0,0.0,0.0,0.0)
+        v2 = VBase3(-125, 0, 0)
+        quat2.setHpr(v2)
+        rt_wall.setQuaternion(quat2)
+
+        boxNodepath1 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        boxNodepath1.setPos(2.4, 1.2, 0.25)
+        boxNodepath1.setHpr(-55, 0, 0)
+        boxNodepath1.reparentTo(render)
+
+        boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        boxNodepath2.setPos(2.75, 1.2, 0.25)
+        boxNodepath2.setHpr(-125, 0, 0)
+        boxNodepath2.reparentTo(render)
 
     def import_ball(self, ball_egg):
         print "\t import ball egg"
@@ -284,7 +343,7 @@ class Table():
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
-        self.ball_body.setForce(-3.5, -0.50, 0)
+        self.ball_body.setForce(-3.5, -0.0, 0)
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -445,7 +504,7 @@ class Game():
         if self.balls_used >= self.max_balls:
             self.scoreboard.displayLostGame(self.score, self.balls_used)
             # taskMgr.doMethodLater(3, self.start())
-            base.accept('enter', self.restart)
+            base.acceptOnce('enter', self.restart)
             return()
         self.scoreboard.updateDisplay(self.score, self.balls_used)
 
@@ -455,12 +514,12 @@ class Scoreboard():
     def __init__(self, score, max_balls, balls_used):
         self.max_balls = max_balls
         self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
-            max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07)
+            max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
     def updateDisplay(self, score, balls_used):
         self.text_object.destroy()
         self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
-            self.max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07)
+            self.max_balls - balls_used) + "\n ESC to quit", pos=(-1, 0.75), scale=0.07, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
     def displayLostGame(self, score, balls_used):
         self.text_object.destroy()
@@ -471,7 +530,7 @@ class Scoreboard():
             pos=(
                 0,
                 0),
-            scale=0.1)
+            scale=0.1, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
 
 if __name__ == '__main__':
