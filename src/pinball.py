@@ -107,32 +107,11 @@ class Table():
         self.table_egg = loader.loadModel(
             "models/visible_table_first_bumpers_attempt_color_launch_wall2.egg")
 
-        # extract bumper
-        self.egg_flipper = loader.loadModel("models/bumper3.egg")
-        self.egg_flipper2 = loader.loadModel("models/bumper3.egg")
-        self.pivot_left = render.attachNewNode("pivot_left")
-        self.pivot_right = render.attachNewNode("pivot_right")
-
-        self.flipper = self.egg_flipper.find("**/Cube")
-        self.flipper2 = self.egg_flipper2.find("**/Cube")
-
-        self.flipper.setPos(0.18, -0.4, 0)
-        self.flipper.setH(110)
-
-        # I want this at 4.3, -.6, .25 about
-        self.flipper2.setPos(0.18, 0.4, 0)
-        self.flipper2.setH(-110)
-
-        self.pivot_left.setPos(4.12, -1.0, .25)
-        self.pivot_right.setPos(4.12, 0.6, .25)
-        # pivot_left.setH(-110)
-
-        self.flipper.reparentTo(self.pivot_right)
-        self.flipper2.reparentTo(self.pivot_left)
 
         self.import_table(self.table_egg)
         self.setup_table_physics()
         self.import_innards(self.table_egg)
+        self.import_flippers()
 
     def add_plane_to_physics(self, params1, params2, params3, params4):
         # Returns a handle to the OdePlaneGeom object with the specified
@@ -153,6 +132,19 @@ class Table():
         innard.setPosition(innardNP.getPos())
         innard.setQuaternion(innardNP.getQuat())
         return innard
+
+    def add_flipper_to_physics(self, flipperNP):
+
+        flipper_mass = OdeMass()
+        flipper_mass.setBox(100, .822, .306, .161)
+        flipper_body = OdeBody(self.world)
+        flipper_body.setMass(flipper_mass)
+        flipper_body.setPosition(flipperNP.getPos())
+        flipper_body.setQuaternion(flipperNP.getQuat())
+        flipper = OdeBoxGeom(self.space1, .822, .306, .161)
+        flipper.setBody(flipper_body)
+
+        return flipper_body
 
     def setup_table_physics(self):
         print "\t \t setup table physics"
@@ -232,6 +224,41 @@ class Table():
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
+    def import_flippers(self):
+        #extract flipper
+        egg_flipper = loader.loadModel("models/bumper3.egg")
+        self.pivot_right = render.attachNewNode("pivot_right") #pivot point
+        self.flipper = egg_flipper.find("**/Cube")
+        self.flipper.setPos(4.3,.2, .09)
+        # self.flipper.setPos(0.18,-0.4, 0)
+        self.flipper.setH(110)
+        self.pivot_right.setPos(4.12,0.6, .09)
+        self.flipper_body_right = self.add_flipper_to_physics(self.flipper)
+
+        flip_wire = wireGeom().generate ('box', extents=((.822, .306, .161)))
+        flip_wire.setPos(self.flipper.getPos())
+        flip_wire.setHpr(self.flipper.getHpr())
+        flip_wire.wrtReparentTo(self.pivot_right)
+
+        self.flipper.wrtReparentTo(self.pivot_right)
+
+
+        egg_flipper2= loader.loadModel("models/bumper3.egg")
+        self.pivot_left = render.attachNewNode("pivot_left")
+        self.flipper2 = egg_flipper2.find("**/Cube")
+        self.flipper2.setPos(4.3,-.6, .09)
+        # self.flipper2.setPos(0.18,0.4, 0)
+        self.flipper2.setH(-110)
+        self.pivot_left.setPos(4.12,-1.0, .09)
+        self.flipper_body_left = self.add_flipper_to_physics(self.flipper2)
+
+        flip_wire2 = wireGeom().generate ('box', extents=((.822, .306, .161)))
+        flip_wire2.setPos(self.flipper_body_left.getPosition())
+        flip_wire2.setHpr(Quat(self.flipper_body_left.getQuaternion()).getHpr())
+        flip_wire2.wrtReparentTo(self.pivot_left)
+        self.flipper2.wrtReparentTo(self.pivot_left)
+
+
     def import_ball(self, ball_egg):
         print "\t import ball egg"
         sphere = ball_egg.find("**/Sphere")
@@ -275,30 +302,60 @@ class Table():
         taskMgr.remove('launch_ball')
 
     def move_left_flipper_up(self, task):
-        self.h_left = self.h_left + 5
-        self.pivot_left.setPos(4.12, -1.0, .25)
+        self.space1.autoCollide()
+        self.world.quickStep(globalClock.getDt())
+        self.h_left = self.h_left + 7
+        self.pivot_left.setPos(4.12,-1.0, .09)
         self.pivot_left.setH(self.h_left)
+
+        self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
+        self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
+
+        self.contactgroup.empty()  # Clear the contact joints
+
         if (self.h_left < 90):
             return task.cont
 
     def move_left_flipper_down(self, task):
-        self.h_left = self.h_left - 5
-        self.pivot_left.setPos(4.12, -1.0, .25)
+        self.space1.autoCollide()
+        self.world.quickStep(globalClock.getDt())
+        self.h_left = self.h_left - 7
+        self.pivot_left.setPos(4.12,-1.0, .09)
         self.pivot_left.setH(self.h_left)
+
+        self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
+        self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
+        self.contactgroup.empty()  # Clear the contact joints
         if (self.h_left > 0):
             return task.cont
 
     def move_right_flipper_up(self, task):
-        self.h_right = self.h_right - 5
-        self.pivot_right.setPos(4.12, 0.6, .25)
+        self.space1.autoCollide()
+        self.world.quickStep(globalClock.getDt())
+        self.h_right = self.h_right  - 7
+        self.pivot_right.setPos(4.12, 0.6, .09)
         self.pivot_right.setH(self.h_right)
+
+        self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
+        self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
+
+        self.contactgroup.empty()  # Clear the contact joints
+
         if (self.h_right > -90):
             return task.cont
 
     def move_right_flipper_down(self, task):
-        self.h_right = self.h_right + 5
-        self.pivot_right.setPos(4.12, 0.6, .25)
+        self.space1.autoCollide()
+        self.world.quickStep(globalClock.getDt())
+        self.h_right = self.h_right  + 7
+        self.pivot_right.setPos(4.12, 0.6, .09)
         self.pivot_right.setH(self.h_right)
+
+        self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
+        self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
+
+        self.contactgroup.empty()  # Clear the contact joints
+
         if (self.h_right < 0):
             return task.cont
 
