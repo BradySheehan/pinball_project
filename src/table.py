@@ -92,13 +92,12 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/table2.egg")
-
+            "models/table3.egg")
 
         self.import_table(self.table_egg)
         self.setup_table_physics()
         self.import_innards(self.table_egg)
-        self.import_flippers()
+        self.import_flippers(self.table_egg)
 
     def add_plane_to_physics(self, params1, params2, params3, params4):
         # Returns a handle to the OdePlaneGeom object with the specified
@@ -128,12 +127,12 @@ class Table():
     def add_flipper_to_physics(self, flipperNP):
 
         flipper_mass = OdeMass()
-        flipper_mass.setBox(100, .822, .306, .161)
+        flipper_mass.setBox(100, .398, .563, .300)
         flipper_body = OdeBody(self.world)
         flipper_body.setMass(flipper_mass)
         flipper_body.setPosition(flipperNP.getPos())
         flipper_body.setQuaternion(flipperNP.getQuat())
-        flipper = OdeBoxGeom(self.space1, .822, .306, .161)
+        flipper = OdeBoxGeom(self.space1, .398, .563, .300)
         flipper.setBody(flipper_body)
 
         return flipper_body
@@ -200,7 +199,7 @@ class Table():
         self.setup_physics_rb_bumper(rb_bumper)
 
         boxNodepath2 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
-        boxNodepath2.setPos(2.6,1.45, 0.25)
+        boxNodepath2.setPos(2.6, 1.45, 0.25)
         boxNodepath2.setQuat(rb_bumper.getQuat())
         boxNodepath2.reparentTo(render)
 
@@ -211,13 +210,12 @@ class Table():
         self.setup_physics_lb_bumper(lb_bumper)
 
         boxNodepath3 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
-        boxNodepath3.setPos(2.6,-1.95, 0.25)
+        boxNodepath3.setPos(2.6, -1.95, 0.25)
         boxNodepath3.setQuat(lb_bumper.getQuat())
         boxNodepath3.reparentTo(render)
 
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
-
 
         angled_launch_wall = table_egg.find("**/Cube.005")
         boxNodepath = wireGeom().generate('box', extents=(1.0, 0.05, 0.5))
@@ -230,18 +228,21 @@ class Table():
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
-        #input pink bumpers Cylinder.002 and Cylinder.003
+        # input pink bumpers Cylinder.002 and Cylinder.003
         round_bumper_left = table_egg.find("**/Cylinder.002")
-        round_bumper_left_geom = self.add_innard_cylinder_to_physics(round_bumper_left, float(0.7432/2), 0.5)
+        round_bumper_left_geom = self.add_innard_cylinder_to_physics(
+            round_bumper_left, float(0.7432/2), 0.5)
         round_bumper_left.reparentTo(render)
         round_bumper_left.flattenLight()
         round_bumper_right = table_egg.find("**/Cylinder.003")
-        round_bumper_left_geom = self.add_innard_cylinder_to_physics(round_bumper_right, float(0.7432/2), 0.5)
+        round_bumper_left_geom = self.add_innard_cylinder_to_physics(
+            round_bumper_right, float(0.7432/2), 0.5)
         round_bumper_right.reparentTo(render)
         round_bumper_right.flattenLight()
 
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
-        angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
+        angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(
+            angled_wall_bumper, float(0.7432/2), 1)
         angled_wall_bumper.reparentTo(render)
         angled_wall_bumper.flattenLight()
 
@@ -278,7 +279,6 @@ class Table():
         angled_launch_wall4.reparentTo(render)
         angled_launch_wall4.flattenLight()
 
-
         angled_launch_wall5 = table_egg.find("**/Cube.009")
         boxNodepath5 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
         boxNodepath5.setPos(angled_launch_wall5.getPos())
@@ -290,49 +290,47 @@ class Table():
         angled_launch_wall5.reparentTo(render)
         angled_launch_wall5.flattenLight()
 
-    def import_flippers(self):
-        #extract flipper
-        egg_flipper = loader.loadModel("models/bumper3.egg")
-        self.pivot_right = render.attachNewNode("pivot_right") #pivot point
-        self.flipper = egg_flipper.find("**/Cube")
-        self.flipper.setPos(4.3,.2, .09)
+    def import_flippers(self, table_egg):
+        # extract flipper
+        self.pivot_right = render.attachNewNode("pivot_right")  # pivot point
+        self.flipper = table_egg.find("**/Cube.010")
+        # self.flipper.setPos(4.3,.2, .09)
         # self.flipper.setPos(0.18,-0.4, 0)
-        self.flipper.setH(110)
-        self.pivot_right.setPos(4.12,0.6, .09)
+        # self.flipper.setH(110)
+        self.pivot_right.setPos(4.12, 0.6, .09)
         self.flipper_body_right = self.add_flipper_to_physics(self.flipper)
 
-        flip_wire = wireGeom().generate ('box', extents=((.822, .306, .161)))
+        flip_wire = wireGeom().generate('box', extents=((.398, .563, .300)))
         flip_wire.setPos(self.flipper.getPos())
         flip_wire.setHpr(self.flipper.getHpr())
         flip_wire.wrtReparentTo(self.pivot_right)
 
         self.flipper.wrtReparentTo(self.pivot_right)
 
-
-        egg_flipper2= loader.loadModel("models/bumper3.egg")
         self.pivot_left = render.attachNewNode("pivot_left")
-        self.flipper2 = egg_flipper2.find("**/Cube")
-        self.flipper2.setPos(4.3,-.6, .09)
+        self.flipper2 = table_egg.find("**/Cube.011")
+        # self.flipper2.setPos(4.3,-.6, .09)
         # self.flipper2.setPos(0.18,0.4, 0)
-        self.flipper2.setH(-110)
-        self.pivot_left.setPos(4.12,-1.0, .09)
+        # self.flipper2.setH(-110)
+        self.pivot_left.setPos(4.12, -1.0, .09)
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2)
 
-        flip_wire2 = wireGeom().generate ('box', extents=((.822, .306, .161)))
+        flip_wire2 = wireGeom().generate('box', extents=((.398, .563, .300)))
         flip_wire2.setPos(self.flipper_body_left.getPosition())
-        flip_wire2.setHpr(Quat(self.flipper_body_left.getQuaternion()).getHpr())
+        flip_wire2.setHpr(
+            Quat(self.flipper_body_left.getQuaternion()).getHpr())
         flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
     def setup_physics_lb_bumper(self, node_path):
-        l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6,-1.95, 0.25)
+        l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
         rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
-        quat = Quat(0.0,0.0,0.0,0.0)
-        v = VBase3(55.0,0.0,0.0)
+        quat = Quat(0.0, 0.0, 0.0, 0.0)
+        v = VBase3(55.0, 0.0, 0.0)
         quat.setHpr(v)
         rb_wall.setQuaternion(quat)
         rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
-        quat2 = Quat(0.0,0.0,0.0,0.0)
+        quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(125, 0, 0)
         quat2.setHpr(v2)
         rt_wall.setQuaternion(quat2)
@@ -347,16 +345,15 @@ class Table():
         boxNodepath2.setHpr(125, 0, 0)
         boxNodepath2.reparentTo(render)
 
-
     def setup_physics_rb_bumper(self, node_path):
         r_wall = self.add_wall_to_physics(0.75, 0.05, 0.5, 2.6, 1.45, 0.25)
         lb_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.4, 1.2, 0.25)
-        quat = Quat(0.0,0.0,0.0,0.0)
-        v = VBase3(-55.0,0.0,0.0)
+        quat = Quat(0.0, 0.0, 0.0, 0.0)
+        v = VBase3(-55.0, 0.0, 0.0)
         quat.setHpr(v)
         lb_wall.setQuaternion(quat)
         rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.75, 1.2, 0.25)
-        quat2 = Quat(0.0,0.0,0.0,0.0)
+        quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(-125, 0, 0)
         quat2.setHpr(v2)
         rt_wall.setQuaternion(quat2)
@@ -398,7 +395,7 @@ class Table():
         # self.ball_body.setForce(1.4, 1.1, 0)
         self.ball_body.setForce(-3.0, -0.0, 0)
         self.contactgroup.empty()  # Clear the contact joints
-        return task.cont 
+        return task.cont
 
     def gravity_task(self, task):
         self.space1.autoCollide()  # Setup the contact joints
@@ -408,18 +405,18 @@ class Table():
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         if (self.left_flipper_up == False) and (self.h_left > 0):
-            self.move_left_flipper_down();
+            self.move_left_flipper_down()
         elif self.left_flipper_up and (self.h_left < 90):
-            self.move_left_flipper_up();
+            self.move_left_flipper_up()
         else:
-            self.velocity_left= 1
+            self.velocity_left = 1
 
         if (self.right_flipper_up == False) and (self.h_right < 0):
-            self.move_right_flipper_down();
+            self.move_right_flipper_down()
         elif self.right_flipper_up and (self.h_right > -90):
-            self.move_right_flipper_up();
+            self.move_right_flipper_up()
         else:
-            self.velocity_right= 1
+            self.velocity_right = 1
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -427,7 +424,7 @@ class Table():
         taskMgr.remove('launch_ball')
 
     def move_left_flipper_up(self):
-        if self.velocity_left <= 2.5 :
+        if self.velocity_left <= 2.5:
             self.velocity_left += self.accell_flippers
         else:
             self.velocity_left = 2.5
@@ -435,22 +432,24 @@ class Table():
         self.h_left += 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
 
-        self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
+        self.flipper_body_left.setQuaternion(
+            self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
     def move_left_flipper_down(self):
-        if self.velocity_left <= 2.5 :
+        if self.velocity_left <= 2.5:
             self.velocity_left += self.accell_flippers
         else:
             self.velocity_left = 2.5
 
         self.h_left -= 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
-        self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
+        self.flipper_body_left.setQuaternion(
+            self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
     def move_right_flipper_up(self):
-        if self.velocity_right <= 2.5 :
+        if self.velocity_right <= 2.5:
             self.velocity_right += self.accell_flippers
         else:
             self.velocity_right = 2.5
@@ -458,11 +457,12 @@ class Table():
         self.h_right -= 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
 
-        self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
+        self.flipper_body_right.setQuaternion(
+            self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
 
     def move_right_flipper_down(self):
-        if self.velocity_right <= 2.5 :
+        if self.velocity_right <= 2.5:
             self.velocity_right += self.accell_flippers
         else:
             self.velocity_right = 2.5
@@ -470,6 +470,6 @@ class Table():
         self.h_right += 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
 
-        self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
+        self.flipper_body_right.setQuaternion(
+            self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
-
