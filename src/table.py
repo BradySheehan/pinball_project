@@ -6,7 +6,7 @@ from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
 
 sys.path.append('../scripts/')
-from visualizeGeoms import wireGeom
+from visualizeGeoms_copy import wireGeom
 
 
 class Table():
@@ -18,8 +18,15 @@ class Table():
         self.setup_light()
         self.load_models()
 
-        self.h_left = 0  # rotation for left flipper
+        # rotation angle for flippers
+        self.h_left = 0
         self.h_right = 0
+        # accelleration for flippers
+        self.accell_flippers = .1
+        # velocity for flippers
+        self.velocity_left = 1
+        self.velocity_right = 1
+        # flags used for flipper movement
         self.left_flipper_up = False
         self.right_flipper_up = False
 
@@ -402,12 +409,17 @@ class Table():
                 self.ball_body.getQuaternion()))
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down();
-        if self.left_flipper_up and (self.h_left < 90):
+        elif self.left_flipper_up and (self.h_left < 90):
             self.move_left_flipper_up();
+        else:
+            self.velocity_left= 1
+
         if (self.right_flipper_up == False) and (self.h_right < 0):
             self.move_right_flipper_down();
-        if self.right_flipper_up and (self.h_right > -90):
+        elif self.right_flipper_up and (self.h_right > -90):
             self.move_right_flipper_up();
+        else:
+            self.velocity_right= 1
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -415,31 +427,47 @@ class Table():
         taskMgr.remove('launch_ball')
 
     def move_left_flipper_up(self):
-        self.h_left = self.h_left + 7
-        self.pivot_left.setPos(4.12,-1.0, .09)
+        if self.velocity_left <= 2.5 :
+            self.velocity_left += self.accell_flippers
+        else:
+            self.velocity_left = 2.5
+
+        self.h_left += 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
 
         self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
     def move_left_flipper_down(self):
-        self.h_left = self.h_left - 7
-        self.pivot_left.setPos(4.12,-1.0, .09)
+        if self.velocity_left <= 2.5 :
+            self.velocity_left += self.accell_flippers
+        else:
+            self.velocity_left = 2.5
+
+        self.h_left -= 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
         self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
     def move_right_flipper_up(self):
-        self.h_right = self.h_right  - 7
-        self.pivot_right.setPos(4.12, 0.6, .09)
+        if self.velocity_right <= 2.5 :
+            self.velocity_right += self.accell_flippers
+        else:
+            self.velocity_right = 2.5
+
+        self.h_right -= 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
 
         self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
 
     def move_right_flipper_down(self):
-        self.h_right = self.h_right  + 7
-        self.pivot_right.setPos(4.12, 0.6, .09)
+        if self.velocity_right <= 2.5 :
+            self.velocity_right += self.accell_flippers
+        else:
+            self.velocity_right = 2.5
+
+        self.h_right += 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
 
         self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
