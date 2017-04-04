@@ -20,32 +20,20 @@ class Table():
 
         self.h_left = 0  # rotation for left flipper
         self.h_right = 0
+        self.left_flipper_up = False
+        self.right_flipper_up = False
 
     def move_left_flipper(self):
-        taskMgr.doMethodLater(
-            0,
-            self.move_left_flipper_up,
-            'move_left_flipper_up')
+        self.left_flipper_up = True
 
     def stop_left_flipper(self):
-        taskMgr.remove('move_left_flipper_up')
-        taskMgr.doMethodLater(
-            0,
-            self.move_left_flipper_down,
-            'move_left_flipper_down')
+        self.left_flipper_up = False
 
     def move_right_flipper(self):
-        taskMgr.doMethodLater(
-            0,
-            self.move_right_flipper_up,
-            'move_right_flipper_up')
+        self.right_flipper_up = True
 
     def stop_right_flipper(self):
-        taskMgr.remove('move_right_flipper_up')
-        taskMgr.doMethodLater(
-            0,
-            self.move_right_flipper_down,
-            'move_right_flipper_down')
+        self.right_flipper_up = False
 
     def setup_camera(self):
         print "setup camera"
@@ -347,15 +335,21 @@ class Table():
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
+        if (self.left_flipper_up == False) and (self.h_left > 0):
+            self.move_left_flipper_down();
+        if self.left_flipper_up and (self.h_left < 90):
+            self.move_left_flipper_up();
+        if (self.right_flipper_up == False) and (self.h_right < 0):
+            self.move_right_flipper_down();
+        if self.right_flipper_up and (self.h_right > -90):
+            self.move_right_flipper_up();
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
 
-    def move_left_flipper_up(self, task):
-        self.space1.autoCollide()
-        self.world.quickStep(globalClock.getDt())
+    def move_left_flipper_up(self):
         self.h_left = self.h_left + 7
         self.pivot_left.setPos(4.12,-1.0, .09)
         self.pivot_left.setH(self.h_left)
@@ -363,27 +357,15 @@ class Table():
         self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
-        self.contactgroup.empty()  # Clear the contact joints
-
-        if (self.h_left < 90):
-            return task.cont
-
-    def move_left_flipper_down(self, task):
-        self.space1.autoCollide()
-        self.world.quickStep(globalClock.getDt())
+    def move_left_flipper_down(self):
         self.h_left = self.h_left - 7
         self.pivot_left.setPos(4.12,-1.0, .09)
         self.pivot_left.setH(self.h_left)
 
         self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
-        self.contactgroup.empty()  # Clear the contact joints
-        if (self.h_left > 0):
-            return task.cont
 
-    def move_right_flipper_up(self, task):
-        self.space1.autoCollide()
-        self.world.quickStep(globalClock.getDt())
+    def move_right_flipper_up(self):
         self.h_right = self.h_right  - 7
         self.pivot_right.setPos(4.12, 0.6, .09)
         self.pivot_right.setH(self.h_right)
@@ -391,22 +373,10 @@ class Table():
         self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
 
-        self.contactgroup.empty()  # Clear the contact joints
-
-        if (self.h_right > -90):
-            return task.cont
-
-    def move_right_flipper_down(self, task):
-        self.space1.autoCollide()
-        self.world.quickStep(globalClock.getDt())
+    def move_right_flipper_down(self):
         self.h_right = self.h_right  + 7
         self.pivot_right.setPos(4.12, 0.6, .09)
         self.pivot_right.setH(self.h_right)
 
         self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
-
-        self.contactgroup.empty()  # Clear the contact joints
-
-        if (self.h_right < 0):
-            return task.cont
