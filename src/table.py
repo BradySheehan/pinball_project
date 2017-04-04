@@ -1,6 +1,6 @@
 from direct.directbase import DirectStart
 from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup
-from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeom
+from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeom, OdeCylinderGeom
 from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
@@ -85,7 +85,7 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/visible_table_first_bumpers_attempt_color_launch_wall2.egg")
+            "models/table2.egg")
 
 
         self.import_table(self.table_egg)
@@ -107,8 +107,13 @@ class Table():
         return box
 
     def add_innard_cube_to_physics(self, innardNP, dimx, dimy, dimz):
-        print innardNP
         innard = OdeBoxGeom(self.space1, dimx, dimy, dimz)
+        innard.setPosition(innardNP.getPos())
+        innard.setQuaternion(innardNP.getQuat())
+        return innard
+
+    def add_innard_cylinder_to_physics(self, innardNP, radius, length):
+        innard = OdeCylinderGeom(self.space1, radius, length)
         innard.setPosition(innardNP.getPos())
         innard.setQuaternion(innardNP.getQuat())
         return innard
@@ -218,6 +223,66 @@ class Table():
         angled_launch_wall.reparentTo(render)
         angled_launch_wall.flattenLight()
 
+        #input pink bumpers Cylinder.002 and Cylinder.003
+        round_bumper_left = table_egg.find("**/Cylinder.002")
+        round_bumper_left_geom = self.add_innard_cylinder_to_physics(round_bumper_left, float(0.7432/2), 0.5)
+        round_bumper_left.reparentTo(render)
+        round_bumper_left.flattenLight()
+        round_bumper_right = table_egg.find("**/Cylinder.003")
+        round_bumper_left_geom = self.add_innard_cylinder_to_physics(round_bumper_right, float(0.7432/2), 0.5)
+        round_bumper_right.reparentTo(render)
+        round_bumper_right.flattenLight()
+
+        angled_wall_bumper = table_egg.find("**/Cylinder.004")
+        angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
+        angled_wall_bumper.reparentTo(render)
+        angled_wall_bumper.flattenLight()
+
+        angled_launch_wall2 = table_egg.find("**/Cube.006")
+        boxNodepath2 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
+        boxNodepath2.setPos(angled_launch_wall2.getPos())
+        boxNodepath2.setQuat(angled_launch_wall2.getQuat())
+        boxNodepath2.reparentTo(render)
+
+        angled_launch_wall_geom2 = self.add_innard_cube_to_physics(
+            angled_launch_wall2, 1.0, 0.1, 0.5)
+        angled_launch_wall2.reparentTo(render)
+        angled_launch_wall2.flattenLight()
+
+        angled_launch_wall3 = table_egg.find("**/Cube.007")
+        boxNodepath3 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
+        boxNodepath3.setPos(angled_launch_wall3.getPos())
+        boxNodepath3.setQuat(angled_launch_wall3.getQuat())
+        boxNodepath3.reparentTo(render)
+
+        angled_launch_wall_geom3 = self.add_innard_cube_to_physics(
+            angled_launch_wall3, 1.0, 0.1, 0.5)
+        angled_launch_wall3.reparentTo(render)
+        angled_launch_wall3.flattenLight()
+
+        angled_launch_wall4 = table_egg.find("**/Cube.008")
+        boxNodepath4 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
+        boxNodepath4.setPos(angled_launch_wall4.getPos())
+        boxNodepath4.setQuat(angled_launch_wall4.getQuat())
+        boxNodepath4.reparentTo(render)
+
+        angled_launch_wall_geom4 = self.add_innard_cube_to_physics(
+            angled_launch_wall4, 1.0, 0.1, 0.5)
+        angled_launch_wall4.reparentTo(render)
+        angled_launch_wall4.flattenLight()
+
+
+        angled_launch_wall5 = table_egg.find("**/Cube.009")
+        boxNodepath5 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
+        boxNodepath5.setPos(angled_launch_wall5.getPos())
+        boxNodepath5.setQuat(angled_launch_wall5.getQuat())
+        boxNodepath5.reparentTo(render)
+
+        angled_launch_wall_geom5 = self.add_innard_cube_to_physics(
+            angled_launch_wall5, 1.0, 0.1, 0.5)
+        angled_launch_wall5.reparentTo(render)
+        angled_launch_wall5.flattenLight()
+
     def import_flippers(self):
         #extract flipper
         egg_flipper = loader.loadModel("models/bumper3.egg")
@@ -326,7 +391,7 @@ class Table():
         # self.ball_body.setForce(1.4, 1.1, 0)
         self.ball_body.setForce(-3.0, -0.0, 0)
         self.contactgroup.empty()  # Clear the contact joints
-        return task.cont
+        return task.cont 
 
     def gravity_task(self, task):
         self.space1.autoCollide()  # Setup the contact joints
@@ -361,7 +426,6 @@ class Table():
         self.h_left = self.h_left - 7
         self.pivot_left.setPos(4.12,-1.0, .09)
         self.pivot_left.setH(self.h_left)
-
         self.flipper_body_left.setQuaternion(self.flipper2.getQuat(base.render))
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
 
@@ -380,3 +444,4 @@ class Table():
 
         self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
+
