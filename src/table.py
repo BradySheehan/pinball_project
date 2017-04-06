@@ -92,7 +92,7 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/table3.egg")
+            "models/table.egg")
 
         self.import_table(self.table_egg)
         self.setup_table_physics()
@@ -241,9 +241,9 @@ class Table():
         round_bumper_right.reparentTo(render)
         round_bumper_right.flattenLight()
 
+        #tall green bumper
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
-        angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(
-            angled_wall_bumper, float(0.7432/2), 1)
+        self.angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
         angled_wall_bumper.reparentTo(render)
         angled_wall_bumper.flattenLight()
 
@@ -494,7 +494,5 @@ class Table():
 
         self.h_right += 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
-
-        self.flipper_body_right.setQuaternion(
-            self.flipper.getQuat(base.render))
+        self.flipper_body_right.setQuaternion(self.flipper.getQuat(base.render))
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))

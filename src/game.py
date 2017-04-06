@@ -33,9 +33,6 @@ class Game():
 
     def place_ball(self):
         self.table.ball.setPos(4.4, 2.85, 0.1)
-        # self.table.ball.setPos(-3.2, -0.3426, 0.6)
-        # self.ball.setPos(0,0,0.1)
-        # self.ball.setPos(0,0,2.12)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         base.acceptOnce('space', self.launch_ball)
@@ -65,6 +62,10 @@ class Game():
             0.5,
             self.start_trigger_miss_task,
             'trigger_miss_task')
+        taskMgr.doMethodLater(
+            0.5,
+            self.start_bump_ball_event,
+            'bump_ball_task')
 
     def start_gravity_task(self):
         taskMgr.add(self.table.gravity_task, 'gravity_task')
@@ -88,6 +89,48 @@ class Game():
             print 'collision has happened'
             self.remove_gravity_task()
             self.lose_ball()
+
+    def bump_ball_event(self, entry):
+        print "bump ball event"
+        geom1 = entry.getGeom1()
+        geom2 = entry.getGeom2()
+        body1 = entry.getBody1()
+        body2 = entry.getBody2()
+        if (
+            (
+                geom1 and geom1 == self.table.angled_wall_bumper_geom ) and (
+                (body1 and body1 == self.table.ball_body) or (
+                body2 and body2 == self.table.ball_body))) or (
+                    (geom2 and geom2 == self.table.angled_wall_bumper_geom ) and (
+                        (body1 and body1 == self.table.ball_body) or (
+                            body2 and body2 == self.table.ball_body))):
+            print 'ball has been bumped'
+            taskMgr.doMethodLater(
+            0,
+            self.bump_ball_task,
+            'bump_ball')
+            taskMgr.doMethodLater(
+            0.25,
+            self.remove_bump_ball_task,
+            'remove_bump_ball_task')
+
+    def bump_ball_task(self, task):
+        self.table.space1.autoCollide()  # Setup the contact joints
+        self.table.world.quickStep(globalClock.getDt())
+        self.table.ball.setPosQuat(
+        render, self.table.ball_body.getPosition(), Quat(
+                self.table.ball_body.getQuaternion()))
+        self.table.ball_body.setForce(1.0, 0.5, 0)
+        self.table.contactgroup.empty()  # Clear the contact joints
+        return task.cont
+
+    def start_bump_ball_event(self, task):
+        print "start bump ball task"
+        self.table.space1.setCollisionEvent("bump_ball_task")
+        base.accept("bump_ball_task", self.bump_ball_event)
+
+    def remove_bump_ball_task(self):
+        taskMgr.remove('bump_ball')
 
     def start_trigger_miss_task(self, task):
         print "start trigger miss task"
