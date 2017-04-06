@@ -98,6 +98,7 @@ class Table():
         self.setup_table_physics()
         self.import_innards(self.table_egg)
         self.import_flippers(self.table_egg)
+        self.import_ramp(self.table_egg)
 
     def add_plane_to_physics(self, params1, params2, params3, params4):
         # Returns a handle to the OdePlaneGeom object with the specified
@@ -322,6 +323,30 @@ class Table():
         flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
+    def import_ramp(self, table_egg):
+        ramp_bottom = table_egg.find("**/Cube.013")
+        ramp_bottom_geom = self.add_innard_cube_to_physics(
+            ramp_bottom, 2.0, .5, .01)
+        ramp_bottom.reparentTo(render)
+
+        ramp_wall_left = table_egg.find("**/Cube.014")
+        ramp_wall_left_geom = self.add_innard_cube_to_physics(
+            ramp_wall_left, 2.081, .01, .5)
+        ramp_wall_left.reparentTo(render)
+
+        ramp_wall_right = table_egg.find("**/Cube.015")
+        ramp_wall_right_geom = self.add_innard_cube_to_physics(
+            ramp_wall_right, 2.081, .01, .5)
+        ramp_wall_right.reparentTo(render)
+
+        pipe = table_egg.find("**/Cylinder.005")
+        pipe_geom = self.add_innard_cylinder_to_physics(pipe, .3715, .5)
+        pipe.reparentTo(render)
+
+        # dont add to physics, purley cosmetic
+        pipe_rim = table_egg.find("**/Cylinder.006")
+        pipe_rim.reparentTo(render)
+
     def setup_physics_lb_bumper(self, node_path):
         l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
         rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
@@ -406,14 +431,14 @@ class Table():
                 self.ball_body.getQuaternion()))
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()
-        elif self.left_flipper_up and (self.h_left < 90):
+        elif self.left_flipper_up and (self.h_left < 70):
             self.move_left_flipper_up()
         else:
             self.velocity_left = 1
 
         if (self.right_flipper_up == False) and (self.h_right < 0):
             self.move_right_flipper_down()
-        elif self.right_flipper_up and (self.h_right > -90):
+        elif self.right_flipper_up and (self.h_right > -70):
             self.move_right_flipper_up()
         else:
             self.velocity_right = 1

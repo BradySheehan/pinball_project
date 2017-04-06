@@ -33,7 +33,7 @@ class Game():
 
     def place_ball(self):
         self.table.ball.setPos(4.4, 2.85, 0.1)
-        # self.ball.setPos(-4, -2.85, 0.1)
+        # self.table.ball.setPos(-3.2, -0.3426, 0.6)
         # self.ball.setPos(0,0,0.1)
         # self.ball.setPos(0,0,2.12)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
