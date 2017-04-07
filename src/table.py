@@ -92,7 +92,7 @@ class Table():
         self.ball = self.import_ball(self.ball_egg)
         self.setup_ball_physics(0.1, 0.1)
         self.table_egg = loader.loadModel(
-            "models/table.egg")
+            "models/table2.egg")
 
         self.import_table(self.table_egg)
         self.setup_table_physics()
@@ -290,6 +290,38 @@ class Table():
             angled_launch_wall5, 1.0, 0.1, 0.5)
         angled_launch_wall5.reparentTo(render)
         angled_launch_wall5.flattenLight()
+
+        # cubes 17 - 21 are the upper half of the angled wall, load those now
+        upper_wall1 = table_egg.find("**/Cube.017")
+        upper_wall1_geom = self.add_innard_cube_to_physics(
+            upper_wall1, 1.0, 0.1, 0.5)
+        upper_wall1.reparentTo(render)
+        upper_wall1.flattenLight()
+
+        upper_wall2 = table_egg.find("**/Cube.018")
+        upper_wall2_geom = self.add_innard_cube_to_physics(
+            upper_wall2, 1.0, 0.1, 0.5)
+        upper_wall2.reparentTo(render)
+        upper_wall2.flattenLight()
+
+        upper_wall3 = table_egg.find("**/Cube.019")
+        upper_wall3_geom = self.add_innard_cube_to_physics(
+            upper_wall3, 1.0, 0.1, 0.5)
+        upper_wall3.reparentTo(render)
+        upper_wall3.flattenLight()
+
+        upper_wall4 = table_egg.find("**/Cube.020")
+        upper_wall4_geom = self.add_innard_cube_to_physics(
+            upper_wall4, 1.0, 0.1, 0.5)
+        upper_wall4.reparentTo(render)
+        upper_wall4.flattenLight()
+
+
+        upper_wall5 = table_egg.find("**/Cube.021")
+        upper_wall5_geom = self.add_innard_cube_to_physics(
+            upper_wall5, 1.0, 0.1, 0.5)
+        upper_wall5.reparentTo(render)
+        upper_wall5.flattenLight()
 
     def import_flippers(self, table_egg):
         # extract flipper
