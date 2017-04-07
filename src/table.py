@@ -323,6 +323,50 @@ class Table():
         upper_wall5.reparentTo(render)
         upper_wall5.flattenLight()
 
+        #22 - 27 are more parts of the angled launch wall
+        lower_wall1 = table_egg.find("**/Cube.022")
+        lower_wall1_geom = self.add_innard_cube_to_physics(
+            lower_wall1, 1.0, 0.1, 0.5)
+        lower_wall1.reparentTo(render)
+        lower_wall1.flattenLight()
+
+        upper_wall6 = table_egg.find("**/Cube.023")
+        upper_wall6_geom = self.add_innard_cube_to_physics(
+            upper_wall6, 1.0, 0.1, 0.5)
+        upper_wall6.reparentTo(render)
+        upper_wall6.flattenLight()
+
+        lower_wall2 = table_egg.find("**/Cube.024")
+        lower_wall2_geom = self.add_innard_cube_to_physics(
+            lower_wall2, 1.0, 0.1, 0.5)
+        lower_wall2.reparentTo(render)
+        lower_wall2.flattenLight()
+
+        upper_wall7 = table_egg.find("**/Cube.025")
+        upper_wall7_geom = self.add_innard_cube_to_physics(
+            upper_wall7, 1.0, 0.1, 0.5)
+        upper_wall7.reparentTo(render)
+        upper_wall7.flattenLight()
+
+        lower_wall3 = table_egg.find("**/Cube.026")
+        lower_wall3_geom = self.add_innard_cube_to_physics(
+            lower_wall3, 1.0, 0.1, 0.5)
+        lower_wall3.reparentTo(render)
+        lower_wall3.flattenLight()
+
+        upper_wall8 = table_egg.find("**/Cube.027")
+        upper_wall8_geom = self.add_innard_cube_to_physics(
+            upper_wall8, 1.0, 0.1, 0.5)
+        upper_wall8.reparentTo(render)
+        upper_wall8.flattenLight()
+
+
+        lower_wall4 = table_egg.find("**/Cube.012")
+        lower_wall4_geom = self.add_innard_cube_to_physics(
+            lower_wall4, 1.0, 0.1, 0.5)
+        lower_wall4.reparentTo(render)
+        lower_wall4.flattenLight()
+
     def import_flippers(self, table_egg):
         # extract flipper
         self.pivot_right = render.attachNewNode("pivot_right")  # pivot point
