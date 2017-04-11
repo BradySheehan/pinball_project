@@ -61,7 +61,7 @@ class Game():
         taskMgr.doMethodLater(
             0.5,
             self.start_bump_ball_task,
-            'trigger_miss_task')
+            'bump_ball_task')
 
     def start_gravity_task(self):
         taskMgr.add(self.table.gravity_task, 'gravity_task')
@@ -124,7 +124,8 @@ class Game():
         #if you bump the left pink triangle
         one = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.round_bumper_left_geom)
         two = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.round_bumper_right_geom)
-        if one or two:
+        three = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tall_round_bumper_geom)
+        if one or two or three:
             return True
         else:
             return False

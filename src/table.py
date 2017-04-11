@@ -244,7 +244,7 @@ class Table():
 
         #tall green bumper
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
-        self.angled_wall_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
+        self.tall_round_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
         angled_wall_bumper.reparentTo(render)
         angled_wall_bumper.flattenLight()
 
