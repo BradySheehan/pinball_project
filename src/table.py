@@ -196,7 +196,7 @@ class Table():
         r_bumper_wall.flattenLight()
 
         rb_bumper = table_egg.find("**/Cylinder")
-
+        #left triangle bottom of table
         self.setup_physics_rb_bumper(rb_bumper)
 
         boxNodepath2 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
@@ -208,6 +208,7 @@ class Table():
         rb_bumper.flattenLight()
 
         lb_bumper = table_egg.find("**/Cylinder.001")
+        #right triangle bottom of table
         self.setup_physics_lb_bumper(lb_bumper)
 
         boxNodepath3 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
@@ -231,12 +232,12 @@ class Table():
 
         # input pink bumpers Cylinder.002 and Cylinder.003
         round_bumper_left = table_egg.find("**/Cylinder.002")
-        round_bumper_left_geom = self.add_innard_cylinder_to_physics(
+        self.round_bumper_left_geom = self.add_innard_cylinder_to_physics(
             round_bumper_left, float(0.7432/2), 0.5)
         round_bumper_left.reparentTo(render)
         round_bumper_left.flattenLight()
         round_bumper_right = table_egg.find("**/Cylinder.003")
-        round_bumper_left_geom = self.add_innard_cylinder_to_physics(
+        self.round_bumper_right_geom = self.add_innard_cylinder_to_physics(
             round_bumper_right, float(0.7432/2), 0.5)
         round_bumper_right.reparentTo(render)
         round_bumper_right.flattenLight()
@@ -424,17 +425,18 @@ class Table():
         pipe_rim.reparentTo(render)
 
     def setup_physics_lb_bumper(self, node_path):
-        l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
-        rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
+        #tl stands for trigger left
+        self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
+        self.tl_rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(55.0, 0.0, 0.0)
         quat.setHpr(v)
-        rb_wall.setQuaternion(quat)
-        rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
+        self.tl_rb_wall.setQuaternion(quat)
+        self.tl_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
         quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(125, 0, 0)
         quat2.setHpr(v2)
-        rt_wall.setQuaternion(quat2)
+        self.tl_rt_wall.setQuaternion(quat2)
 
         boxNodepath1 = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
         boxNodepath1.setPos(2.375, -1.8, .25)
@@ -447,17 +449,18 @@ class Table():
         boxNodepath2.reparentTo(render)
 
     def setup_physics_rb_bumper(self, node_path):
-        r_wall = self.add_wall_to_physics(0.75, 0.05, 0.5, 2.6, 1.45, 0.25)
-        lb_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.4, 1.2, 0.25)
+        #tr stands for triangle right
+        self.tr_r_wall = self.add_wall_to_physics(0.75, 0.05, 0.5, 2.6, 1.45, 0.25)
+        self.tr_lb_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.4, 1.2, 0.25)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(-55.0, 0.0, 0.0)
         quat.setHpr(v)
-        lb_wall.setQuaternion(quat)
-        rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.75, 1.2, 0.25)
+        self.tr_lb_wall.setQuaternion(quat)
+        self.tr_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.75, 1.2, 0.25)
         quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(-125, 0, 0)
         quat2.setHpr(v2)
-        rt_wall.setQuaternion(quat2)
+        self.tr_rt_wall.setQuaternion(quat2)
 
         boxNodepath1 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
         boxNodepath1.setPos(2.4, 1.2, 0.25)

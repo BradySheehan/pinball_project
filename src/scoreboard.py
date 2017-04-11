@@ -9,7 +9,7 @@ class Scoreboard():
     def updateDisplay(self, score, balls_used):
         self.text_object.destroy()
         self.text_object = OnscreenText(text='Your score is ' + str(score) + "\n Balls Available: " + str(
-            max_balls - balls_used) + '\n \n Space - launch ball \n a - toggle left flipper \n d - toggle right flipper \n ESC - quit', pos=(-1, 0.75), scale=0.065, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
+            self.max_balls - balls_used) + '\n \n Space - launch ball \n a - toggle left flipper \n d - toggle right flipper \n ESC - quit', pos=(-1, 0.75), scale=0.065, mayChange=True, fg=(255,255,255,255), bg=(0,0,0,1))
 
     def displayLostGame(self, score, balls_used):
         self.text_object.destroy()
