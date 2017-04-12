@@ -82,17 +82,21 @@ class Game():
                     (geom2 and geom2 == self.table.wall_south) and (
                         (body1 and body1 == self.table.ball_body) or (
                             body2 and body2 == self.table.ball_body))):
-            print 'collision has happened'
             self.remove_gravity_task()
             self.lose_ball()
         if self.bumped_triangle_bumper(geom1, geom2, body1, body2):
-            print 'ball has been bumped'
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
-            print 'ball has been bumped'
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom):
+            print 'ball has been bumped'
+            self.score = self.score + 200
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+            if self.balls_used  > 0:
+                self.balls_used = self.balls_used  - 1
+                self.place_ball()
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (

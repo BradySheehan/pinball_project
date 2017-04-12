@@ -417,7 +417,7 @@ class Table():
         ramp_wall_right.reparentTo(render)
 
         pipe = table_egg.find("**/Cylinder.005")
-        pipe_geom = self.add_innard_cylinder_to_physics(pipe, .3715, .5)
+        self.pipe_geom = self.add_innard_cylinder_to_physics(pipe, .3715, .5)
         pipe.reparentTo(render)
 
         # dont add to physics, purley cosmetic
