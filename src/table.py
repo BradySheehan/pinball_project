@@ -274,20 +274,20 @@ class Table():
         # input pink bumpers Cylinder.002 and Cylinder.003
         round_bumper_left = table_egg.find("**/Cylinder.002")
         self.round_bumper_left_geom = self.add_innard_cylinder_to_physics(
-            round_bumper_left, float(0.7432/2), 0.5)
+            round_bumper_left, float(0.5/2), 0.5)
         self.space1.setSurfaceType(self.round_bumper_left_geom,2)
         round_bumper_left.reparentTo(render)
         round_bumper_left.flattenLight()
         round_bumper_right = table_egg.find("**/Cylinder.003")
         self.round_bumper_right_geom = self.add_innard_cylinder_to_physics(
-            round_bumper_right, float(0.7432/2), 0.5)
+            round_bumper_right, float(0.5/2), 0.5)
         self.space1.setSurfaceType(self.round_bumper_right_geom,2)
         round_bumper_right.reparentTo(render)
         round_bumper_right.flattenLight()
 
         #tall green bumper
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
-        self.tall_round_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
+        self.tall_round_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.35/2), 1)
         self.space1.setSurfaceType(self.tall_round_bumper_geom,2)
         angled_wall_bumper.reparentTo(render)
         angled_wall_bumper.flattenLight()
