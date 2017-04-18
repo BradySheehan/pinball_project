@@ -187,7 +187,7 @@ class Table():
         self.wall_north = self.add_wall_to_physics(0.1, 6, 2.5, -5, 0, 1)
         self.wall_south = self.add_wall_to_physics(0.5, 6, 2.5, 5, 0, 1)
         self.launch_wall = self.add_wall_to_physics(
-            3.5, 0.2, 0.5, 3.25, 2.6, 0.25)
+            6.5, 0.2, 0.5, 1.75, 2.6, 0.25)
 
     def import_table(self, table_egg):
         print "\t import table egg"
@@ -226,13 +226,13 @@ class Table():
 
         l_bumper_wall = table_egg.find("**/Cube.003")
         l_bumper_wall_geom = self.add_innard_cube_to_physics(
-            l_bumper_wall, 0.75, 0.2, 0.5)
+            l_bumper_wall, 1.5, 0.2, 0.5)
         l_bumper_wall.reparentTo(render)
         l_bumper_wall.flattenLight()
 
         r_bumper_wall = table_egg.find("**/Cube.004")
         r_bumper_wall_geom = self.add_innard_cube_to_physics(
-            r_bumper_wall, 0.75, 0.2, 0.5)
+            r_bumper_wall, 1.5, 0.2, 0.5)
         r_bumper_wall.reparentTo(render)
         r_bumper_wall.flattenLight()
 
