@@ -412,6 +412,16 @@ class Table():
         lower_wall4.reparentTo(render)
         lower_wall4.flattenLight()
 
+        upper_np = table_egg.find("**/Cylinder.007")
+        lower_np = table_egg.find("**/Cylinder.008")
+        self.imoprt_launch_wall_bumpers(upper_np, lower_np)
+
+    def imoprt_launch_wall_bumpers(self, upper_np, lower_np):
+        upper_np.reparentTo(render)
+        upper_np.flattenLight()
+        lower_np.reparentTo(render)
+        lower_np.flattenLight()
+
     def import_flippers(self, table_egg):
         # ---- Right Flipper ----
         self.pivot_right = render.attachNewNode("pivot_right")  # pivot point
