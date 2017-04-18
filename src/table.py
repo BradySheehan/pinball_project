@@ -105,6 +105,18 @@ class Table():
             1.0, #slip
             0.00) #damping
 
+        # for ball hitting the bumpers
+        self.world.setSurfaceEntry(
+            0, #surface ID
+            2, #surface ID
+            50,  #Friction (mu)
+            .5,  # bounce
+            0.0,  # bounce velocity (minimum velocity a body must have before it bounces)
+            0.0,
+            0.0000,
+            0.0, #slip
+            0.00) #damping
+
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
@@ -263,17 +275,20 @@ class Table():
         round_bumper_left = table_egg.find("**/Cylinder.002")
         self.round_bumper_left_geom = self.add_innard_cylinder_to_physics(
             round_bumper_left, float(0.7432/2), 0.5)
+        self.space1.setSurfaceType(self.round_bumper_left_geom,2)
         round_bumper_left.reparentTo(render)
         round_bumper_left.flattenLight()
         round_bumper_right = table_egg.find("**/Cylinder.003")
         self.round_bumper_right_geom = self.add_innard_cylinder_to_physics(
             round_bumper_right, float(0.7432/2), 0.5)
+        self.space1.setSurfaceType(self.round_bumper_right_geom,2)
         round_bumper_right.reparentTo(render)
         round_bumper_right.flattenLight()
 
         #tall green bumper
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
         self.tall_round_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.7432/2), 1)
+        self.space1.setSurfaceType(self.tall_round_bumper_geom,2)
         angled_wall_bumper.reparentTo(render)
         angled_wall_bumper.flattenLight()
 
