@@ -40,6 +40,8 @@ class Table():
         #frame rate
         self.simTimeStep = 1.0/60.0
 
+        self.ball_not_sinking = True
+
     def move_left_flipper(self):
         self.left_flipper_up = True
 
@@ -447,6 +449,10 @@ class Table():
         pipe_rim = table_egg.find("**/Cylinder.006")
         pipe_rim.reparentTo(render)
 
+        # dont render, just want the OdeGeom
+        ball_stopper = table_egg.find("**/Cube.028")
+        self.ball_stopper_geom = self.add_innard_cube_to_physics(ball_stopper, .1, .5, .35)
+
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
         self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
@@ -536,10 +542,13 @@ class Table():
         # Step the simulation and set the new positions
         # self.world.quickStep(globalClock.getDt())
         self.world.quickStep(self.simTimeStep)
-        self.ball.setPosQuat(
-            render, self.ball_body.getPosition(), Quat(
-                self.ball_body.getQuaternion()))
 
+        if self.ball_not_sinking :
+            self.ball.setPosQuat(
+                render, self.ball_body.getPosition(), Quat(
+                    self.ball_body.getQuaternion()))
+        else:
+            self.start_ball_sink_task()
 
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()
@@ -567,6 +576,18 @@ class Table():
 
         if flipper == 1 and self.left_flipper_up:
             self.ball_body.setForce(-10,0,0)
+
+    def start_ball_sink_task(self):
+        if  self.ball.getZ()  >= .25:
+            self.ball.setZ(self.ball.getZ() - .05)
+            self.ball_body.setPosition(self.ball.getPos())
+        else:
+            # shoot the ball out in a random place
+            self.ball.setPos(-1.05, -2.58, .1)
+            self.ball_body.setPosition(self.ball.getPos())
+            self.ball_body.setForce(.05, 1.0, 0)
+            self.ball_not_sinking = True
+
 
     def move_left_flipper_up(self):
         if self.velocity_left <= 2.5:

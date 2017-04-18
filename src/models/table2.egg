@@ -1,40 +1,8 @@
 <CoordinateSystem> { Z-up } 
-<Material> Material.002 {
-  <Scalar> diffr { 0.133870 }
-  <Scalar> diffg { 0.181250 }
-  <Scalar> diffb { 0.161324 }
-  <Scalar> specr { 0.500000 }
-  <Scalar> specg { 0.500000 }
-  <Scalar> specb { 0.500000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 1.000000 }
-  <Scalar> ambg { 1.000000 }
-  <Scalar> ambb { 1.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> Material.011 {
-  <Scalar> diffr { 0.176190 }
-  <Scalar> diffg { 0.176190 }
-  <Scalar> diffb { 0.176190 }
-  <Scalar> specr { 0.500000 }
-  <Scalar> specg { 0.500000 }
-  <Scalar> specb { 0.500000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 1.000000 }
-  <Scalar> ambg { 1.000000 }
-  <Scalar> ambb { 1.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> Material.007 {
-  <Scalar> diffr { 0.016231 }
-  <Scalar> diffg { 0.219742 }
-  <Scalar> diffb { 0.388120 }
+<Material> Material.003 {
+  <Scalar> diffr { 0.007831 }
+  <Scalar> diffg { 0.017775 }
+  <Scalar> diffb { 0.640000 }
   <Scalar> specr { 0.500000 }
   <Scalar> specg { 0.500000 }
   <Scalar> specb { 0.500000 }
@@ -63,29 +31,13 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> Material.009 {
-  <Scalar> diffr { 0.016231 }
-  <Scalar> diffg { 0.219742 }
-  <Scalar> diffb { 0.388120 }
-  <Scalar> specr { 0.500000 }
+<Material> Material.008 {
+  <Scalar> diffr { 0.261667 }
+  <Scalar> diffg { 0.640000 }
+  <Scalar> diffb { 0.577150 }
+  <Scalar> specr { 0.203235 }
   <Scalar> specg { 0.500000 }
-  <Scalar> specb { 0.500000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 1.000000 }
-  <Scalar> ambg { 1.000000 }
-  <Scalar> ambb { 1.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> Material.003 {
-  <Scalar> diffr { 0.007831 }
-  <Scalar> diffg { 0.017775 }
-  <Scalar> diffb { 0.640000 }
-  <Scalar> specr { 0.500000 }
-  <Scalar> specg { 0.500000 }
-  <Scalar> specb { 0.500000 }
+  <Scalar> specb { 0.450642 }
   <Scalar> shininess { 12.5 }
   <Scalar> ambr { 1.000000 }
   <Scalar> ambg { 1.000000 }
@@ -112,6 +64,86 @@
 }
 
 <Material> Material.006 {
+  <Scalar> diffr { 0.016231 }
+  <Scalar> diffg { 0.219742 }
+  <Scalar> diffb { 0.388120 }
+  <Scalar> specr { 0.500000 }
+  <Scalar> specg { 0.500000 }
+  <Scalar> specb { 0.500000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> Material.004 {
+  <Scalar> diffr { 0.640000 }
+  <Scalar> diffg { 0.011188 }
+  <Scalar> diffb { 0.274442 }
+  <Scalar> specr { 0.500000 }
+  <Scalar> specg { 0.014885 }
+  <Scalar> specb { 0.040936 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> Material.011 {
+  <Scalar> diffr { 0.176190 }
+  <Scalar> diffg { 0.176190 }
+  <Scalar> diffb { 0.176190 }
+  <Scalar> specr { 0.500000 }
+  <Scalar> specg { 0.500000 }
+  <Scalar> specb { 0.500000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> Material.002 {
+  <Scalar> diffr { 0.133870 }
+  <Scalar> diffg { 0.181250 }
+  <Scalar> diffb { 0.161324 }
+  <Scalar> specr { 0.500000 }
+  <Scalar> specg { 0.500000 }
+  <Scalar> specb { 0.500000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> Material.009 {
+  <Scalar> diffr { 0.016231 }
+  <Scalar> diffg { 0.219742 }
+  <Scalar> diffb { 0.388120 }
+  <Scalar> specr { 0.500000 }
+  <Scalar> specg { 0.500000 }
+  <Scalar> specb { 0.500000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> Material.007 {
   <Scalar> diffr { 0.016231 }
   <Scalar> diffg { 0.219742 }
   <Scalar> diffb { 0.388120 }
@@ -159,38 +191,93 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> Material.004 {
-  <Scalar> diffr { 0.640000 }
-  <Scalar> diffg { 0.011188 }
-  <Scalar> diffb { 0.274442 }
-  <Scalar> specr { 0.500000 }
-  <Scalar> specg { 0.014885 }
-  <Scalar> specb { 0.040936 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 1.000000 }
-  <Scalar> ambg { 1.000000 }
-  <Scalar> ambb { 1.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> Material.008 {
-  <Scalar> diffr { 0.261667 }
-  <Scalar> diffg { 0.640000 }
-  <Scalar> diffb { 0.577150 }
-  <Scalar> specr { 0.203235 }
-  <Scalar> specg { 0.500000 }
-  <Scalar> specb { 0.450642 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 1.000000 }
-  <Scalar> ambg { 1.000000 }
-  <Scalar> ambb { 1.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
+  <Group> Cube.028 {
+    <Transform> {
+      <Matrix4> {
+        1.0 0.0 0.0 0.0 
+        0.0 1.0 0.0 0.0 
+        0.0 0.0 1.0 0.0 
+        -3.3874499797821045 -0.33000001311302185 0.675000011920929 1.0 
+      }
+    }
+    
+    <VertexPool> Cube.028 {
+    
+      <Vertex> 0 {-3.437450 -0.580000 0.500000
+      }
+      <Vertex> 1 {-3.437450 -0.580000 0.850000
+      }
+      <Vertex> 2 {-3.437450 -0.080000 0.850000
+      }
+      <Vertex> 3 {-3.437450 -0.080000 0.500000
+      }
+      <Vertex> 4 {-3.437450 -0.080000 0.500000
+      }
+      <Vertex> 5 {-3.437450 -0.080000 0.850000
+      }
+      <Vertex> 6 {-3.337450 -0.080000 0.850000
+      }
+      <Vertex> 7 {-3.337450 -0.080000 0.500000
+      }
+      <Vertex> 8 {-3.337450 -0.080000 0.500000
+      }
+      <Vertex> 9 {-3.337450 -0.080000 0.850000
+      }
+      <Vertex> 10 {-3.337450 -0.580000 0.850000
+      }
+      <Vertex> 11 {-3.337450 -0.580000 0.500000
+      }
+      <Vertex> 12 {-3.337450 -0.580000 0.500000
+      }
+      <Vertex> 13 {-3.337450 -0.580000 0.850000
+      }
+      <Vertex> 14 {-3.437450 -0.580000 0.850000
+      }
+      <Vertex> 15 {-3.437450 -0.580000 0.500000
+      }
+      <Vertex> 16 {-3.437450 -0.080000 0.500000
+      }
+      <Vertex> 17 {-3.337450 -0.080000 0.500000
+      }
+      <Vertex> 18 {-3.337450 -0.580000 0.500000
+      }
+      <Vertex> 19 {-3.437450 -0.580000 0.500000
+      }
+      <Vertex> 20 {-3.337450 -0.080000 0.850000
+      }
+      <Vertex> 21 {-3.437450 -0.080000 0.850000
+      }
+      <Vertex> 22 {-3.437450 -0.580000 0.850000
+      }
+      <Vertex> 23 {-3.337450 -0.580000 0.850000
+      }}
+    
+    
+    <Polygon> {
+      <Normal> {-1.000000 0.000000 0.000000}
+      <VertexRef> { 0 1 2 3 <Ref> { Cube.028 }} 
+    }
+    <Polygon> {
+      <Normal> {0.000000 1.000000 0.000000}
+      <VertexRef> { 4 5 6 7 <Ref> { Cube.028 }} 
+    }
+    <Polygon> {
+      <Normal> {1.000000 0.000000 0.000000}
+      <VertexRef> { 8 9 10 11 <Ref> { Cube.028 }} 
+    }
+    <Polygon> {
+      <Normal> {0.000000 -1.000000 0.000000}
+      <VertexRef> { 12 13 14 15 <Ref> { Cube.028 }} 
+    }
+    <Polygon> {
+      <Normal> {0.000000 0.000000 -1.000000}
+      <VertexRef> { 16 17 18 19 <Ref> { Cube.028 }} 
+    }
+    <Polygon> {
+      <Normal> {0.000000 0.000000 1.000000}
+      <VertexRef> { 20 21 22 23 <Ref> { Cube.028 }} 
+    }
+  }
   <Group> Cube.027 {
     <Transform> {
       <Matrix4> {

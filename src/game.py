@@ -91,13 +91,17 @@ class Game():
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
-        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom):
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
             print 'ball has been bumped'
             self.score = self.score + 200
             self.scoreboard.updateDisplay(self.score, self.balls_used)
-            if self.balls_used > 0:
-                self.balls_used = self.balls_used - 1
-                self.place_ball()
+            if self.table.ball.getZ() > .48 :
+                self.table.ball_not_sinking = False
+                # if self.balls_used > 0:
+                #     self.balls_used = self.balls_used - 1
+                #     self.place_ball()
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
+            self.table.ball_not_sinking = False
         if self.bumped_by_flipper(geom1, geom2, body1, body2):
             print ' '
 
