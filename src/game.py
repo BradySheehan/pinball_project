@@ -99,7 +99,7 @@ class Game():
                 self.balls_used = self.balls_used - 1
                 self.place_ball()
         if self.bumped_by_flipper(geom1, geom2, body1, body2):
-            print 'flipper hit ball'
+            print ' '
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
@@ -157,6 +157,12 @@ class Game():
     def bumped_by_flipper(self, geom1, geom2, body1, body2):
         one = self.bumped_by_ball2(body1, body2, self.table.flipper_body_right)
         two = self.bumped_by_ball2(body1, body2, self.table.flipper_body_left)
+        if one:
+            print 'right flipper hit'
+            self.table.apply_force_to_ball(0)
+        if two:
+            print 'left flipper hit'
+            self.table.apply_force_to_ball(1)
         if one or two:
             return True
         else:

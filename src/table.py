@@ -1,6 +1,6 @@
 from direct.directbase import DirectStart
 from direct.directtools.DirectGeometry import LineNodePath
-from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup, OdeHingeJoint, OdeBallJoint
+from panda3d.ode import OdeWorld, OdeSimpleSpace, OdeJointGroup, OdeHingeJoint, OdeBallJoint, OdeUtil
 from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeom, OdeCylinderGeom
 from panda3d.core import BitMask32, Vec4, Quat, VBase3, Vec3
 from panda3d.core import Light, AmbientLight, DirectionalLight
@@ -25,7 +25,6 @@ class Table():
         self.setup_camera()
         self.setup_light()
         self.load_models()
-        # self.setup_contact_joints()
 
         # rotation angle for flippers
         self.h_left = 0
@@ -40,7 +39,6 @@ class Table():
         self.right_flipper_up = False
         #frame rate
         self.simTimeStep = 1.0/60.0
-        self.lines = LineNodePath(parent = render, thickness = 3.0, colorVec = Vec4(1, 0, 0, 1))
 
     def move_left_flipper(self):
         self.left_flipper_up = True
@@ -82,7 +80,7 @@ class Table():
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
         self.world.setGravity(1, 0, -10)
-        self.world.initSurfaceTable(2)  # we need to figure out what this does
+        self.world.initSurfaceTable(3)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
             0,
@@ -97,13 +95,14 @@ class Table():
         self.world.setSurfaceEntry(
             0, #surface ID
             1, #surface ID
-            1000,  #Friction (mu)
+            50,  #Friction (mu)
             0.1,  # bounce
             0.0,  # bounce velocity (minimum velocity a body must have before it bounces)
             0.0,
             0.0000,
             1.0, #slip
             0.00) #damping
+
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
@@ -160,26 +159,15 @@ class Table():
             flipper_body.setQuaternion(self.quat_right)
         flipper = OdeBoxGeom(self.space1, .35, .720, .338)
         self.space1.setSurfaceType(flipper, 1)
-        flipper.setCollideBits(BitMask32(0x00000002))
-        flipper.setCategoryBits(BitMask32(0x00000001))
         flipper.setBody(flipper_body)
 
         return flipper_body
 
-    def add_flipper_hinge_to_physics(self, hingeNP):
-        hinge_mass = OdeMass()
-        hinge_mass.setBox(5000, .1, .1, .338)
-        hinge_body = OdeBody(self.world)
-        hinge_body.setMass(hinge_mass)
-        hinge_body.setPosition(hingeNP.getPos())
-        hinge_body.setQuaternion(hingeNP.getQuat())
-        hinge = OdeBoxGeom(self.space1, .1, .1, .338)
-        hinge.setBody(hinge_body)
-        return hinge_body
 
     def setup_table_physics(self):
         print "\t \t setup table physics"
         self.ground_plane = self.add_plane_to_physics(0, 0, 1, 0)
+        self.space1.setSurfaceType(self.ground_plane,0)
         self.wall_west = self.add_wall_to_physics(10, 0.1, 2.5, 0, -3, 1)
         self.wall_east = self.add_wall_to_physics(10, 0.1, 2.5, 0, 3, 1)
         self.wall_north = self.add_wall_to_physics(0.1, 6, 2.5, -5, 0, 1)
@@ -408,7 +396,7 @@ class Table():
         lower_wall4.flattenLight()
 
     def import_flippers(self, table_egg):
-        # extract flipper
+        # ---- Right Flipper ----
         self.pivot_right = render.attachNewNode("pivot_right")  # pivot point
         self.flipper = table_egg.find("**/Cube.010")
         self.pivot_right.setPos(4.12, 0.6, .09)
@@ -422,14 +410,7 @@ class Table():
 
         self.flipper.wrtReparentTo(self.pivot_right)
 
-        # self.flipper_hinge_right = table_egg.find("**/Cube.028")
-        # self.flipper_hinge_right_body = self.add_flipper_hinge_to_physics(self.flipper_hinge_right)
-        # self.flipper_hinge_right.reparentTo(render)
-
-        # self.flipper_body_right.setQuaternion(
-        #     self.quat_right)
-        # self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
-
+        # ---- Left Flipper ----
         self.pivot_left = render.attachNewNode("pivot_left")
         self.flipper2 = table_egg.find("**/Cube.011")
         self.pivot_left.setPos(4.12, -1.0, .09)
@@ -514,13 +495,6 @@ class Table():
         boxNodepath2.setHpr(-125, 0, 0)
         boxNodepath2.reparentTo(render)
 
-    def setup_contact_joints(self):
-        # Create the joints
-        flipper_joint = OdeHingeJoint(self.world, self.contactgroup)
-        flipper_joint.attach(self.flipper_hinge_right_body, self.flipper_body_right) # Attach it to the environment
-        flipper_joint.setAnchor(4.15089, .47163, .15)
-        flipper_joint.setAxis(0, 0, 1)
-        # flipper_joint.addTorque(2)
 
     def import_ball(self, ball_egg):
         print "\t import ball egg"
@@ -552,15 +526,6 @@ class Table():
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
-    # We are going to be drawing some lines between the anchor points and the joints
-    def drawLines(self):
-        # Draws lines between the self.flipper_hinge_right and self.flipper.
-        self.lines.reset()
-        self.lines.drawLines([((self.flipper.getX(), self.flipper.getY(), self.flipper.getZ()),
-                        (self.flipper_hinge_right.getX(), self.flipper_hinge_right.getY(), self.flipper_hinge_right.getZ())),
-                       ((self.flipper_hinge_right.getX(), self.flipper_hinge_right.getY(), self.flipper_hinge_right.getZ()),
-                        (4.15089, .47163, .15))])
-        self.lines.create()
 
     def gravity_task(self, task):
         # these two lines set up the ball cam for testing
@@ -591,21 +556,17 @@ class Table():
             self.velocity_right = 1
 
         self.contactgroup.empty()  # Clear the contact joints
-
-        # self.flipper_hinge_right_body.setForce(-1.0,0.0,10.0)
-        # self.flipper_body_right.setForce(-1.0,0.0,10.1)
-        # self.flipper.setPosQuat(
-        #     render, self.flipper_body_right.getPosition(), Quat(
-        # self.flipper_body_right.getQuaternion()))
-        # self.flipper_hinge_right.setPosQuat(
-        #     render, self.flipper_hinge_right_body.getPosition(), Quat(
-        # self.flipper_hinge_right_body.getQuaternion()))
-        # self.drawLines()
-
         return task.cont
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
+
+    def apply_force_to_ball(self, flipper):
+        if flipper == 0 and self.right_flipper_up:
+            self.ball_body.setForce(-10,0,0)
+
+        if flipper == 1 and self.left_flipper_up:
+            self.ball_body.setForce(-10,0,0)
 
     def move_left_flipper_up(self):
         if self.velocity_left <= 2.5:
@@ -619,7 +580,6 @@ class Table():
         self.flipper_body_left.setQuaternion(
             self.quat_left)
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
-        # self.contactgroup.empty()  # Clear the contact joints
 
     def move_left_flipper_down(self):
         if self.velocity_left <= 2.5:
@@ -632,7 +592,6 @@ class Table():
         self.flipper_body_left.setQuaternion(
             self.quat_left)
         self.flipper_body_left.setPosition(self.flipper2.getPos(base.render))
-        # self.contactgroup.empty()  # Clear the contact joints
 
     def move_right_flipper_up(self):
         if self.velocity_right <= 2.5:
@@ -643,28 +602,9 @@ class Table():
         self.h_right -= 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
 
-
         self.flipper_body_right.setQuaternion(
             self.quat_right)
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
-
-        # self.flipper_body_right.setLinearVel(Vec3(2, 0, 0))
-        # self.flipper_body_right.addTorque(0,0,-50.0)
-        # self.flipper_body_right.setForce(0.0, 0.0, 10.0)
-        # self.flipper_body_right.setForce(-33.0, -33.0, 10.0)
-        # self.flipper_hinge_right_body.setPosition(4.185, .7, .15)
-
-        # print Quat(self.flipper_body_right.getQuaternion()).getHpr()
-        # self.h_right = Quat(self.flipper_body_right.getQuaternion()).getHpr()
-
-        # self.flipper.setPosQuat(
-        #     render, self.flipper_body_right.getPosition(), Quat(
-        #         self.flipper_body_right.getQuaternion()))
-        # self.flipper_hinge_right.setPosQuat(
-        #     render, self.flipper_hinge_right_body.getPosition(), Quat(
-        #         self.flipper_hinge_right_body.getQuaternion()))
-        # self.setup_contact_joints()
-
 
     def move_right_flipper_down(self):
         if self.velocity_right <= 2.5:
@@ -674,21 +614,6 @@ class Table():
 
         self.h_right += 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
+
         self.flipper_body_right.setQuaternion(self.quat_right)
         self.flipper_body_right.setPosition(self.flipper.getPos(base.render))
-        # self.contactgroup.empty()  # Clear the contact joints
-
-
-        # self.flipper_body_right.setForce(0.0, 0.0, 10.0)
-        # self.flipper_body_right.addTorque(0,0,50.0)
-        # self.h_right = Quat(self.flipper_body_right.getQuaternion()).getHpr()
-
-        # self.flipper_body_right.setQuaternion(quat)
-
-        # self.flipper.setPosQuat(
-        #     render, self.flipper_body_right.getPosition(), Quat(
-        #         self.flipper_body_right.getQuaternion()))
-        # self.flipper_hinge_right.setPosQuat(
-        #     render, self.flipper_hinge_right_body.getPosition(), Quat(
-        #         self.flipper_hinge_right_body.getQuaternion()))
-        # self.setup_contact_joints()
