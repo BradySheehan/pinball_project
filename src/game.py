@@ -113,6 +113,14 @@ class Game():
             return True
         return False
 
+    def bumped_by_ball2(self, body1, body2, bodyOfInterest):
+        if  ((body2 and body2 == bodyOfInterest) and
+                (body1 and body1 == self.table.ball_body)) or (
+                    (body1 and body1 == bodyOfInterest) and
+                            (body2 and body2 == self.table.ball_body)):
+            return True
+        return False
+
     def bumped_triangle_bumper(self, geom1, geom2, body1, body2):
         # if you bump the left pink triangle
         one = self.bumped_by_ball(
@@ -147,10 +155,8 @@ class Game():
             return False
 
     def bumped_by_flipper(self, geom1, geom2, body1, body2):
-        one = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.flipper_body_right)
-        two = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.flipper_body_left)
+        one = self.bumped_by_ball2(body1, body2, self.table.flipper_body_right)
+        two = self.bumped_by_ball2(body1, body2, self.table.flipper_body_left)
         if one or two:
             return True
         else:
