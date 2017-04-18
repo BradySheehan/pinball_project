@@ -8,6 +8,7 @@ import sys
 from table import Table
 from scoreboard import Scoreboard
 
+
 class Game():
 
     def __init__(self):
@@ -94,14 +95,16 @@ class Game():
             print 'ball has been bumped'
             self.score = self.score + 200
             self.scoreboard.updateDisplay(self.score, self.balls_used)
-            if self.balls_used  > 0:
-                self.balls_used = self.balls_used  - 1
+            if self.balls_used > 0:
+                self.balls_used = self.balls_used - 1
                 self.place_ball()
+        if self.bumped_by_flipper(geom1, geom2, body1, body2):
+            print 'flipper hit ball'
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
             (
-                geom1 and geom1 == geomOfInterest ) and (
+                geom1 and geom1 == geomOfInterest) and (
                 (body1 and body1 == self.table.ball_body) or (
                 body2 and body2 == self.table.ball_body))) or (
                     (geom2 and geom2 == geomOfInterest) and (
@@ -111,25 +114,44 @@ class Game():
         return False
 
     def bumped_triangle_bumper(self, geom1, geom2, body1, body2):
-        #if you bump the left pink triangle
-        one = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tl_l_wall)
-        two = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tl_rb_wall)
-        three = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tl_rt_wall)
-        #if you bump the right pink triangle
-        four = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tr_r_wall)
-        five = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tr_lb_wall)
-        six = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tr_rt_wall)
+        # if you bump the left pink triangle
+        one = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tl_l_wall)
+        two = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tl_rb_wall)
+        three = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tl_rt_wall)
+        # if you bump the right pink triangle
+        four = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tr_r_wall)
+        five = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tr_lb_wall)
+        six = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tr_rt_wall)
         if one or two or three or four or five or six:
             return True
         else:
             return False
 
     def bumped_round_bumper(self, geom1, geom2, body1, body2):
-        #if you bump the left pink triangle
-        one = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.round_bumper_left_geom)
-        two = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.round_bumper_right_geom)
-        three = self.bumped_by_ball(geom1, geom2, body1, body2, self.table.tall_round_bumper_geom)
+        # if you bump the left pink triangle
+        one = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.round_bumper_left_geom)
+        two = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.round_bumper_right_geom)
+        three = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tall_round_bumper_geom)
         if one or two or three:
+            return True
+        else:
+            return False
+
+    def bumped_by_flipper(self, geom1, geom2, body1, body2):
+        one = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.flipper_body_right)
+        two = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.flipper_body_left)
+        if one or two:
             return True
         else:
             return False
