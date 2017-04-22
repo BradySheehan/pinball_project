@@ -232,7 +232,10 @@ class Table():
 
         r_bumper_wall = table_egg.find("**/Cube.004")
         r_bumper_wall_geom = self.add_innard_cube_to_physics(
-            r_bumper_wall, 1.5, 0.2, 0.5)
+            r_bumper_wall, 1.5, 0.15, 0.5)
+        test = wireGeom().generate('box', extents=(1.5, 0.15, 0.5))
+        test.setPos(r_bumper_wall.getPos())
+        test.reparentTo(render)
         r_bumper_wall.reparentTo(render)
         r_bumper_wall.flattenLight()
 
@@ -501,23 +504,27 @@ class Table():
 
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
-        self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.6, -1.95, 0.25)
-        self.tl_rb_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.375, -1.8, .25)
+        self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.5, -1.95, 0.25)
+        boxNodepath = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
+        boxNodepath.setPos(2.5,-1.95, 0.25)
+        boxNodepath.reparentTo(render)
+
+        self.tl_rb_wall = self.add_wall_to_physics(0.635 , 0.05, 0.5, 2.45, -1.70, .25)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(55.0, 0.0, 0.0)
         quat.setHpr(v)
         self.tl_rb_wall.setQuaternion(quat)
+        boxNodepath1 = wireGeom().generate('box', extents=(0.635, 0.05, 0.5))
+        boxNodepath1.setPos(2.45, -1.70, .25)
+        boxNodepath1.setHpr(55, 0, 0)
+        boxNodepath1.reparentTo(render)
+
+
         self.tl_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
         quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(125, 0, 0)
         quat2.setHpr(v2)
         self.tl_rt_wall.setQuaternion(quat2)
-
-        boxNodepath1 = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
-        boxNodepath1.setPos(2.375, -1.8, .25)
-        boxNodepath1.setHpr(55, 0, 0)
-        boxNodepath1.reparentTo(render)
-
         boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
         boxNodepath2.setPos(2.79, -1.75, .25)
         boxNodepath2.setHpr(125, 0, 0)
