@@ -414,13 +414,34 @@ class Table():
 
         upper_np = table_egg.find("**/Cylinder.007")
         lower_np = table_egg.find("**/Cylinder.008")
-        self.imoprt_launch_wall_bumpers(upper_np, lower_np)
+        self.import_launch_wall_bumper(upper_np, lower_np)
 
-    def imoprt_launch_wall_bumpers(self, upper_np, lower_np):
+    def import_launch_wall_bumper(self, upper_np, lower_np):
+        wall1 = self.add_wall_to_physics(1.1, 0.05, 0.5, -1, 2.25, 0.25)
+        wall1 = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
+
+        wall2 = self.add_wall_to_physics(0.75, 0.05, 0.5, 0.35, 2.15, 0.25)
+        wall2= self.launch_wall_helper(wall2, 70, 0.75, 0.05, 0.5)
+
+
+        wall3 = self.add_wall_to_physics(0.65, 0.05, 0.5, -0.1, 1.9, 0.25)
+        wall3 = self.launch_wall_helper(wall3, -15, 0.65, 0.05, 0.5)
+
         upper_np.reparentTo(render)
         upper_np.flattenLight()
         lower_np.reparentTo(render)
         lower_np.flattenLight()
+
+    def launch_wall_helper(self, geom, rotation, dimx, dimy, dimz):
+        quat = Quat(0.0, 0.0, 0.0, 0.0)
+        v = VBase3(rotation, 0.0, 0.0)
+        quat.setHpr(v)
+        geom.setQuaternion(quat)
+        box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
+        box_wall1.setPos(geom.getPosition())
+        box_wall1.setQuat(geom.getQuaternion())
+        box_wall1.reparentTo(render)
+        return geom
 
     def import_flippers(self, table_egg):
         # ---- Right Flipper ----
