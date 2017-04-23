@@ -77,6 +77,7 @@ class Table():
         directionalLightNP.setHpr(0, -20, 0)
         render.setLight(directionalLightNP)
 
+
     def setup_ode_world_params(self):
         print "setup ode world params"
         self.world = OdeWorld()

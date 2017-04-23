@@ -18,6 +18,7 @@ class Game():
         self.balls_used = 0
         self.score = 0
         self.table = Table()
+        self.enable_buttons(False)
 
     def start(self):
         self.scoreboard = Scoreboard(
@@ -42,15 +43,37 @@ class Game():
         self.balls_used = 0
         self.score = 0
 
+    def enable_buttons(self, on):
+            if on :
+                self.start_button_handler()
+                base.accept('left_down',self.table.move_left_flipper)
+                base.accept('left_up',self.table.stop_left_flipper)
+                base.accept('right_down',self.table.move_right_flipper)
+                base.accept('right_up',self.table.stop_right_flipper)
+            else:
+                base.accept('a', self.table.move_left_flipper)
+                base.accept('a-up', self.table.stop_left_flipper)
+
+                base.accept('d', self.table.move_right_flipper)
+                base.accept('d-up', self.table.stop_right_flipper)
+
+    def start_button_handler(self):
+        import RPi.GPIO as GPIO
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(23, GPIO.IN)
+        GPIO.setup(7, GPIO.IN)
+        while True:
+            if GPIO.input(23) == False :
+                messenger.send("left_down")
+            elif GPIO.input(23) == True :
+                messenger.send("left_up")
+            if GPIO.input(7) == False :
+                messenger.send("right_down")
+            elif GPIO.input(7) == True :
+                messenger.send("right_up")
+
     def launch_ball(self):
         self.start_gravity_task()
-        base.accept('a', self.table.move_left_flipper)
-        base.accept('a-up', self.table.stop_left_flipper)
-
-        base.accept('d', self.table.move_right_flipper)
-        base.accept('d-up', self.table.stop_right_flipper)
-
-        # print "called"
         taskMgr.doMethodLater(
             0,
             self.table.launch_ball_task,
