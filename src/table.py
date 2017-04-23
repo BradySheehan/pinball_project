@@ -233,9 +233,9 @@ class Table():
         r_bumper_wall = table_egg.find("**/Cube.004")
         r_bumper_wall_geom = self.add_innard_cube_to_physics(
             r_bumper_wall, 1.5, 0.15, 0.5)
-        test = wireGeom().generate('box', extents=(1.5, 0.15, 0.5))
-        test.setPos(r_bumper_wall.getPos())
-        test.reparentTo(render)
+        # test = wireGeom().generate('box', extents=(1.5, 0.15, 0.5))
+        # test.setPos(r_bumper_wall.getPos())
+        # test.reparentTo(render)
         r_bumper_wall.reparentTo(render)
         r_bumper_wall.flattenLight()
 
@@ -243,31 +243,16 @@ class Table():
         #left triangle bottom of table
         self.setup_physics_rb_bumper(rb_bumper)
 
-        boxNodepath2 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
-        boxNodepath2.setPos(2.6, 1.45, 0.25)
-        boxNodepath2.setQuat(rb_bumper.getQuat())
-        boxNodepath2.reparentTo(render)
-
         rb_bumper.reparentTo(render)
         rb_bumper.flattenLight()
 
         lb_bumper = table_egg.find("**/Cylinder.001")
         #right triangle bottom of table
         self.setup_physics_lb_bumper(lb_bumper)
-
-        boxNodepath3 = wireGeom().generate('box', extents=(0.75, 0.05, 0.5))
-        boxNodepath3.setPos(2.6, -1.95, 0.25)
-        boxNodepath3.setQuat(lb_bumper.getQuat())
-        boxNodepath3.reparentTo(render)
-
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
-        boxNodepath = wireGeom().generate('box', extents=(1.0, 0.05, 0.5))
-        boxNodepath.setPos(angled_launch_wall.getPos())
-        boxNodepath.setQuat(angled_launch_wall.getQuat())
-        boxNodepath.reparentTo(render)
 
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
             angled_launch_wall, 1.0, 0.1, 0.5)
@@ -296,10 +281,6 @@ class Table():
         angled_wall_bumper.flattenLight()
 
         angled_launch_wall2 = table_egg.find("**/Cube.006")
-        boxNodepath2 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
-        boxNodepath2.setPos(angled_launch_wall2.getPos())
-        boxNodepath2.setQuat(angled_launch_wall2.getQuat())
-        boxNodepath2.reparentTo(render)
 
         angled_launch_wall_geom2 = self.add_innard_cube_to_physics(
             angled_launch_wall2, 1.0, 0.1, 0.5)
@@ -307,21 +288,12 @@ class Table():
         angled_launch_wall2.flattenLight()
 
         angled_launch_wall3 = table_egg.find("**/Cube.007")
-        boxNodepath3 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
-        boxNodepath3.setPos(angled_launch_wall3.getPos())
-        boxNodepath3.setQuat(angled_launch_wall3.getQuat())
-        boxNodepath3.reparentTo(render)
-
         angled_launch_wall_geom3 = self.add_innard_cube_to_physics(
             angled_launch_wall3, 1.0, 0.1, 0.5)
         angled_launch_wall3.reparentTo(render)
         angled_launch_wall3.flattenLight()
 
         angled_launch_wall4 = table_egg.find("**/Cube.008")
-        boxNodepath4 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
-        boxNodepath4.setPos(angled_launch_wall4.getPos())
-        boxNodepath4.setQuat(angled_launch_wall4.getQuat())
-        boxNodepath4.reparentTo(render)
 
         angled_launch_wall_geom4 = self.add_innard_cube_to_physics(
             angled_launch_wall4, 1.0, 0.1, 0.5)
@@ -329,10 +301,6 @@ class Table():
         angled_launch_wall4.flattenLight()
 
         angled_launch_wall5 = table_egg.find("**/Cube.009")
-        boxNodepath5 = wireGeom().generate('box', extents=(1.0, 0.01, 0.5))
-        boxNodepath5.setPos(angled_launch_wall5.getPos())
-        boxNodepath5.setQuat(angled_launch_wall5.getQuat())
-        boxNodepath5.reparentTo(render)
 
         angled_launch_wall_geom5 = self.add_innard_cube_to_physics(
             angled_launch_wall5, 1.0, 0.1, 0.5)
@@ -440,10 +408,10 @@ class Table():
         v = VBase3(rotation, 0.0, 0.0)
         quat.setHpr(v)
         geom.setQuaternion(quat)
-        box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
-        box_wall1.setPos(geom.getPosition())
-        box_wall1.setQuat(geom.getQuaternion())
-        box_wall1.reparentTo(render)
+        # box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
+        # box_wall1.setPos(geom.getPosition())
+        # box_wall1.setQuat(geom.getQuaternion())
+        # box_wall1.reparentTo(render)
         return geom
 
     def import_flippers(self, table_egg):
@@ -505,19 +473,19 @@ class Table():
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
         self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.5, -1.95, 0.25)
-        boxNodepath = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
-        boxNodepath.setPos(2.5,-1.95, 0.25)
-        boxNodepath.reparentTo(render)
+        # boxNodepath = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
+        # boxNodepath.setPos(2.5,-1.95, 0.25)
+        # boxNodepath.reparentTo(render)
 
         self.tl_rb_wall = self.add_wall_to_physics(0.635 , 0.05, 0.5, 2.45, -1.70, .25)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(55.0, 0.0, 0.0)
         quat.setHpr(v)
         self.tl_rb_wall.setQuaternion(quat)
-        boxNodepath1 = wireGeom().generate('box', extents=(0.635, 0.05, 0.5))
-        boxNodepath1.setPos(2.45, -1.70, .25)
-        boxNodepath1.setHpr(55, 0, 0)
-        boxNodepath1.reparentTo(render)
+        # boxNodepath1 = wireGeom().generate('box', extents=(0.635, 0.05, 0.5))
+        # boxNodepath1.setPos(2.45, -1.70, .25)
+        # boxNodepath1.setHpr(55, 0, 0)
+        # boxNodepath1.reparentTo(render)
 
 
         self.tl_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
@@ -525,10 +493,10 @@ class Table():
         v2 = VBase3(125, 0, 0)
         quat2.setHpr(v2)
         self.tl_rt_wall.setQuaternion(quat2)
-        boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
-        boxNodepath2.setPos(2.79, -1.75, .25)
-        boxNodepath2.setHpr(125, 0, 0)
-        boxNodepath2.reparentTo(render)
+        # boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        # boxNodepath2.setPos(2.79, -1.75, .25)
+        # boxNodepath2.setHpr(125, 0, 0)
+        # boxNodepath2.reparentTo(render)
 
     def setup_physics_rb_bumper(self, node_path):
         #tr stands for triangle right
@@ -544,15 +512,15 @@ class Table():
         quat2.setHpr(v2)
         self.tr_rt_wall.setQuaternion(quat2)
 
-        boxNodepath1 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
-        boxNodepath1.setPos(2.4, 1.2, 0.25)
-        boxNodepath1.setHpr(-55, 0, 0)
-        boxNodepath1.reparentTo(render)
+        # boxNodepath1 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        # boxNodepath1.setPos(2.4, 1.2, 0.25)
+        # boxNodepath1.setHpr(-55, 0, 0)
+        # boxNodepath1.reparentTo(render)
 
-        boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
-        boxNodepath2.setPos(2.75, 1.2, 0.25)
-        boxNodepath2.setHpr(-125, 0, 0)
-        boxNodepath2.reparentTo(render)
+        # boxNodepath2 = wireGeom().generate('box', extents=(0.6, 0.05, 0.5))
+        # boxNodepath2.setPos(2.75, 1.2, 0.25)
+        # boxNodepath2.setHpr(-125, 0, 0)
+        # boxNodepath2.reparentTo(render)
 
 
     def import_ball(self, ball_egg):
