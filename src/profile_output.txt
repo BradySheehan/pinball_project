@@ -1,0 +1,1337 @@
+Using deprecated DirectStart interface.
+setup ode world params
+setup camera
+setup light
+load models
+	 import ball egg
+	 	 setup ball physics
+	 import table egg
+	 	 setup table physics
+called
+start trigger miss task
+bump_event
+right flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+ball has been bumped
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+ball has been bumped
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+ball has been bumped
+ball has been bumped
+lost ball
+called
+start trigger miss task
+bump_event
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+lost ball
+called
+start trigger miss task
+bump_event
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+ball has been bumped
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+ball has been bumped
+ball has been bumped
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+left flipper hit
+ 
+lost ball
+called
+start trigger miss task
+bump_event
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+right flipper hit
+ 
+         48141770 function calls (48129491 primitive calls) in 192.123 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:1(ArgInfo)
+        1    0.000    0.000    0.000    0.000 <string>:1(ArgSpec)
+        1    0.000    0.000    0.000    0.000 <string>:1(Arguments)
+        1    0.000    0.000    0.000    0.000 <string>:1(Attribute)
+        1    0.000    0.000    0.000    0.000 <string>:1(ModuleInfo)
+        1    0.000    0.000    0.000    0.000 <string>:1(Traceback)
+        1    0.000    0.000    0.000    0.000 AppRunnerGlobal.py:7(<module>)
+        1    0.000    0.000    0.000    0.000 BufferViewer.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 BufferViewer.py:11(BufferViewer)
+        1    0.000    0.000    0.000    0.000 BufferViewer.py:14(__init__)
+        1    0.000    0.000    0.000    0.000 BufferViewer.py:177(setRenderParent)
+        1    0.000    0.000    0.000    0.000 BulletinBoard.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 BulletinBoard.py:14(__init__)
+        1    0.000    0.000    0.000    0.000 BulletinBoard.py:7(BulletinBoard)
+        1    0.000    0.000    0.000    0.000 BulletinBoardGlobal.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 ClassicFSM.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 ClassicFSM.py:26(ClassicFSM)
+        1    0.000    0.000    0.000    0.000 DeltaProfiler.py:10(__init__)
+        1    0.000    0.000    0.000    0.000 DeltaProfiler.py:2(<module>)
+        1    0.000    0.000    0.000    0.000 DeltaProfiler.py:4(DeltaProfiler)
+        1    0.000    0.000    0.000    0.000 DirectButton.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectButton.py:9(DirectButton)
+        1    0.001    0.001    0.001    0.001 DirectCheckButton.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectCheckButton.py:10(DirectCheckButton)
+        1    0.001    0.001    0.001    0.001 DirectDialog.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:359(OkDialog)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:37(DirectDialog)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:372(OkCancelDialog)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:385(YesNoDialog)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:398(YesNoCancelDialog)
+        1    0.000    0.000    0.000    0.000 DirectDialog.py:412(RetryCancelDialog)
+        1    0.000    0.000    0.000    0.000 DirectEntry.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectEntry.py:19(DirectEntry)
+        1    0.000    0.000    0.002    0.002 DirectEntryScroll.py:1(<module>)
+        1    0.001    0.001    0.001    0.001 DirectEntryScroll.py:9(DirectEntryScroll)
+        1    0.001    0.001    0.001    0.001 DirectFrame.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectFrame.py:12(DirectFrame)
+        1    0.000    0.000    0.000    0.000 DirectGeometry.py:2(<module>)
+        1    0.000    0.000    0.000    0.000 DirectGeometry.py:7(LineNodePath)
+        1    0.000    0.000    0.000    0.000 DirectGlobals.py:1(<module>)
+        1    0.003    0.003    0.013    0.013 DirectGui.py:1(<module>)
+        1    0.001    0.001    0.001    0.001 DirectGuiBase.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectGuiBase.py:101(DirectGuiBase)
+        1    0.000    0.000    0.000    0.000 DirectGuiBase.py:663(DirectGuiWidget)
+        1    0.000    0.000    0.000    0.000 DirectGuiGlobals.py:1(<module>)
+       91    0.000    0.000    0.000    0.000 DirectGuiGlobals.py:120(getDefaultFont)
+        1    0.000    0.000    0.000    0.000 DirectLabel.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectLabel.py:9(DirectLabel)
+        1    0.000    0.000    0.000    0.000 DirectNotify.py:14(__init__)
+        1    0.000    0.000    0.034    0.034 DirectNotify.py:3(<module>)
+       41    0.000    0.000    0.000    0.000 DirectNotify.py:40(getCategory)
+       21    0.000    0.000    0.001    0.000 DirectNotify.py:46(newCategory)
+       20    0.000    0.000    0.000    0.000 DirectNotify.py:56(setDconfigLevel)
+        1    0.000    0.000    0.000    0.000 DirectNotify.py:8(DirectNotify)
+        1    0.000    0.000    0.034    0.034 DirectNotifyGlobal.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectObject.py:1(<module>)
+       26    0.000    0.000    0.000    0.000 DirectObject.py:23(accept)
+        5    0.000    0.000    0.000    0.000 DirectObject.py:26(acceptOnce)
+        2    0.000    0.000    0.000    0.000 DirectObject.py:32(ignoreAll)
+        1    0.000    0.000    0.000    0.000 DirectObject.py:9(DirectObject)
+        1    0.001    0.001    0.001    0.001 DirectOptionMenu.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectOptionMenu.py:13(DirectOptionMenu)
+        1    0.000    0.000    0.000    0.000 DirectRadioButton.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectRadioButton.py:10(DirectRadioButton)
+        1    0.000    0.000    0.000    0.000 DirectScrollBar.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectScrollBar.py:16(DirectScrollBar)
+        1    0.000    0.000    0.001    0.001 DirectScrolledFrame.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectScrolledFrame.py:15(DirectScrolledFrame)
+        1    0.000    0.000    0.000    0.000 DirectScrolledList.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectScrolledList.py:14(DirectScrolledListItem)
+        1    0.000    0.000    0.000    0.000 DirectScrolledList.py:46(DirectScrolledList)
+        1    0.001    0.001    0.001    0.001 DirectSlider.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectSlider.py:16(DirectSlider)
+        1    0.002    0.002    0.559    0.559 DirectStart.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectUtil.py:2(<module>)
+        1    0.001    0.001    0.001    0.001 DirectWaitBar.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 DirectWaitBar.py:15(DirectWaitBar)
+        1    0.000    0.000    0.000    0.000 EventManager.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 EventManager.py:11(EventManager)
+        1    0.000    0.000    0.000    0.000 EventManager.py:173(restart)
+        1    0.000    0.000    0.000    0.000 EventManager.py:188(shutdown)
+        2    0.000    0.000    0.000    0.000 EventManager.py:19(__init__)
+    22813    2.783    0.000   41.176    0.002 EventManager.py:32(doEvents)
+    11407    0.040    0.000   41.224    0.004 EventManager.py:48(eventLoopTask)
+   966886    1.771    0.000    3.236    0.000 EventManager.py:56(parseEventParameter)
+   978708    4.314    0.000   37.689    0.000 EventManager.py:77(processEvent)
+        1    0.000    0.000    0.000    0.000 EventManagerGlobal.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 ExceptionVarDump.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 ExceptionVarDump.py:71(_AttrNotFound)
+        1    0.001    0.001    0.001    0.001 FunctionInterval.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:106(AcceptInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:120(IgnoreInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:134(ParentInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:151(WrtParentInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:169(PosInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:18(FunctionInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:190(HprInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:211(ScaleInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:232(PosHprInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:253(HprScaleInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:276(PosHprScaleInterval)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:302(Func)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:310(Wait)
+        1    0.000    0.000    0.000    0.000 FunctionInterval.py:95(EventInterval)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:14(FakeObject)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:17(FakeDelObject)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:32(GarbageReport)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:547(GarbageLogger)
+        1    0.000    0.000    0.000    0.000 GarbageReport.py:555(_CFGLGlobals)
+        1    0.000    0.000    0.000    0.000 InputState.py:234(debugPrint)
+        1    0.000    0.000    0.000    0.000 InputState.py:24(InputStateWatchToken)
+        1    0.000    0.000    0.000    0.000 InputState.py:28(InputStateForceToken)
+        1    0.000    0.000    0.000    0.000 InputState.py:3(<module>)
+        1    0.000    0.000    0.000    0.000 InputState.py:32(InputStateTokenGroup)
+        1    0.000    0.000    0.000    0.000 InputState.py:42(InputState)
+        1    0.000    0.000    0.000    0.000 InputState.py:61(__init__)
+        1    0.000    0.000    0.000    0.000 InputState.py:7(InputStateToken)
+        1    0.000    0.000    0.000    0.000 InputStateGlobal.py:1(<module>)
+        1    0.001    0.001    0.001    0.001 Interval.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 Interval.py:13(Interval)
+        1    0.002    0.002    0.074    0.074 IntervalManager.py:1(<module>)
+    11406    0.053    0.000    0.091    0.000 IntervalManager.py:106(__doPythonCallbacks)
+        1    0.000    0.000    0.000    0.000 IntervalManager.py:13(IntervalManager)
+        1    0.000    0.000    0.000    0.000 IntervalManager.py:20(__init__)
+    11406    0.052    0.000    0.143    0.000 IntervalManager.py:91(step)
+        1    0.000    0.000    0.000    0.000 Job.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 Job.py:103(TestJob)
+        1    0.000    0.000    0.000    0.000 Job.py:6(Job)
+        1    0.000    0.000    0.000    0.000 JobManager.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 JobManager.py:17(__init__)
+        1    0.000    0.000    0.000    0.000 JobManager.py:6(JobManager)
+        1    0.000    0.000    0.000    0.000 JobManagerGlobal.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 LerpBlendHelpers.py:1(<module>)
+        1    0.001    0.001    0.001    0.001 LerpInterval.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:101(LerpPosInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:128(LerpHprInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:159(LerpQuatInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:197(LerpScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:222(LerpShearInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:247(LerpPosHprInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:27(LerpNodePathInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:284(LerpPosQuatInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:329(LerpHprScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:367(LerpQuatScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:415(LerpPosHprScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:461(LerpPosQuatScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:517(LerpPosHprScaleShearInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:571(LerpPosQuatScaleShearInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:637(LerpColorInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:649(LerpColorScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:661(LerpTexOffsetInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:676(LerpTexRotateInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:691(LerpTexScaleInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:715(LerpFunctionNoStateInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:795(LerpFuncNS)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:800(LerpFunctionInterval)
+        1    0.000    0.000    0.000    0.000 LerpInterval.py:861(LerpFunc)
+        1    0.000    0.000    0.000    0.000 Loader.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 Loader.py:17(Loader)
+        1    0.000    0.000    0.000    0.000 Loader.py:24(Callback)
+        1    0.000    0.000    0.000    0.000 Loader.py:45(__init__)
+        2    0.000    0.000    0.020    0.010 Loader.py:60(loadModel)
+        1    0.004    0.004    0.004    0.004 Logger.py:2(<module>)
+        1    0.000    0.000    0.000    0.000 Logger.py:8(Logger)
+        2    0.000    0.000    0.000    0.000 Logger.py:9(__init__)
+        1    0.000    0.000    0.004    0.004 LoggerGlobal.py:1(<module>)
+        1    0.000    0.000    0.001    0.001 Messenger.py:1(<module>)
+        7    0.000    0.000    0.000    0.000 Messenger.py:103(_releaseObject)
+       31    0.000    0.000    0.000    0.000 Messenger.py:112(accept)
+        1    0.000    0.000    0.000    0.000 Messenger.py:13(Messenger)
+        1    0.000    0.000    0.000    0.000 Messenger.py:17(__init__)
+        2    0.000    0.000    0.000    0.000 Messenger.py:203(ignoreAll)
+  1001527    2.529    0.000   28.231    0.000 Messenger.py:278(send)
+   966573    4.351    0.000   24.353    0.000 Messenger.py:360(__dispatch)
+       56    0.000    0.000    0.000    0.000 Messenger.py:64(_getMessengerId)
+       16    0.000    0.000    0.000    0.000 Messenger.py:75(_storeObject)
+        5    0.000    0.000    0.000    0.000 Messenger.py:84(_getObject)
+        1    0.000    0.000    0.001    0.001 MessengerGlobal.py:1(<module>)
+        1    0.001    0.001    0.001    0.001 MetaInterval.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 MetaInterval.py:18(MetaInterval)
+        1    0.000    0.000    0.000    0.000 MetaInterval.py:577(Sequence)
+        1    0.000    0.000    0.000    0.000 MetaInterval.py:581(Parallel)
+        1    0.000    0.000    0.000    0.000 MetaInterval.py:586(ParallelEndTogether)
+        1    0.000    0.000    0.000    0.000 MetaInterval.py:591(Track)
+        1    0.000    0.000    0.000    0.000 Notifier.py:12(Notifier)
+       20    0.000    0.000    0.000    0.000 Notifier.py:148(setWarning)
+        4    0.000    0.000    0.000    0.000 Notifier.py:161(debug)
+       20    0.000    0.000    0.000    0.000 Notifier.py:175(setDebug)
+  1980268    0.404    0.000    0.404    0.000 Notifier.py:181(getDebug)
+        2    0.000    0.000    0.000    0.000 Notifier.py:188(info)
+       20    0.000    0.000    0.000    0.000 Notifier.py:208(setInfo)
+       20    0.000    0.000    0.000    0.000 Notifier.py:25(__init__)
+        1    0.001    0.001    0.033    0.033 Notifier.py:4(<module>)
+        1    0.001    0.001    0.002    0.002 OnScreenDebug.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 OnScreenDebug.py:13(OnScreenDebug)
+        1    0.000    0.000    0.000    0.000 OnScreenDebug.py:14(__init__)
+    11406    0.008    0.000    0.008    0.000 OnScreenDebug.py:48(render)
+    11406    0.031    0.000    0.031    0.000 OnScreenDebug.py:74(clear)
+        1    0.000    0.000    0.000    0.000 OnscreenGeom.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 OnscreenGeom.py:10(OnscreenGeom)
+        1    0.000    0.000    0.000    0.000 OnscreenImage.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 OnscreenImage.py:10(OnscreenImage)
+        1    0.000    0.000    0.001    0.001 OnscreenText.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 OnscreenText.py:20(OnscreenText)
+       91    0.004    0.000    0.009    0.000 OnscreenText.py:22(__init__)
+       90    0.001    0.000    0.005    0.000 OnscreenText.py:224(cleanup)
+       90    0.000    0.000    0.006    0.000 OnscreenText.py:230(destroy)
+       91    0.000    0.000    0.001    0.000 OnscreenText.py:261(setText)
+       91    0.001    0.000    0.002    0.000 OnscreenText.py:323(updateTransformMat)
+        1    0.012    0.012    0.072    0.072 PandaModules.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:121(Stack)
+        2    0.000    0.000    0.000    0.000 PythonUtil.py:122(__init__)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1231(SerialNumGen)
+        4    0.000    0.000    0.000    0.000 PythonUtil.py:1233(__init__)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1241(SerialMaskedGen)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1257(EnumIter)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1269(Enum)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:138(Queue)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1399(Singleton)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1408(SingletonError)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:141(__init__)
+    11407    0.013    0.000    0.021    0.000 PythonUtil.py:158(__len__)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1599(ScratchPad)
+        3    0.000    0.000    0.000    0.000 PythonUtil.py:1601(__init__)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1609(destroy)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1622(Sync)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1836(DelayedCall)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1865(FrameDelayedCall)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1902(DelayedFunctor)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1926(SubframeCall)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:1948(PStatScope)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:195(StackTrace)
+        1    0.002    0.002    0.028    0.028 PythonUtil.py:2(<module>)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2294(recordCreationStackStr)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2342(GoldenRectangle)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2350(HotkeyBreaker)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2548(MiniLog)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2591(MiniLogSentry)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2607(HierarchyException)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2620(recordFunctorCreationStacks)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2699(AlphabetCounter)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:2799(Default)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:422(listToIndex2item)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:431(listToItem2index)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:597(StdoutCapture)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:614(StdoutPassthrough)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:70(Functor)
+        1    0.000    0.000    0.000    0.000 PythonUtil.py:939(Averager)
+        1    0.000    0.000    0.000    0.000 SfxPlayer.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 SfxPlayer.py:16(__init__)
+        1    0.000    0.000    0.000    0.000 SfxPlayer.py:30(setCutoffDistance)
+        1    0.000    0.000    0.000    0.000 SfxPlayer.py:9(SfxPlayer)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1015(setFrameRateMeter)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1029(setSceneGraphAnalyzerMeter)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1044(setupWindowControls)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1052(setupRender)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1067(setupRender2d)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1162(setupRender2dp)
+        3    0.000    0.000    0.000    0.000 ShowBase.py:1243(getAspectRatio)
+        2    0.000    0.000    0.000    0.000 ShowBase.py:1276(getSize)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1297(makeCamera)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1390(makeCamera2d)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1435(makeCamera2dp)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1480(setupDataGraph)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1497(setupMouse)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1567(setupMouseCB)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1706(createStats)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1723(addSfxManager)
+        1    0.000    0.000    0.055    0.055 ShowBase.py:1732(createBaseAudioManagers)
+    11407    0.037    0.000    0.055    0.000 ShowBase.py:1826(__resetPrevTransform)
+    11407    0.032    0.000    0.529    0.000 ShowBase.py:1837(__dataLoop)
+    11406    0.040    0.000    0.183    0.000 ShowBase.py:1844(__ivalLoop)
+    11406    0.030    0.000    0.107    0.000 ShowBase.py:1862(__collisionLoop)
+    11406    0.085    0.000    0.158    0.000 ShowBase.py:1874(__audioLoop)
+    11406    0.042    0.000    0.735    0.000 ShowBase.py:1881(__garbageCollectStates)
+    11406    0.240    0.000  143.076    0.013 ShowBase.py:1892(__igLoop)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:1976(restart)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2007(shutdown)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2099(disableMouse)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2145(changeMouseInterface)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2170(useTrackball)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2803(startWx)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2882(startTk)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2960(startDirect)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:2976(__doStartDirect)
+        1    0.000    0.000  191.967  191.967 ShowBase.py:2990(run)
+        1    0.111    0.111    0.226    0.226 ShowBase.py:3(<module>)
+        1    0.001    0.001    0.001    0.001 ShowBase.py:3003(WindowControls)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:3004(__init__)
+        1    0.001    0.001    0.001    0.001 ShowBase.py:470(__setupProfile)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:489(printEnvDebugInfo)
+        1    0.000    0.000    0.055    0.055 ShowBase.py:549(makeDefaultPipe)
+        1    0.000    0.000    0.252    0.252 ShowBase.py:616(openWindow)
+        1    0.000    0.000    0.251    0.251 ShowBase.py:651(<lambda>)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:66(ShowBase)
+        1    0.001    0.001    0.332    0.332 ShowBase.py:71(__init__)
+        1    0.000    0.000    0.251    0.251 ShowBase.py:713(_doOpenWindow)
+        1    0.000    0.000    0.252    0.252 ShowBase.py:905(openDefaultWindow)
+        1    0.000    0.000    0.252    0.252 ShowBase.py:928(openMainWindow)
+        1    0.000    0.000    0.000    0.000 ShowBase.py:995(setSleep)
+        1    0.000    0.000    0.000    0.000 State.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 State.py:10(State)
+        1    0.000    0.000    0.000    0.000 StatePush.py:10(PushesStateChanges)
+        1    0.000    0.000    0.000    0.000 StatePush.py:108(StateChangeNode)
+        5    0.000    0.000    0.000    0.000 StatePush.py:110(__init__)
+        5    0.000    0.000    0.000    0.000 StatePush.py:115(destroy)
+    17/14    0.000    0.000    0.000    0.000 StatePush.py:119(_recvStatePush)
+       25    0.000    0.000    0.000    0.000 StatePush.py:12(__init__)
+        1    0.000    0.000    0.000    0.000 StatePush.py:149(ReceivesMultipleStateChanges)
+        6    0.000    0.000    0.000    0.000 StatePush.py:152(__init__)
+        6    0.000    0.000    0.000    0.000 StatePush.py:156(destroy)
+        8    0.000    0.000    0.000    0.000 StatePush.py:163(_subscribeTo)
+       16    0.000    0.000    0.000    0.000 StatePush.py:169(_unsubscribe)
+       20    0.000    0.000    0.000    0.000 StatePush.py:17(destroy)
+       22    0.000    0.000    0.000    0.000 StatePush.py:176(_recvStatePush)
+        2    0.000    0.000    0.000    0.000 StatePush.py:179(_recvMultiStatePush)
+        1    0.000    0.000    0.000    0.000 StatePush.py:192(FunctionCall)
+        5    0.000    0.000    0.000    0.000 StatePush.py:194(__init__)
+        5    0.000    0.000    0.000    0.000 StatePush.py:224(destroy)
+       20    0.000    0.000    0.000    0.000 StatePush.py:233(getState)
+       20    0.000    0.000    0.000    0.000 StatePush.py:238(_recvMultiStatePush)
+       43    0.000    0.000    0.000    0.000 StatePush.py:24(getState)
+       24    0.000    0.000    0.000    0.000 StatePush.py:248(_handleStateChange)
+        3    0.000    0.000    0.000    0.000 StatePush.py:255(handler)
+        4    0.000    0.000    0.000    0.000 StatePush.py:27(pushCurrentState)
+        3    0.000    0.000    0.000    0.000 StatePush.py:275(handler)
+        1    0.000    0.000    0.000    0.000 StatePush.py:295(EnterExit)
+        1    0.000    0.000    0.000    0.000 StatePush.py:297(__init__)
+        1    0.000    0.000    0.000    0.000 StatePush.py:302(destroy)
+        6    0.000    0.000    0.000    0.000 StatePush.py:307(_handlePotentialStateChange)
+       13    0.000    0.000    0.000    0.000 StatePush.py:31(_addSubscription)
+        4    0.000    0.000    0.000    0.000 StatePush.py:311(_handleStateChange)
+        2    0.000    0.000    0.000    0.000 StatePush.py:320(enter)
+        2    0.000    0.000    0.000    0.000 StatePush.py:322(exit)
+        1    0.000    0.000    0.000    0.000 StatePush.py:346(Pulse)
+        2    0.000    0.000    0.000    0.000 StatePush.py:348(__init__)
+       13    0.000    0.000    0.000    0.000 StatePush.py:35(_removeSubscription)
+        4    0.000    0.000    0.000    0.000 StatePush.py:351(sendPulse)
+        5    0.000    0.000    0.000    0.000 StatePush.py:357(handler)
+        1    0.000    0.000    0.000    0.000 StatePush.py:375(EventPulse)
+        1    0.000    0.000    0.000    0.000 StatePush.py:377(__init__)
+    64/38    0.000    0.000    0.000    0.000 StatePush.py:38(_handlePotentialStateChange)
+        1    0.000    0.000    0.000    0.000 StatePush.py:381(destroy)
+        4    0.000    0.000    0.000    0.000 StatePush.py:387(handler)
+        1    0.000    0.000    0.001    0.001 StatePush.py:4(<module>)
+        1    0.000    0.000    0.000    0.000 StatePush.py:403(EventArgument)
+        1    0.000    0.000    0.000    0.000 StatePush.py:405(__init__)
+        1    0.000    0.000    0.000    0.000 StatePush.py:410(destroy)
+        2    0.000    0.000    0.000    0.000 StatePush.py:415(_handleEvent)
+        3    0.000    0.000    0.000    0.000 StatePush.py:420(handler)
+        1    0.000    0.000    0.000    0.000 StatePush.py:437(AttrSetter)
+        1    0.000    0.000    0.000    0.000 StatePush.py:438(__init__)
+    54/29    0.000    0.000    0.000    0.000 StatePush.py:44(_handleStateChange)
+        2    0.000    0.000    0.000    0.000 StatePush.py:444(_handleStateChange)
+        1    0.000    0.000    0.000    0.000 StatePush.py:55(ReceivesStateChanges)
+        6    0.000    0.000    0.000    0.000 StatePush.py:57(__init__)
+        5    0.000    0.000    0.000    0.000 StatePush.py:61(_finishInit)
+        6    0.000    0.000    0.000    0.000 StatePush.py:68(destroy)
+        5    0.000    0.000    0.000    0.000 StatePush.py:72(_subscribeTo)
+       11    0.000    0.000    0.000    0.000 StatePush.py:78(_unsubscribe)
+        1    0.000    0.000    0.000    0.000 StatePush.py:91(StateVar)
+       17    0.000    0.000    0.000    0.000 StatePush.py:94(set)
+        4    0.000    0.000    0.000    0.000 StatePush.py:97(get)
+        1    0.000    0.000    0.000    0.000 StringIO.py:30(<module>)
+        1    0.000    0.000    0.000    0.000 StringIO.py:42(StringIO)
+        1    0.000    0.000    0.000    0.000 Task.py:102(TaskManager)
+        1    0.000    0.000    0.000    0.000 Task.py:111(__init__)
+        1    0.000    0.000    0.001    0.001 Task.py:135(finalInit)
+       12    0.000    0.000    0.000    0.000 Task.py:294(doMethodLater)
+        1    0.001    0.001    0.001    0.001 Task.py:3(<module>)
+       12    0.000    0.000    0.000    0.000 Task.py:318(add)
+       24    0.000    0.000    0.000    0.000 Task.py:379(__setupTask)
+       16    0.000    0.000    0.000    0.000 Task.py:424(remove)
+    11407    0.155    0.000  191.857    0.017 Task.py:454(step)
+        1    0.048    0.048  191.967  191.967 Task.py:482(run)
+        1    0.000    0.000    0.000    0.000 Task.py:560(stop)
+        1    0.000    0.000    0.000    0.000 Task.py:625(setProfileFrames)
+        1    0.000    0.000    0.000    0.000 Task.py:638(setProfileTasks)
+    11406    0.005    0.000    0.005    0.000 Task.py:734(doYield)
+        1    0.000    0.000    0.001    0.001 TaskManagerGlobal.py:1(<module>)
+        1    0.003    0.003    0.019    0.019 Transitions.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 Transitions.py:13(Transitions)
+        1    0.000    0.000    0.000    0.000 Transitions.py:20(__init__)
+        1    0.000    0.000    0.000    0.000 Verify.py:42(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+       15    0.000    0.000    0.000    0.000 __init__.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 atexit.py:37(register)
+        1    0.000    0.000    0.000    0.000 atexit.py:6(<module>)
+        1    0.001    0.001    0.001    0.001 collections.py:11(<module>)
+        6    0.002    0.000    0.002    0.000 collections.py:305(namedtuple)
+      244    0.000    0.000    0.000    0.000 collections.py:349(<genexpr>)
+       30    0.000    0.000    0.000    0.000 collections.py:373(<genexpr>)
+       30    0.000    0.000    0.000    0.000 collections.py:375(<genexpr>)
+        1    0.000    0.000    0.000    0.000 collections.py:38(OrderedDict)
+        1    0.000    0.000    0.000    0.000 collections.py:407(Counter)
+        1    0.001    0.001    0.001    0.001 dis.py:1(<module>)
+        2    0.000    0.000    0.000    0.000 extension_native_helpers.py:132(Dtool_ObjectToDict)
+       96    0.000    0.000    0.000    0.000 extension_native_helpers.py:135(Dtool_funcToMethod)
+        1    0.001    0.001    0.001    0.001 extension_native_helpers.py:2(<module>)
+        6    0.000    0.000    0.001    0.000 extension_native_helpers.py:73(Dtool_FindModule)
+        8    0.000    0.000    0.001    0.000 extension_native_helpers.py:83(Dtool_PreloadDLL)
+        1    0.000    0.000    0.000    0.000 fnmatch.py:11(<module>)
+        1    0.001    0.001    0.561    0.561 game.py:1(<module>)
+ 10630763    6.297    0.000    6.297    0.000 game.py:108(bumped_by_ball)
+        1    0.000    0.000    0.000    0.000 game.py:12(Game)
+  1932866    0.467    0.000    0.467    0.000 game.py:120(bumped_by_ball2)
+   966433    2.514    0.000    5.936    0.000 game.py:128(bumped_triangle_bumper)
+        1    0.000    0.000    0.041    0.041 game.py:14(__init__)
+   966433    1.288    0.000    3.023    0.000 game.py:148(bumped_round_bumper)
+   966433    1.041    0.000    1.509    0.000 game.py:161(bumped_by_flipper)
+        4    0.000    0.000    0.000    0.000 game.py:175(start_bump_ball_task)
+        3    0.000    0.000    0.001    0.000 game.py:181(lose_ball)
+        1    0.000    0.000  191.967  191.967 game.py:22(start)
+        1    0.000    0.000    0.000    0.000 game.py:28(restart)
+        4    0.000    0.000    0.000    0.000 game.py:35(place_ball)
+        1    0.000    0.000    0.000    0.000 game.py:41(reset_score)
+        4    0.000    0.000    0.001    0.000 game.py:45(launch_ball)
+        4    0.000    0.000    0.000    0.000 game.py:67(start_gravity_task)
+        3    0.000    0.000    0.000    0.000 game.py:70(remove_gravity_task)
+   966433    4.607    0.000   18.417    0.000 game.py:73(bump_ball_event)
+       72    0.000    0.000    0.000    0.000 genericpath.py:23(exists)
+        6    0.000    0.000    0.000    0.000 hashlib.py:100(__get_openssl_constructor)
+        1    0.004    0.004    0.004    0.004 hashlib.py:56(<module>)
+        1    0.000    0.000    0.000    0.000 heapq.py:31(<module>)
+        1    0.001    0.001    0.020    0.020 inspect.py:25(<module>)
+        1    0.000    0.000    0.000    0.000 inspect.py:630(EndOfBlock)
+        1    0.000    0.000    0.000    0.000 inspect.py:632(BlockFinder)
+        1    0.000    0.000    0.000    0.000 keyword.py:11(<module>)
+      119    0.000    0.000    0.000    0.000 opcode.py:27(def_op)
+       11    0.000    0.000    0.000    0.000 opcode.py:31(name_op)
+        6    0.000    0.000    0.000    0.000 opcode.py:35(jrel_op)
+        6    0.000    0.000    0.000    0.000 opcode.py:39(jabs_op)
+        1    0.000    0.000    0.000    0.000 opcode.py:5(<module>)
+        1    0.001    0.001    0.002    0.002 panda3dCoreModules.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 panda3dDirectModules.py:1(<module>)
+        1    0.011    0.011    0.011    0.011 panda3dEggModules.py:1(<module>)
+        1    0.006    0.006    0.006    0.006 panda3dFxModules.py:1(<module>)
+        1    0.012    0.012    0.012    0.012 panda3dOdeModules.py:1(<module>)
+        1    0.009    0.009    0.009    0.009 panda3dPhysicsModules.py:1(<module>)
+        1    0.007    0.007    0.007    0.007 panda3dSkelModules.py:1(<module>)
+        1    0.012    0.012    0.012    0.012 panda3dVisionModules.py:1(<module>)
+        1    0.000    0.000  192.570  192.570 pinball.py:1(<module>)
+       72    0.000    0.000    0.000    0.000 posixpath.py:61(join)
+        1    0.000    0.000    0.000    0.000 profile.py:111(Profile)
+        1    0.000    0.000    0.000    0.000 profile.py:369(fake_code)
+        1    0.000    0.000    0.000    0.000 profile.py:379(fake_frame)
+        1    0.000    0.000    0.000    0.000 profile.py:9(<module>)
+        1    0.000    0.000    0.000    0.000 pstats.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 pstats.py:32(Stats)
+        1    0.000    0.000    0.000    0.000 pstats.py:451(TupleComp)
+        1    0.000    0.000    0.001    0.001 random.py:100(seed)
+        1    0.001    0.001    0.006    0.006 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:655(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:805(SystemRandom)
+        1    0.000    0.000    0.001    0.001 random.py:91(__init__)
+        6    0.000    0.000    0.012    0.002 re.py:192(compile)
+        6    0.000    0.000    0.012    0.002 re.py:230(_compile)
+        1    0.000    0.000    0.000    0.000 scoreboard.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 scoreboard.py:14(displayLostGame)
+        1    0.000    0.000    0.000    0.000 scoreboard.py:2(Scoreboard)
+        2    0.000    0.000    0.001    0.000 scoreboard.py:4(__init__)
+       88    0.002    0.000    0.015    0.000 scoreboard.py:9(updateDisplay)
+      115    0.000    0.000    0.001    0.000 sre_compile.py:228(_compile_charset)
+      115    0.001    0.000    0.001    0.000 sre_compile.py:256(_optimize_charset)
+       25    0.000    0.000    0.000    0.000 sre_compile.py:411(_mk_bitmap)
+      117    0.000    0.000    0.000    0.000 sre_compile.py:428(_simple)
+        6    0.000    0.000    0.001    0.000 sre_compile.py:433(_compile_info)
+       12    0.000    0.000    0.000    0.000 sre_compile.py:546(isstring)
+        6    0.000    0.000    0.004    0.001 sre_compile.py:552(_code)
+        6    0.000    0.000    0.012    0.002 sre_compile.py:567(compile)
+    262/6    0.001    0.000    0.003    0.001 sre_compile.py:64(_compile)
+      562    0.000    0.000    0.000    0.000 sre_parse.py:137(__len__)
+     1185    0.001    0.000    0.001    0.000 sre_parse.py:141(__getitem__)
+      117    0.000    0.000    0.000    0.000 sre_parse.py:145(__setitem__)
+      310    0.000    0.000    0.000    0.000 sre_parse.py:149(append)
+  377/123    0.001    0.000    0.001    0.000 sre_parse.py:151(getwidth)
+        6    0.000    0.000    0.000    0.000 sre_parse.py:189(__init__)
+      904    0.001    0.000    0.001    0.000 sre_parse.py:193(__next)
+      718    0.000    0.000    0.000    0.000 sre_parse.py:206(match)
+      735    0.000    0.000    0.001    0.000 sre_parse.py:212(get)
+       38    0.000    0.000    0.000    0.000 sre_parse.py:236(_class_escape)
+       67    0.000    0.000    0.000    0.000 sre_parse.py:268(_escape)
+     56/6    0.000    0.000    0.008    0.001 sre_parse.py:317(_parse_sub)
+    115/6    0.004    0.000    0.008    0.001 sre_parse.py:395(_parse)
+        6    0.000    0.000    0.000    0.000 sre_parse.py:67(__init__)
+        6    0.000    0.000    0.008    0.001 sre_parse.py:706(parse)
+       38    0.000    0.000    0.000    0.000 sre_parse.py:74(opengroup)
+       38    0.000    0.000    0.000    0.000 sre_parse.py:85(closegroup)
+      262    0.000    0.000    0.000    0.000 sre_parse.py:92(__init__)
+        1    0.001    0.001    0.001    0.001 table.py:1(<module>)
+        1    0.000    0.000    0.041    0.041 table.py:125(load_models)
+        1    0.000    0.000    0.000    0.000 table.py:13(Table)
+        1    0.000    0.000    0.000    0.000 table.py:139(add_plane_to_physics)
+       14    0.000    0.000    0.000    0.000 table.py:145(add_wall_to_physics)
+       25    0.001    0.000    0.001    0.000 table.py:152(add_innard_cube_to_physics)
+        4    0.000    0.000    0.000    0.000 table.py:158(add_innard_cylinder_to_physics)
+        1    0.000    0.000    0.041    0.041 table.py:16(__init__)
+        2    0.000    0.000    0.000    0.000 table.py:164(add_flipper_to_physics)
+        1    0.000    0.000    0.000    0.000 table.py:181(setup_table_physics)
+        1    0.000    0.000    0.001    0.001 table.py:192(import_table)
+        1    0.001    0.001    0.017    0.017 table.py:214(import_innards)
+        1    0.000    0.000    0.000    0.000 table.py:390(import_launch_wall_bumper)
+        3    0.000    0.000    0.000    0.000 table.py:406(launch_wall_helper)
+        1    0.000    0.000    0.002    0.002 table.py:417(import_flippers)
+        1    0.000    0.000    0.000    0.000 table.py:445(import_ramp)
+       32    0.000    0.000    0.000    0.000 table.py:45(move_left_flipper)
+        1    0.000    0.000    0.000    0.000 table.py:473(setup_physics_lb_bumper)
+       32    0.000    0.000    0.000    0.000 table.py:48(stop_left_flipper)
+        1    0.000    0.000    0.000    0.000 table.py:501(setup_physics_rb_bumper)
+       33    0.000    0.000    0.000    0.000 table.py:51(move_right_flipper)
+        1    0.000    0.000    0.000    0.000 table.py:526(import_ball)
+        1    0.000    0.000    0.000    0.000 table.py:532(setup_ball_physics)
+       33    0.000    0.000    0.000    0.000 table.py:54(stop_right_flipper)
+      241    0.004    0.000    0.096    0.000 table.py:544(launch_ball_task)
+    11178    0.212    0.000    4.806    0.000 table.py:557(gravity_task)
+        1    0.000    0.000    0.000    0.000 table.py:57(setup_camera)
+        4    0.000    0.000    0.000    0.000 table.py:591(stop_launch_ball_task)
+      235    0.000    0.000    0.001    0.000 table.py:594(apply_force_to_ball)
+       32    0.000    0.000    0.001    0.000 table.py:601(start_ball_sink_task)
+      288    0.003    0.000    0.007    0.000 table.py:613(move_left_flipper_up)
+        1    0.000    0.000    0.000    0.000 table.py:62(setup_light)
+      288    0.002    0.000    0.007    0.000 table.py:626(move_left_flipper_down)
+      302    0.003    0.000    0.008    0.000 table.py:638(move_right_flipper_up)
+      302    0.002    0.000    0.006    0.000 table.py:651(move_right_flipper_down)
+        1    0.000    0.000    0.000    0.000 table.py:80(setup_ode_world_params)
+        1    0.000    0.000    0.000    0.000 thread.py:226(_local)
+        1    0.000    0.000    0.000    0.000 thread.py:24(error)
+        1    0.000    0.000    0.000    0.000 thread.py:27(LockType)
+        1    0.000    0.000    0.000    0.000 thread.py:6(<module>)
+        1    0.000    0.000    0.000    0.000 threading.py:143(ExternalThread)
+        1    0.000    0.000    0.000    0.000 threading.py:173(MainThread)
+        1    0.000    0.000    0.000    0.000 threading.py:180(Lock)
+        1    0.000    0.000    0.000    0.000 threading.py:185(__init__)
+  1968133    1.569    0.000    1.569    0.000 threading.py:188(acquire)
+        1    0.000    0.000    0.000    0.000 threading.py:200(RLock)
+        1    0.000    0.000    0.000    0.000 threading.py:22(<module>)
+        1    0.000    0.000    0.000    0.000 threading.py:221(Condition)
+        1    0.000    0.000    0.000    0.000 threading.py:259(Semaphore)
+        1    0.000    0.000    0.000    0.000 threading.py:279(BoundedSemaphore)
+        1    0.000    0.000    0.000    0.000 threading.py:294(Event)
+        1    0.000    0.000    0.000    0.000 threading.py:344(Timer)
+        1    0.000    0.000    0.000    0.000 threading.py:46(ThreadBase)
+        1    0.000    0.000    0.000    0.000 threading.py:81(Thread)
+        1    0.000    0.000    0.000    0.000 token.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 tokenize.py:146(TokenError)
+        1    0.000    0.000    0.000    0.000 tokenize.py:148(StopTokenizing)
+        1    0.000    0.000    0.000    0.000 tokenize.py:179(Untokenizer)
+        1    0.002    0.002    0.014    0.014 tokenize.py:23(<module>)
+       19    0.000    0.000    0.000    0.000 tokenize.py:45(group)
+        1    0.000    0.000    0.000    0.000 tokenize.py:46(any)
+        2    0.000    0.000    0.000    0.000 tokenize.py:47(maybe)
+        1    0.000    0.000    0.000    0.000 visualizeGeoms_copy.py:1(<module>)
+        6    0.000    0.000    0.001    0.000 visualizeGeoms_copy.py:141(rect)
+        2    0.000    0.000    0.001    0.001 visualizeGeoms_copy.py:181(generate)
+        1    0.000    0.000    0.000    0.000 visualizeGeoms_copy.py:30(wireGeom)
+        2    0.000    0.000    0.000    0.000 visualizeGeoms_copy.py:32(__init__)
+        2    0.000    0.000    0.000    0.000 weakref.py:297(__init__)
+       34    0.000    0.000    0.000    0.000 {GetBool}
+        1    0.000    0.000    0.000    0.000 {GetFloat}
+        2    0.000    0.000    0.000    0.000 {GetInt}
+        6    0.000    0.000    0.000    0.000 {GetString}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        6    0.000    0.000    0.000    0.000 {_sre.compile}
+       30    0.000    0.000    0.000    0.000 {all}
+        2    0.000    0.000    0.000    0.000 {alt}
+       91    0.000    0.000    0.000    0.000 {back}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        4    0.000    0.000    0.000    0.000 {bit}
+        2    0.000    0.000    0.000    0.000 {control}
+        2    0.055    0.028    0.055    0.028 {createAudioManager}
+        1    0.000    0.000    0.000    0.000 {dir}
+        2    0.000    0.000    0.000    0.000 {enter}
+        1    0.000    0.000    0.000    0.000 {function seed at 0x106b40410}
+    11406    0.246    0.000    0.246    0.000 {garbageCollect}
+        1    0.000    0.000    0.000    0.000 {getAcceptFailedPrefix}
+        1    0.000    0.000    0.000    0.000 {getAcceptPrefix}
+        1    0.000    0.000    0.000    0.000 {getAdjustPrefix}
+        2    0.000    0.000    0.000    0.000 {getAllCameraMask}
+        3    0.000    0.000    0.000    0.000 {getClickPrefix}
+        1    0.000    0.000    0.000    0.000 {getCursormovePrefix}
+        1    0.000    0.000    0.000    0.000 {getDefaultFont}
+        1    0.000    0.000    0.000    0.000 {getDefault}
+        1    0.000    0.000    0.000    0.000 {getEnterPrefix}
+        1    0.000    0.000    0.000    0.000 {getEnvironmentVariable}
+        1    0.000    0.000    0.000    0.000 {getErasePrefix}
+        1    0.000    0.000    0.000    0.000 {getExitPrefix}
+        1    0.000    0.000    0.000    0.000 {getGlobalClock}
+        1    0.000    0.000    0.000    0.000 {getGlobalEventHandler}
+        2    0.000    0.000    0.000    0.000 {getGlobalEventQueue}
+        1    0.000    0.000    0.000    0.000 {getGlobalPtr}
+        1    0.000    0.000    0.000    0.000 {getOverflowPrefix}
+        3    0.000    0.000    0.000    0.000 {getPressPrefix}
+        3    0.000    0.000    0.000    0.000 {getReleasePrefix}
+        1    0.000    0.000    0.000    0.000 {getTypePrefix}
+        6    0.000    0.000    0.000    0.000 {getV3}
+        1    0.000    0.000    0.000    0.000 {getWithinPrefix}
+        1    0.000    0.000    0.000    0.000 {getWithoutPrefix}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        7    0.000    0.000    0.000    0.000 {globals}
+   966718    0.276    0.000    0.276    0.000 {hasattr}
+        1    0.000    0.000    0.000    0.000 {id}
+     1607    0.001    0.000    0.001    0.000 {isinstance}
+26856/15300    0.049    0.000    0.062    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {makeDefault}
+        1    0.000    0.000    0.000    0.000 {make}
+        7    0.000    0.000    0.012    0.002 {map}
+        1    0.000    0.000    0.000    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        3    0.000    0.000    0.000    0.000 {math.sqrt}
+       89    0.000    0.000    0.000    0.000 {max}
+        2    0.000    0.000    0.000    0.000 {meta}
+       30    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
+       24    0.000    0.000    0.000    0.000 {method 'add' of 'panda3d.core.AsyncTaskManager' objects}
+       37    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+        8    0.000    0.000    0.000    0.000 {method 'addButton' of 'panda3d.core.ModifierButtons' objects}
+       24    0.000    0.000    0.000    0.000 {method 'addData3f' of 'panda3d.core.GeomVertexWriter' objects}
+        6    0.000    0.000    0.000    0.000 {method 'addGeom' of 'panda3d.core.GeomNode' objects}
+        6    0.000    0.000    0.000    0.000 {method 'addPrimitive' of 'panda3d.core.Geom' objects}
+        1    0.000    0.000    0.000    0.000 {method 'addRegion' of 'panda3d.core.MouseWatcherBase' objects}
+       18    0.000    0.000    0.000    0.000 {method 'addVertices' of 'panda3d.core.GeomPrimitive' objects}
+   970113    0.232    0.000    0.232    0.000 {method 'append' of 'list' objects}
+       91    0.000    0.000    0.000    0.000 {method 'assign' of 'panda3d.core.NodePath' objects}
+      135    0.002    0.000    0.002    0.000 {method 'attachNewNode' of 'panda3d.core.NodePath' objects}
+    11419    3.608    0.000    3.608    0.000 {method 'autoCollide' of 'panda3d.ode.OdeSpace' objects}
+        2    0.000    0.000    0.000    0.000 {method 'capitalize' of 'str' objects}
+        6    0.000    0.000    0.000    0.000 {method 'closePrimitive' of 'panda3d.core.GeomPrimitive' objects}
+   978708    0.507    0.000    0.507    0.000 {method 'dequeueEvent' of 'panda3d.core.EventQueue' objects}
+        2    0.000    0.000    0.000    0.000 {method 'detachNode' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+   978707    0.331    0.000    0.331    0.000 {method 'dispatchEvent' of 'panda3d.core.EventHandler' objects}
+    11419    0.176    0.000    0.176    0.000 {method 'empty' of 'panda3d.ode.OdeJointGroup' objects}
+       60    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+       25    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+      439    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+       44    0.004    0.000    0.004    0.000 {method 'find' of 'panda3d.core.NodePath' objects}
+       16    0.000    0.000    0.000    0.000 {method 'findTasks' of 'panda3d.core.AsyncTaskManager' objects}
+       34    0.013    0.000    0.013    0.000 {method 'flattenLight' of 'panda3d.core.NodePath' objects}
+       54    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+  1968303    0.417    0.000    0.417    0.000 {method 'get' of 'dict' objects}
+   966433    0.415    0.000    0.415    0.000 {method 'getBody1' of 'panda3d.ode.OdeCollisionEntry' objects}
+   966433    0.338    0.000    0.338    0.000 {method 'getBody2' of 'panda3d.ode.OdeCollisionEntry' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getClock' of 'panda3d.core.AsyncTaskManager' objects}
+        4    0.000    0.000    0.000    0.000 {method 'getCollisionEvent' of 'panda3d.ode.OdeSpace' objects}
+      414    0.000    0.000    0.000    0.000 {method 'getDoubleValue' of 'panda3d.core.EventParameter' objects}
+      241    0.000    0.000    0.000    0.000 {method 'getDt' of 'panda3d.core.ClockObject' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getFlags' of 'panda3d.core.LoaderOptions' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getFrameTime' of 'panda3d.core.ClockObject' objects}
+   966433    0.904    0.000    0.904    0.000 {method 'getGeom1' of 'panda3d.ode.OdeCollisionEntry' objects}
+   966433    0.530    0.000    0.530    0.000 {method 'getGeom2' of 'panda3d.ode.OdeCollisionEntry' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getHpr' of 'panda3d.core.LQuaternionf' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getInputDeviceName' of 'panda3d.core.GraphicsWindow' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getInterfaceName' of 'panda3d.core.GraphicsPipe' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getModifierButtons' of 'panda3d.core.MouseWatcher' objects}
+       11    0.000    0.000    0.000    0.000 {method 'getName' of 'panda3d.core.ButtonHandle' objects}
+   978708    0.221    0.000    0.221    0.000 {method 'getName' of 'panda3d.core.Event' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getName' of 'panda3d.core.Namable' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getName' of 'panda3d.core.TypeHandle' objects}
+    11406    0.005    0.000    0.005    0.000 {method 'getNextEvent' of 'panda3d.direct.CIntervalManager' objects}
+    11406    0.007    0.000    0.007    0.000 {method 'getNextRemoval' of 'panda3d.direct.CIntervalManager' objects}
+    11406    0.012    0.000    0.012    0.000 {method 'getNextWakeTime' of 'panda3d.core.AsyncTaskManager' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getNumInputDevices' of 'panda3d.core.GraphicsWindow' objects}
+   978708    0.167    0.000    0.167    0.000 {method 'getNumParameters' of 'panda3d.core.Event' objects}
+   966886    0.354    0.000    0.354    0.000 {method 'getParameter' of 'panda3d.core.Event' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getParent' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getPipe' of 'panda3d.core.GraphicsOutput' objects}
+     1248    0.011    0.000    0.011    0.000 {method 'getPos' of 'panda3d.core.NodePath' objects}
+    11389    0.022    0.000    0.022    0.000 {method 'getPosition' of 'panda3d.ode.OdeBody' objects}
+       34    0.000    0.000    0.000    0.000 {method 'getQuat' of 'panda3d.core.NodePath' objects}
+    11389    0.012    0.000    0.012    0.000 {method 'getQuaternion' of 'panda3d.ode.OdeBody' objects}
+    11408    0.012    0.000    0.012    0.000 {method 'getRealTime' of 'panda3d.core.ClockObject' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getSbsLeftXSize' of 'panda3d.core.GraphicsOutput' objects}
+        2    0.000    0.000    0.000    0.000 {method 'getSbsLeftYSize' of 'panda3d.core.GraphicsOutput' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getShortTime' of 'panda3d.core.TrueClock' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getSideBySideStereo' of 'panda3d.core.GraphicsOutput' objects}
+        3    0.000    0.000    0.000    0.000 {method 'getType' of 'panda3d.core.TypedObject' objects}
+   966472    0.458    0.000    0.458    0.000 {method 'getTypedRefCountValue' of 'panda3d.core.EventParameter' objects}
+        5    0.000    0.000    0.000    0.000 {method 'getValue' of 'panda3d.core.ConfigVariableBool' objects}
+        1    0.000    0.000    0.000    0.000 {method 'getValue' of 'panda3d.core.ConfigVariableDouble' objects}
+       42    0.000    0.000    0.000    0.000 {method 'getValue' of 'panda3d.core.ConfigVariableString' objects}
+        4    0.000    0.000    0.000    0.000 {method 'getXSize' of 'panda3d.core.WindowProperties' objects}
+        6    0.000    0.000    0.000    0.000 {method 'getYSize' of 'panda3d.core.WindowProperties' objects}
+       68    0.000    0.000    0.000    0.000 {method 'getZ' of 'panda3d.core.NodePath' objects}
+       24    0.000    0.000    0.000    0.000 {method 'hasName' of 'panda3d.core.Namable' objects}
+        1    0.000    0.000    0.000    0.000 {method 'hasPointer' of 'panda3d.core.GraphicsWindow' objects}
+        1    0.000    0.000    0.000    0.000 {method 'hasSize' of 'panda3d.core.GraphicsOutput' objects}
+        4    0.000    0.000    0.000    0.000 {method 'hasSize' of 'panda3d.core.WindowProperties' objects}
+        1    0.000    0.000    0.000    0.000 {method 'initSurfaceTable' of 'panda3d.ode.OdeWorld' objects}
+   966886    0.180    0.000    0.180    0.000 {method 'isDouble' of 'panda3d.core.EventParameter' objects}
+   966886    0.294    0.000    0.294    0.000 {method 'isInt' of 'panda3d.core.EventParameter' objects}
+  1001520    0.196    0.000    0.196    0.000 {method 'isQueueEmpty' of 'panda3d.core.EventQueue' objects}
+   966472    0.184    0.000    0.184    0.000 {method 'isString' of 'panda3d.core.EventParameter' objects}
+   966472    0.173    0.000    0.173    0.000 {method 'isTypedRefCount' of 'panda3d.core.EventParameter' objects}
+        2    0.000    0.000    0.000    0.000 {method 'isValid' of 'panda3d.core.AudioManager' objects}
+        1    0.000    0.000    0.000    0.000 {method 'isValid' of 'panda3d.core.GraphicsOutput' objects}
+   966472    0.177    0.000    0.177    0.000 {method 'isWstring' of 'panda3d.core.EventParameter' objects}
+      214    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+       30    0.000    0.000    0.000    0.000 {method 'isdigit' of 'str' objects}
+        7    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        8    0.000    0.000    0.000    0.000 {method 'iteritems' of 'dict' objects}
+       31    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+   966584    0.210    0.000    0.210    0.000 {method 'keys' of 'dict' objects}
+        2    0.019    0.010    0.019    0.010 {method 'loadSync' of 'panda3d.core.Loader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'lookAt' of 'panda3d.core.NodePath' objects}
+        1    0.045    0.045    0.045    0.045 {method 'makeDefaultPipe' of 'panda3d.core.GraphicsPipeSelection' objects}
+        1    0.000    0.000    0.000    0.000 {method 'makeDisplayRegion' of 'panda3d.core.GraphicsOutput' objects}
+        2    0.000    0.000    0.000    0.000 {method 'makeMonoDisplayRegion' of 'panda3d.core.GraphicsOutput' objects}
+        1    0.196    0.196    0.196    0.196 {method 'makeOutput' of 'panda3d.core.GraphicsEngine' objects}
+       23    0.000    0.000    0.000    0.000 {method 'node' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'openWindows' of 'panda3d.core.GraphicsEngine' objects}
+    11407    0.628    0.000  191.596    0.017 {method 'poll' of 'panda3d.core.AsyncTaskManager' objects}
+        1    0.010    0.010    0.010    0.010 {method 'printPipeTypes' of 'panda3d.core.GraphicsPipeSelection' objects}
+    11419    0.532    0.000    0.532    0.000 {method 'quickStep' of 'panda3d.ode.OdeWorld' objects}
+  1968133    0.277    0.000    0.277    0.000 {method 'release' of 'panda3d.core.MutexDirect' objects}
+       38    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+       16    0.000    0.000    0.000    0.000 {method 'remove' of 'panda3d.core.AsyncTaskManager' objects}
+       13    0.000    0.000    0.000    0.000 {method 'remove' of 'set' objects}
+       90    0.005    0.000    0.005    0.000 {method 'removeNode' of 'panda3d.core.NodePath' objects}
+    11406  142.717    0.013  142.717    0.013 {method 'renderFrame' of 'panda3d.core.GraphicsEngine' objects}
+       42    0.001    0.000    0.001    0.000 {method 'reparentTo' of 'panda3d.core.NodePath' objects}
+       18    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'requestProperties' of 'panda3d.core.GraphicsWindow' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setActive' of 'panda3d.core.AudioManager' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setAlign' of 'panda3d.core.TextNode' objects}
+       24    0.000    0.000    0.000    0.000 {method 'setArgs' of 'panda3d.core.PythonTask' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setAspectRatio' of 'panda3d.core.Lens' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setAttrib' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setAutoCollideJointGroup' of 'panda3d.ode.OdeSpace' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setAutoCollideWorld' of 'panda3d.ode.OdeSpace' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setBody' of 'panda3d.ode.OdeGeom' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setBox' of 'panda3d.ode.OdeMass' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setCamera' of 'panda3d.core.DisplayRegion' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setCardAsMargin' of 'panda3d.core.TextNode' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setCardColor' of 'panda3d.core.TextNode' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setClearDepthActive' of 'panda3d.core.DrawableRegion' objects}
+        4    0.000    0.000    0.000    0.000 {method 'setCollisionEvent' of 'panda3d.ode.OdeSpace' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setColor' of 'panda3d.core.Light' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setColor' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setConcurrentSoundLimit' of 'panda3d.core.AudioManager' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setDefaultLoader' of 'panda3d.core.GraphicsEngine' objects}
+       12    0.000    0.000    0.000    0.000 {method 'setDelay' of 'panda3d.core.PythonTask' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setDepthTest' of 'panda3d.core.NodePath' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setDepthWrite' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setEventQueue' of 'panda3d.direct.CIntervalManager' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setFilmOffset' of 'panda3d.core.Lens' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setFilmSize' of 'panda3d.core.Lens' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setFont' of 'panda3d.core.TextNode' objects}
+      372    0.001    0.000    0.001    0.000 {method 'setForce' of 'panda3d.ode.OdeBody' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setFrame' of 'panda3d.core.CardMaker' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setGravity' of 'panda3d.ode.OdeWorld' objects}
+     1180    0.006    0.000    0.006    0.000 {method 'setH' of 'panda3d.core.NodePath' objects}
+        9    0.000    0.000    0.000    0.000 {method 'setHpr' of 'panda3d.core.LQuaternionf' objects}
+        4    0.000    0.000    0.000    0.000 {method 'setHpr' of 'panda3d.core.NodePath' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setIncompleteRender' of 'panda3d.core.DisplayRegion' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setLens' of 'panda3d.core.LensNode' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setLight' of 'panda3d.core.NodePath' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setMass' of 'panda3d.ode.OdeBody' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setMaterialOff' of 'panda3d.core.NodePath' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setModifierButtons' of 'panda3d.core.ButtonThrower' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setModifierButtons' of 'panda3d.core.MouseWatcher' objects}
+        4    0.000    0.000    0.000    0.000 {method 'setMouseWatcher' of 'panda3d.core.PGTop' objects}
+       24    0.000    0.000    0.000    0.000 {method 'setName' of 'panda3d.core.AsyncTask' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setName' of 'panda3d.core.Namable' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setNearFar' of 'panda3d.core.Lens' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setNode' of 'panda3d.core.Transform2SG' objects}
+       38    0.000    0.000    0.000    0.000 {method 'setPos' of 'panda3d.core.NodePath' objects}
+    11387    0.307    0.000    0.307    0.000 {method 'setPosQuat' of 'panda3d.core.NodePath' objects}
+     1219    0.001    0.000    0.001    0.000 {method 'setPosition' of 'panda3d.ode.OdeBody' objects}
+       43    0.000    0.000    0.000    0.000 {method 'setPosition' of 'panda3d.ode.OdeGeom' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setPrefix' of 'panda3d.core.ButtonThrower' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setPreserveTransform' of 'panda3d.core.ModelNode' objects}
+     1187    0.001    0.000    0.001    0.000 {method 'setQuaternion' of 'panda3d.ode.OdeBody' objects}
+       36    0.000    0.000    0.000    0.000 {method 'setQuaternion' of 'panda3d.ode.OdeGeom' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setRealTime' of 'panda3d.core.ClockObject' objects}
+        4    0.000    0.000    0.000    0.000 {method 'setScale' of 'panda3d.core.NodePath' objects}
+        7    0.000    0.000    0.000    0.000 {method 'setSort' of 'panda3d.core.AsyncTask' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setSort' of 'panda3d.core.DisplayRegion' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setSphere' of 'panda3d.ode.OdeMass' objects}
+        2    0.000    0.000    0.000    0.000 {method 'setStartSort' of 'panda3d.core.PGTop' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setSurfaceEntry' of 'panda3d.ode.OdeWorld' objects}
+        7    0.000    0.000    0.000    0.000 {method 'setSurfaceType' of 'panda3d.ode.OdeSpace' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setText' of 'panda3d.core.TextNode' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setTextColor' of 'panda3d.core.TextNode' objects}
+        1    0.000    0.000    0.000    0.000 {method 'setTimeFlag' of 'panda3d.core.ButtonThrower' objects}
+       91    0.000    0.000    0.000    0.000 {method 'setTransform' of 'panda3d.core.TextNode' objects}
+        3    0.000    0.000    0.000    0.000 {method 'setTwoSided' of 'panda3d.core.NodePath' objects}
+       29    0.000    0.000    0.000    0.000 {method 'setZ' of 'panda3d.core.NodePath' objects}
+       62    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        6    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      162    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'tick' of 'panda3d.core.ClockObject' objects}
+       25    0.000    0.000    0.000    0.000 {method 'translate' of 'str' objects}
+    11407    0.497    0.000    0.497    0.000 {method 'traverse' of 'panda3d.core.DataGraphTraverser' objects}
+        1    0.000    0.000    0.000    0.000 {method 'union' of 'set' objects}
+    22812    0.074    0.000    0.074    0.000 {method 'update' of 'panda3d.core.AudioManager' objects}
+        4    0.000    0.000    0.000    0.000 {method 'wrtReparentTo' of 'panda3d.core.NodePath' objects}
+      609    0.000    0.000    0.000    0.000 {min}
+        3    0.000    0.000    0.000    0.000 {one}
+      285    0.000    0.000    0.000    0.000 {ord}
+        2    0.000    0.000    0.000    0.000 {out}
+        6    0.000    0.000    0.000    0.000 {panda3d.direct.get_config_showbase}
+    11406    0.081    0.000    0.081    0.000 {panda3d.direct.throw_new_frame}
+        1    0.000    0.000    0.000    0.000 {panda3d.ode.Dtool_BorrowThisReference}
+       72    0.000    0.000    0.000    0.000 {posix.stat}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+   978755    0.493    0.000    0.493    0.000 {range}
+        6    0.000    0.000    0.000    0.000 {repr}
+    11407    0.018    0.000    0.018    0.000 {resetAllPrevTransform}
+        1    0.000    0.000    0.000    0.000 {resumeAfterPause}
+       91    0.000    0.000    0.000    0.000 {rfu}
+       91    0.000    0.000    0.000    0.000 {rotateMat}
+       91    0.000    0.000    0.000    0.000 {scaleMat}
+        9    0.000    0.000    0.000    0.000 {setattr}
+        2    0.000    0.000    0.000    0.000 {shift}
+    22813    0.078    0.000    0.078    0.000 {signal.signal}
+        6    0.000    0.000    0.000    0.000 {sys._getframe}
+        1    0.000    0.000    0.000    0.000 {sys.exit}
+        3    0.000    0.000    0.000    0.000 {three}
+       91    0.000    0.000    0.000    0.000 {translateMat}
+        3    0.000    0.000    0.000    0.000 {two}
+
+

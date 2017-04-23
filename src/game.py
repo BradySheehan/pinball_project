@@ -17,8 +17,9 @@ class Game():
         self.max_balls = 3
         self.balls_used = 0
         self.score = 0
-        self.table = Table()
-        self.enable_buttons(False)
+        self.button_enabled = False
+        self.table = Table(self.button_enabled)
+        self.enable_buttons(self.button_enabled)
 
     def start(self):
         self.scoreboard = Scoreboard(
@@ -62,15 +63,7 @@ class Game():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(23, GPIO.IN)
         GPIO.setup(7, GPIO.IN)
-        while True:
-            if GPIO.input(23) == False :
-                messenger.send("left_down")
-            elif GPIO.input(23) == True :
-                messenger.send("left_up")
-            if GPIO.input(7) == False :
-                messenger.send("right_down")
-            elif GPIO.input(7) == True :
-                messenger.send("right_up")
+        # while True:
 
     def launch_ball(self):
         self.start_gravity_task()

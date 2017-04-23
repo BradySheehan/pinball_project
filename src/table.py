@@ -13,14 +13,14 @@ from visualizeGeoms_copy import wireGeom
 class Table():
     # class that sets up the graphics and physics
 
-    def __init__(self):
+    def __init__(self, button_enabled):
         self.quat_right = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(26.0, 0.0, 0.0)
         self.quat_right.setHpr(v)
         self.quat_left = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(-27.0, 0.0, 0.0)
         self.quat_left.setHpr(v2)
-
+        self.button_enabled = button_enabled
         self.setup_ode_world_params()
         self.setup_camera()
         self.setup_light()
@@ -585,6 +585,16 @@ class Table():
             self.move_right_flipper_up()
         else:
             self.velocity_right = 1
+        if self.button_enabled:
+            import RPi.GPIO as GPIO
+            if GPIO.input(23) == False :
+                messenger.send("left_down")
+            elif GPIO.input(23) == True :
+                messenger.send("left_up")
+            if GPIO.input(7) == False :
+                messenger.send("right_down")
+            elif GPIO.input(7) == True :
+                messenger.send("right_up")
 
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
