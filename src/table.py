@@ -577,13 +577,13 @@ class Table():
 
         if self.button_enabled:
             import RPi.GPIO as GPIO
-            if GPIO.input(23) == False :
+            if GPIO.input(12) == False :
                 print "pressed false 23"
                 messenger.send("left_down")
             else :
                 print "pressed true 23"
                 messenger.send("left_up")
-            if GPIO.input(7) == False :
+            if GPIO.input(21) == False :
                 print "pressed false 7"
                 messenger.send("right_down")
             else  :
