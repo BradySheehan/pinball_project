@@ -15,10 +15,10 @@ class Table():
 
     def __init__(self):
         self.quat_right = Quat(0.0, 0.0, 0.0, 0.0)
-        v = VBase3(30.0, 0.0, 0.0)
+        v = VBase3(26.0, 0.0, 0.0)
         self.quat_right.setHpr(v)
         self.quat_left = Quat(0.0, 0.0, 0.0, 0.0)
-        v2 = VBase3(-30.0, 0.0, 0.0)
+        v2 = VBase3(-27.0, 0.0, 0.0)
         self.quat_left.setHpr(v2)
 
         self.setup_ode_world_params()
@@ -81,7 +81,7 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(1, 0, -10)
+        self.world.setGravity(2.5, 0, -10)
         self.world.initSurfaceTable(3)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
@@ -163,7 +163,7 @@ class Table():
 
     def add_flipper_to_physics(self, flipperNP, num):
         flipper_mass = OdeMass()
-        flipper_mass.setBox(50, .35, .720, .338)
+        flipper_mass.setBox(50, .23, .720, .338)
         flipper_body = OdeBody(self.world)
         flipper_body.setMass(flipper_mass)
         flipper_body.setPosition(flipperNP.getPos())
@@ -171,7 +171,7 @@ class Table():
             flipper_body.setQuaternion(self.quat_left)
         else :
             flipper_body.setQuaternion(self.quat_right)
-        flipper = OdeBoxGeom(self.space1, .35, .720, .338)
+        flipper = OdeBoxGeom(self.space1, .23, .720, .338)
         self.space1.setSurfaceType(flipper, 1)
         flipper.setBody(flipper_body)
 
@@ -421,7 +421,7 @@ class Table():
         self.pivot_right.setPos(4.12, 0.6, .09)
         self.flipper_body_right = self.add_flipper_to_physics(self.flipper, 1)
 
-        flip_wire = wireGeom().generate('box', extents=((.35, .720, .338)))
+        flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
         flip_wire.setPos(self.flipper_body_right.getPosition())
         flip_wire.setHpr(
             Quat(self.flipper_body_right.getQuaternion()).getHpr())
@@ -435,7 +435,7 @@ class Table():
         self.pivot_left.setPos(4.12, -1.0, .09)
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2, 2)
 
-        flip_wire2 = wireGeom().generate('box', extents=((.35, .720, .338)))
+        flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
         flip_wire2.setPos(self.flipper_body_left.getPosition())
         flip_wire2.setHpr(
             Quat(self.flipper_body_left.getQuaternion()).getHpr())

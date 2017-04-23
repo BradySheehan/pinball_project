@@ -50,7 +50,7 @@ class Game():
         base.accept('d', self.table.move_right_flipper)
         base.accept('d-up', self.table.stop_right_flipper)
 
-        print "called"
+        # print "called"
         taskMgr.doMethodLater(
             0,
             self.table.launch_ball_task,
