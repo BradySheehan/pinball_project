@@ -54,6 +54,9 @@ class Table():
     def stop_right_flipper(self):
         self.right_flipper_up = False
 
+    # def destroy(self):
+    #     self.ignoreAll()
+
     def setup_camera(self):
         print "setup camera"
         base.camera.setPos(10, 0, 15)
@@ -572,6 +575,18 @@ class Table():
         else:
             self.start_ball_sink_task()
 
+        if self.button_enabled:
+            import RPi.GPIO as GPIO
+            if GPIO.input(23) == False :
+
+                messenger.send("left_down")
+            else :
+                messenger.send("left_up")
+            if GPIO.input(7) == False :
+                messenger.send("right_down")
+            else  :
+                messenger.send("right_up")
+
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()
         elif self.left_flipper_up and (self.h_left < 70):
@@ -585,16 +600,6 @@ class Table():
             self.move_right_flipper_up()
         else:
             self.velocity_right = 1
-        if self.button_enabled:
-            import RPi.GPIO as GPIO
-            if GPIO.input(23) == False :
-                messenger.send("left_down")
-            elif GPIO.input(23) == True :
-                messenger.send("left_up")
-            if GPIO.input(7) == False :
-                messenger.send("right_down")
-            elif GPIO.input(7) == True :
-                messenger.send("right_up")
 
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
