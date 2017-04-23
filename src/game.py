@@ -91,6 +91,7 @@ class Game():
         geom2 = entry.getGeom2()
         body1 = entry.getBody1()
         body2 = entry.getBody2()
+        self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
         if (
             (
                 geom1 and geom1 == self.table.wall_south) and (
@@ -105,11 +106,12 @@ class Game():
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
-            os.system('sudo mpg123 -q audio/jump.mp3 @')
+            # pth = os.path.abspath()
+            # os.path.join(pth, 'audio/jump.mp3')
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
-            print 'ball has been bumped'
             self.score = self.score + 200
             self.scoreboard.updateDisplay(self.score, self.balls_used)
             if self.table.ball.getZ() > .48 :
@@ -119,8 +121,6 @@ class Game():
                 #     self.place_ball()
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
-        if self.bumped_by_flipper(geom1, geom2, body1, body2):
-            print ' '
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
@@ -179,13 +179,9 @@ class Game():
         one = self.bumped_by_ball2(body1, body2, self.table.flipper_body_right)
         two = self.bumped_by_ball2(body1, body2, self.table.flipper_body_left)
         if one:
-            self.table.apply_force_to_ball(0)
+            return 0
         if two:
-            self.table.apply_force_to_ball(1)
-        if one or two:
-            return True
-        else:
-            return False
+            return 1
 
     def start_bump_ball_task(self, task):
         print "start trigger miss task"
