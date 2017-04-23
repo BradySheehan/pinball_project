@@ -5,7 +5,7 @@ from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeo
 from panda3d.core import BitMask32, Vec4, Quat, VBase3, Vec3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
-
+import os
 sys.path.append('../scripts/')
 from visualizeGeoms_copy import wireGeom
 

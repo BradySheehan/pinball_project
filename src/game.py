@@ -20,6 +20,7 @@ class Game():
         self.button_enabled = True
         self.table = Table(self.button_enabled)
         self.enable_buttons(self.button_enabled)
+        os.system('sudo mpg123 -q audio/jump.mp3 &')
 
     def start(self):
         self.scoreboard = Scoreboard(
