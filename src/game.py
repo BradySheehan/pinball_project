@@ -4,7 +4,7 @@ from panda3d.ode import OdeBody, OdeMass, OdeBoxGeom, OdeSphereGeom, OdePlaneGeo
 from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
-
+import os
 from table import Table
 from scoreboard import Scoreboard
 
@@ -105,6 +105,7 @@ class Game():
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
+            os.system('mpg123 -q audio/jump.mp3 @')
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
