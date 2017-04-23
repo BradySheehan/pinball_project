@@ -61,8 +61,8 @@ class Game():
     def start_button_handler(self):
         import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(23, GPIO.IN)
-        GPIO.setup(7, GPIO.IN)
+        GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD.UP)
+        GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD.UP)
         # while True:
 
     def launch_ball(self):
