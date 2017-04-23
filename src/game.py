@@ -105,7 +105,7 @@ class Game():
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
-            os.system('mpg123 -q audio/jump.mp3 @')
+            os.system('sudo mpg123 -q audio/jump.mp3 @')
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
@@ -179,10 +179,8 @@ class Game():
         one = self.bumped_by_ball2(body1, body2, self.table.flipper_body_right)
         two = self.bumped_by_ball2(body1, body2, self.table.flipper_body_left)
         if one:
-            print 'right flipper hit'
             self.table.apply_force_to_ball(0)
         if two:
-            print 'left flipper hit'
             self.table.apply_force_to_ball(1)
         if one or two:
             return True
