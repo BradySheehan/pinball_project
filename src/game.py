@@ -13,6 +13,7 @@ class Game():
 
     def __init__(self):
         base.disableMouse()
+        base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
         self.max_balls = 3
         self.balls_used = 0
