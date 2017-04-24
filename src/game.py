@@ -42,6 +42,8 @@ class Game():
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.button_enabled:
             base.acceptOnce('launch', self.launch_ball)
+            if GPIO.input(25) == False:
+                messenger.send("launch")
         else:
             base.acceptOnce('space', self.launch_ball)
 
