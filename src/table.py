@@ -85,7 +85,7 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(2.5, 0, -10)
+        self.world.setGravity(4.5, 0, -10)
         self.world.initSurfaceTable(3)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
@@ -425,11 +425,11 @@ class Table():
         self.pivot_right.setPos(4.12, 0.6, .09)
         self.flipper_body_right = self.add_flipper_to_physics(self.flipper, 1)
 
-        flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
-        flip_wire.setPos(self.flipper_body_right.getPosition())
-        flip_wire.setHpr(
-            Quat(self.flipper_body_right.getQuaternion()).getHpr())
-        flip_wire.wrtReparentTo(self.pivot_right)
+        # flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
+        # flip_wire.setPos(self.flipper_body_right.getPosition())
+        # flip_wire.setHpr(
+        #     Quat(self.flipper_body_right.getQuaternion()).getHpr())
+        # flip_wire.wrtReparentTo(self.pivot_right)
 
         self.flipper.wrtReparentTo(self.pivot_right)
 
@@ -439,11 +439,11 @@ class Table():
         self.pivot_left.setPos(4.12, -1.0, .09)
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2, 2)
 
-        flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
-        flip_wire2.setPos(self.flipper_body_left.getPosition())
-        flip_wire2.setHpr(
-            Quat(self.flipper_body_left.getQuaternion()).getHpr())
-        flip_wire2.wrtReparentTo(self.pivot_left)
+        # flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
+        # flip_wire2.setPos(self.flipper_body_left.getPosition())
+        # flip_wire2.setHpr(
+        #     Quat(self.flipper_body_left.getQuaternion()).getHpr())
+        # flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
     def import_ramp(self, table_egg):
@@ -577,14 +577,15 @@ class Table():
 
         if self.button_enabled:
             import RPi.GPIO as GPIO
-            if GPIO.input(12) == False :
+            if GPIO.input(21) == False :
                 messenger.send("left_down")
             else :
                 messenger.send("left_up")
-            if GPIO.input(21) == False :
+            if GPIO.input(12) == False :
                 messenger.send("right_down")
             else  :
                 messenger.send("right_up")
+            pass
 
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()

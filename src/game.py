@@ -17,7 +17,7 @@ class Game():
         self.max_balls = 3
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = True
+        self.button_enabled = False
         self.table = Table(self.button_enabled)
         self.enable_buttons(self.button_enabled)
         os.system('sudo mpg123 -q audio/jump.mp3 &')
@@ -62,9 +62,9 @@ class Game():
     def start_button_handler(self):
         import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        # while True:
+        GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        # pass
 
     def launch_ball(self):
         self.start_gravity_task()
