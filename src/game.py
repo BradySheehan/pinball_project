@@ -18,7 +18,7 @@ class Game():
         self.max_balls = 3
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = False
+        self.button_enabled = True
         self.table = Table(self.button_enabled)
         self.enable_buttons(self.button_enabled)
         os.system('sudo mpg123 -q audio/jump.mp3 &')
