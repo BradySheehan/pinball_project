@@ -65,7 +65,6 @@ class Game():
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         # pass
-
     def launch_ball(self):
         self.start_gravity_task()
         taskMgr.doMethodLater(

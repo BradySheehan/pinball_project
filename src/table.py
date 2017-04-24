@@ -38,7 +38,7 @@ class Table():
         self.left_flipper_up = False
         self.right_flipper_up = False
         #frame rate
-        self.simTimeStep = 1.0/60.0
+        self.simTimeStep = 1.0/35
 
         self.ball_not_sinking = True
 
@@ -585,7 +585,7 @@ class Table():
                 messenger.send("right_down")
             else  :
                 messenger.send("right_up")
-            pass
+            # pass
 
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()
