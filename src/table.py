@@ -585,8 +585,6 @@ class Table():
                 messenger.send("right_down")
             else  :
                 messenger.send("right_up")
-            if GPIO.input(25) == False:
-                messenger.send("launch")
             # pass
 
         if (self.left_flipper_up == False) and (self.h_left > 0):
