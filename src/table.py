@@ -577,14 +577,16 @@ class Table():
 
         if self.button_enabled:
             import RPi.GPIO as GPIO
-            if GPIO.input(21) == False :
+            if GPIO.input(21) == False:
                 messenger.send("left_down")
             else :
                 messenger.send("left_up")
-            if GPIO.input(12) == False :
+            if GPIO.input(12) == False:
                 messenger.send("right_down")
             else  :
                 messenger.send("right_up")
+            if GPIO.input(25) == False:
+                messenger.send("launch")
             # pass
 
         if (self.left_flipper_up == False) and (self.h_left > 0):

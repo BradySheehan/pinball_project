@@ -40,12 +40,24 @@ class Game():
         self.table.ball.setPos(4.4, 2.85, 0.1)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
-        base.acceptOnce('space', self.launch_ball)
+        if self.button_enabled:
+            base.acceptOnce('launch', self.launch_ball)
+        else:
+            base.acceptOnce('space', self.launch_ball)
 
     def reset_score(self):
         self.balls_used = 0
         self.score = 0
-
+        # if self.button_enabled:
+        #     import RPi.GPIO as GPIO
+        #     if GPIO.input(21) == False :
+        #         messenger.send("left_down")
+        #     else :
+        #         messenger.send("left_up")
+        #     if GPIO.input(12) == False :
+        #         messenger.send("right_down")
+        #     else  :
+        #         messenger.send("right_up")
     def enable_buttons(self, on):
             if on :
                 self.start_button_handler()
@@ -65,6 +77,7 @@ class Game():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         # pass
     def launch_ball(self):
         self.start_gravity_task()
