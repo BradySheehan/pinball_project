@@ -565,8 +565,8 @@ class Table():
 
         self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
-        # self.world.quickStep(globalClock.getDt())
-        self.world.quickStep(self.simTimeStep)
+        self.world.quickStep(globalClock.getDt())
+        # self.world.quickStep(self.simTimeStep)
 
         if self.ball_not_sinking :
             self.ball.setPosQuat(
