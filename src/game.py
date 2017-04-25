@@ -201,12 +201,26 @@ class Game():
         print self.table.space1.getCollisionEvent()
         base.accept("bump_event", self.bump_ball_event)
 
+    def listen_for_enter(self, task):
+        import RPi.GPIO as GPIO
+        if GPIO.input(25) == False:
+            messenger.send("button_enter")
+            taskMgr.remove('listen_for_enter')
+        return task.cont
+
     def lose_ball(self):
         print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             self.scoreboard.displayLostGame(self.score, self.balls_used)
-            base.acceptOnce('enter', self.restart)
+            if self.button_enabled:
+                base.acceptOnce('button_enter', self.restart)
+                taskMgr.doMethodLater(
+                    0,
+                    self.listen_for_enter,
+                    'listen_for_enter')
+            else:
+                base.acceptOnce('enter', self.restart)
             return()
         self.place_ball()
         self.scoreboard.updateDisplay(self.score, self.balls_used)
