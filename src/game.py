@@ -219,6 +219,7 @@ class Game():
                     0,
                     self.listen_for_enter,
                     'listen_for_enter')
+                taskMgr.pause(0.5)
             else:
                 base.acceptOnce('enter', self.restart)
             return()
