@@ -128,11 +128,11 @@ class Table():
 
     def load_models(self):
         print "load models"
-        self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
-        self.ball = self.import_ball(self.ball_egg)
-        self.setup_ball_physics(0.1, 0.1)
+        # self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.table_egg = loader.loadModel(
             "models/table2.egg")
+        self.ball = self.import_ball(self.table_egg)
+        self.setup_ball_physics(0.1, 0.1)
 
         self.import_table(self.table_egg)
         self.setup_table_physics()
