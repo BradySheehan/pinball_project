@@ -15,12 +15,11 @@ class Game():
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
-        self.max_balls = 3
+        self.max_balls = 1
         self.balls_used = 0
         self.score = 0
         self.button_enabled = True
         self.table = Table(self.button_enabled)
-        # self.enable_buttons(self.button_enabled)
         os.system('sudo mpg123 -q audio/jump.mp3 &')
 
     def start(self):
@@ -44,10 +43,9 @@ class Game():
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
-            0,
-            self.start_button_launch,
-            'start_button_launch')
-            # base.acceptOnce('launch', self.launch_ball)
+                0,
+                self.start_button_launch,
+                'start_button_launch')
         else:
             base.acceptOnce('space', self.launch_ball)
 
@@ -118,8 +116,6 @@ class Game():
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
-            # pth = os.path.abspath()
-            # os.path.join(pth, 'audio/jump.mp3')
             os.system('sudo mpg123 -q audio/jump.mp3 &')
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
@@ -128,9 +124,6 @@ class Game():
             self.scoreboard.updateDisplay(self.score, self.balls_used)
             if self.table.ball.getZ() > .48 :
                 self.table.ball_not_sinking = False
-                # if self.balls_used > 0:
-                #     self.balls_used = self.balls_used - 1
-                #     self.place_ball()
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
 
@@ -195,14 +188,11 @@ class Game():
         if two:
             return 1
 
-    def remove_button_launch(self, task):
-        taskMgr.remove('start_button_launch')
-
     def start_button_launch(self, task):
         import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_launch")
-            taskMgr.doMethodLater(1, 'remove_button_launch', self.remove_button_launch)
+            taskMgr.remove('start_button_launch')
         return task.cont
 
     def start_bump_ball_task(self, task):
@@ -211,12 +201,27 @@ class Game():
         print self.table.space1.getCollisionEvent()
         base.accept("bump_event", self.bump_ball_event)
 
+    def listen_for_enter(self, task):
+        import RPi.GPIO as GPIO
+        if GPIO.input(25) == False:
+            messenger.send("button_enter")
+            taskMgr.remove('listen_for_enter')
+        return task.cont
+
     def lose_ball(self):
         print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             self.scoreboard.displayLostGame(self.score, self.balls_used)
-            base.acceptOnce('enter', self.restart)
+            if self.button_enabled:
+                base.acceptOnce('button_enter', self.restart)
+                taskMgr.doMethodLater(
+                    0,
+                    self.listen_for_enter,
+                    'listen_for_enter')
+                taskMgr.pause(0.5)
+            else:
+                base.acceptOnce('enter', self.restart)
             return()
         self.place_ball()
         self.scoreboard.updateDisplay(self.score, self.balls_used)
