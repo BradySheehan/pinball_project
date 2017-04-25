@@ -46,7 +46,7 @@ class Game():
             taskMgr.doMethodLater(
             0,
             self.start_button_launch,
-            'launch_ball')
+            'start_button_launch')
             # base.acceptOnce('launch', self.launch_ball)
         else:
             base.acceptOnce('space', self.launch_ball)
@@ -196,7 +196,7 @@ class Game():
             return 1
 
     def remove_button_launch(self, task):
-        taskMgr.remove('launch_ball')
+        taskMgr.remove('start_button_launch')
 
     def start_button_launch(self, task):
         import RPi.GPIO as GPIO
