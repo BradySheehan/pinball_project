@@ -42,12 +42,11 @@ class Game():
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.button_enabled:
-            base.acceptOnce('launch', self.launch_ball)
-            import RPi.GPIO as GPIO
-            while True:
-                if GPIO.input(25) == False:
-                    messenger.send("launch")
-                    break
+            taskMgr.doMethodLater(
+            0,
+            self.launch_ball,
+            'launch_ball')
+            # base.acceptOnce('launch', self.launch_ball)
         else:
             base.acceptOnce('space', self.launch_ball)
 
@@ -193,6 +192,15 @@ class Game():
             return 0
         if two:
             return 1
+
+    def remove_button_launch(self, task):
+        taskMgr.remove('remove_button_launch')
+
+    def start_button_launch(self, task):
+        import RPi.GPIO as GPIO
+        if GPIO.input(25) == False:
+            messenger.send("launch")
+            taskMgr.doMethodLater('remove_button_launch', self.remove_button_launch)
 
     def start_bump_ball_task(self, task):
         print "start trigger miss task"
