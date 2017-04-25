@@ -44,8 +44,10 @@ class Game():
         if self.button_enabled:
             base.acceptOnce('launch', self.launch_ball)
             import RPi.GPIO as GPIO
-            if GPIO.input(25) == False:
-                messenger.send("launch")
+            while True:
+                if GPIO.input(25) == False:
+                    messenger.send("launch")
+                    break
         else:
             base.acceptOnce('space', self.launch_ball)
 
