@@ -76,6 +76,7 @@ class Game():
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         # pass
+
     def launch_ball(self):
         self.start_gravity_task()
         taskMgr.doMethodLater(
@@ -195,7 +196,7 @@ class Game():
             return 1
 
     def remove_button_launch(self, task):
-        taskMgr.remove('button_launch')
+        taskMgr.remove('launch_ball')
 
     def start_button_launch(self, task):
         import RPi.GPIO as GPIO
