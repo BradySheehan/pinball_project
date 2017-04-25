@@ -42,7 +42,7 @@ class Game():
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.button_enabled:
-            base.acceptOnce("button_launch", self.launch_ball)
+            base.accept("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
             0,
             self.start_button_launch,
