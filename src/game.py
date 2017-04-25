@@ -202,6 +202,7 @@ class Game():
         if GPIO.input(25) == False:
             messenger.send("button_launch")
             taskMgr.doMethodLater('remove_button_launch', self.remove_button_launch)
+        return task.cont
 
     def start_bump_ball_task(self, task):
         print "start trigger miss task"
