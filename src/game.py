@@ -43,6 +43,7 @@ class Game():
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.button_enabled:
             base.acceptOnce('launch', self.launch_ball)
+            import RPi.GPIO as GPIO
             if GPIO.input(25) == False:
                 messenger.send("launch")
         else:
@@ -51,16 +52,7 @@ class Game():
     def reset_score(self):
         self.balls_used = 0
         self.score = 0
-        # if self.button_enabled:
-        #     import RPi.GPIO as GPIO
-        #     if GPIO.input(21) == False :
-        #         messenger.send("left_down")
-        #     else :
-        #         messenger.send("left_up")
-        #     if GPIO.input(12) == False :
-        #         messenger.send("right_down")
-        #     else  :
-        #         messenger.send("right_up")
+
     def enable_buttons(self, on):
             if on :
                 self.start_button_handler()
