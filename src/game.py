@@ -20,12 +20,13 @@ class Game():
         self.score = 0
         self.button_enabled = True
         self.table = Table(self.button_enabled)
-        self.enable_buttons(self.button_enabled)
+        # self.enable_buttons(self.button_enabled)
         os.system('sudo mpg123 -q audio/jump.mp3 &')
 
     def start(self):
         self.scoreboard = Scoreboard(
             self.score, self.max_balls, self.balls_used)
+        self.enable_buttons(self.button_enabled)
         self.place_ball()
         base.run()
 
