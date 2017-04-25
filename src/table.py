@@ -37,6 +37,10 @@ class Table():
         # flags used for flipper movement
         self.left_flipper_up = False
         self.right_flipper_up = False
+        # amount of force applied to ball when a flipper hits it
+        self.force_applied_to_ball_left = 0.1;
+        self.force_applied_to_ball_right = 0.1;
+        self.force_increase_rate = 1.0;
         #frame rate
         self.simTimeStep = 1.0/35
 
@@ -85,7 +89,8 @@ class Table():
         print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
-        self.world.setGravity(4.5, 0, -10)
+        # self.world.setGravity(4.5, 0, -10)
+        self.world.setGravity(1.0, 0, -10)
         self.world.initSurfaceTable(3)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
@@ -593,6 +598,7 @@ class Table():
             self.move_left_flipper_up()
         else:
             self.velocity_left = 1
+            self.force_applied_to_ball_left = 0.0;
 
         if (self.right_flipper_up == False) and (self.h_right < 0):
             self.move_right_flipper_down()
@@ -600,6 +606,7 @@ class Table():
             self.move_right_flipper_up()
         else:
             self.velocity_right = 1
+            self.force_applied_to_ball_right = 0.0;
 
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
@@ -609,10 +616,12 @@ class Table():
 
     def apply_force_to_ball(self, flipper):
         if flipper == 0 and self.right_flipper_up:
-            self.ball_body.setForce(-10,0,0)
+            self.ball_body.setForce(-self.force_applied_to_ball_right,0,0)
+            print self.force_applied_to_ball_right
 
         if flipper == 1 and self.left_flipper_up:
-            self.ball_body.setForce(-10,0,0)
+            self.ball_body.setForce(-self.force_applied_to_ball_left,0,0)
+            print self.force_applied_to_ball_left
 
     def start_ball_sink_task(self):
         if  self.ball.getZ()  >= .25:
@@ -632,6 +641,9 @@ class Table():
         else:
             self.velocity_left = 2.5
 
+        if self.force_increase_rate < 13.0:
+            self.force_applied_to_ball_left += self.force_increase_rate
+
         self.h_left += 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
 
@@ -645,6 +657,9 @@ class Table():
         else:
             self.velocity_left = 2.5
 
+        #if flippers are moving down then restart force applied to ball
+        self.force_applied_to_ball_left = 0.1;
+
         self.h_left -= 8 * self.velocity_left
         self.pivot_left.setH(self.h_left)
         self.flipper_body_left.setQuaternion(
@@ -656,6 +671,9 @@ class Table():
             self.velocity_right += self.accell_flippers
         else:
             self.velocity_right = 2.5
+
+        if self.force_increase_rate < 13.0:
+            self.force_applied_to_ball_right += self.force_increase_rate
 
         self.h_right -= 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
@@ -669,6 +687,9 @@ class Table():
             self.velocity_right += self.accell_flippers
         else:
             self.velocity_right = 2.5
+
+        #if flippers are moving down then restart force applied to ball
+        self.force_applied_to_ball_right = 0.1;
 
         self.h_right += 8 * self.velocity_right
         self.pivot_right.setH(self.h_right)
