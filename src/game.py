@@ -188,15 +188,11 @@ class Game():
         if two:
             return 1
 
-    def remove_button_launch(self, task):
-        taskMgr.remove('start_button_launch')
-
     def start_button_launch(self, task):
         import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_launch")
             taskMgr.remove('start_button_launch')
-            # taskMgr.doMethodLater(0.5, 'remove_button_launch', self.remove_button_launch)
         return task.cont
 
     def start_bump_ball_task(self, task):
