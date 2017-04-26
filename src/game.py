@@ -18,9 +18,9 @@ class Game():
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = True
+        self.button_enabled = False
         self.table = Table(self.button_enabled)
-        os.system('sudo mpg123 -q audio/jump.mp3 &')
+        os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
 
     def start(self):
         self.scoreboard = Scoreboard(
