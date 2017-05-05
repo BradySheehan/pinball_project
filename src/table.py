@@ -15,7 +15,7 @@ class Table():
 
     def __init__(self, button_enabled):
         self.quat_right = Quat(0.0, 0.0, 0.0, 0.0)
-        v = VBase3(26.0, 0.0, 0.0)
+        v = VBase3(27.0, 0.0, 0.0)
         self.quat_right.setHpr(v)
         self.quat_left = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(-27.0, 0.0, 0.0)
@@ -427,26 +427,26 @@ class Table():
         # ---- Right Flipper ----
         self.pivot_right = render.attachNewNode("pivot_right")  # pivot point
         self.flipper = table_egg.find("**/Cube.010")
-        self.pivot_right.setPos(4.12, 0.6, .09)
+        self.pivot_right.setPos(4.29, 0.56, .09)
         self.flipper_body_right = self.add_flipper_to_physics(self.flipper, 1)
 
-        # flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
-        # flip_wire.setPos(self.flipper_body_right.getPosition())
-        # flip_wire.setHpr(
-        #     Quat(self.flipper_body_right.getQuaternion()).getHpr())
-        # flip_wire.wrtReparentTo(self.pivot_right)
+        flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
+        flip_wire.setPos(self.flipper_body_right.getPosition())
+        flip_wire.setHpr(
+            Quat(self.flipper_body_right.getQuaternion()).getHpr())
+        flip_wire.wrtReparentTo(self.pivot_right)
 
         self.flipper.wrtReparentTo(self.pivot_right)
 
         # ---- Left Flipper ----
         self.pivot_left = render.attachNewNode("pivot_left")
         self.flipper2 = table_egg.find("**/Cube.011")
-        self.pivot_left.setPos(4.12, -1.0, .09)
+        self.pivot_left.setPos(4.29, -1.06, .09) #was -1.0
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2, 2)
 
         flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
         flip_wire2.setPos(self.flipper_body_left.getPosition())
-        flip_wire2.setHpr(Quat(self.quat_right).getHpr())
+        flip_wire2.setHpr(Quat(self.flipper_body_left.getQuaternion()).getHpr())
         flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
