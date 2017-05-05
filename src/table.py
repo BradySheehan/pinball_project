@@ -43,7 +43,6 @@ class Table():
         self.force_increase_rate = 1.0;
         #frame rate
         self.simTimeStep = 1.0/35
-
         self.ball_not_sinking = True
 
     def move_left_flipper(self):
@@ -197,6 +196,7 @@ class Table():
         self.wall_south = self.add_wall_to_physics(0.5, 6, 2.5, 5, 0, 1)
         self.launch_wall = self.add_wall_to_physics(
             6.5, 0.2, 0.5, 1.75, 2.6, 0.25)
+        # self.door = self.table_egg.find("**/Cube.032")
 
     def import_table(self, table_egg):
         print "\t import table egg"
@@ -219,6 +219,12 @@ class Table():
         inner_wall = table_egg.find("**/Cube")
         inner_wall.reparentTo(render)
         inner_wall.flattenLight()
+
+        roof_for_launch_wall = table_egg.find("**/Cube.031")
+        roof_for_launch_wall.reparentTo(render)
+        roof_for_launch_wall.flattenLight()
+        self.door = table_egg.find("**/Cube.032")
+
 
     def import_innards(self, table_egg):
         flipper_r_wall = table_egg.find("**/Cube.002")
@@ -392,6 +398,16 @@ class Table():
         lower_wall4.reparentTo(render)
         lower_wall4.flattenLight()
 
+        lower_wall5 = table_egg.find("**/Cube.033")
+        lower_wall5geom = self.add_innard_cube_to_physics(
+            lower_wall5, 0.35, 0.01, 0.5)
+        lower_wall5.reparentTo(render)
+        lower_wall5.flattenLight()
+
+        lower_wall6 = table_egg.find("**/Cylinder.011")
+        lower_wall6.reparentTo(render)
+        lower_wall6.flattenLight()
+
         upper_np = table_egg.find("**/Cylinder.007")
         lower_np = table_egg.find("**/Cylinder.008")
         self.import_launch_wall_bumper(upper_np, lower_np)
@@ -530,6 +546,18 @@ class Table():
         # boxNodepath2.setHpr(-125, 0, 0)
         # boxNodepath2.reparentTo(render)
 
+    def close_launcher(self):
+        self.door = self.table_egg.find("**/Cube.032")
+        self.door.reparentTo(render)
+        self.door.flattenLight()
+        self.door_geom = self.add_innard_cube_to_physics(door, 1.1, 0.01, 0.5)
+
+    def open_launcher(self):
+        if self.door is None:
+            self.door = self.table_egg.find("**/Cube.032")
+        self.door.removeNode()
+        self.door_geom = None
+        self.door = self.table_egg.find("**/Cube.032")
 
     def import_ball(self, ball_egg):
         print "\t import ball egg"
@@ -612,6 +640,7 @@ class Table():
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
+        self.close_launcher()
 
     def apply_force_to_ball(self, flipper):
         if flipper == 0 and self.right_flipper_up:

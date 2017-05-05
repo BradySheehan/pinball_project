@@ -7,6 +7,7 @@ import sys
 import os
 from table import Table
 from scoreboard import Scoreboard
+from landing_screen import LandingScreen
 
 
 class Game():
@@ -15,6 +16,7 @@ class Game():
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
+        self.landing_screen = LandingScreen()
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
@@ -23,13 +25,15 @@ class Game():
         os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
 
     def start(self):
+        self.enable_buttons(self.button_enabled)
+        self.landing_screen.display()
         self.scoreboard = Scoreboard(
             self.score, self.max_balls, self.balls_used)
-        self.enable_buttons(self.button_enabled)
         self.place_ball()
         base.run()
 
     def restart(self):
+        self.landing_screen.display()
         self.reset_score()
         self.scoreboard.text_object.destroy()
         self.scoreboard = Scoreboard(
@@ -40,6 +44,7 @@ class Game():
         self.table.ball.setPos(4.4, 2.85, 0.1)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
+        self.table.open_launcher()
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
