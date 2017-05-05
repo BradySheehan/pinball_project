@@ -444,11 +444,10 @@ class Table():
         self.pivot_left.setPos(4.12, -1.0, .09)
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2, 2)
 
-        # flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
-        # flip_wire2.setPos(self.flipper_body_left.getPosition())
-        # flip_wire2.setHpr(
-        #     Quat(self.flipper_body_left.getQuaternion()).getHpr())
-        # flip_wire2.wrtReparentTo(self.pivot_left)
+        flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
+        flip_wire2.setPos(self.flipper_body_left.getPosition())
+        flip_wire2.setHpr(Quat(self.quat_right).getHpr())
+        flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
     def import_ramp(self, table_egg):
@@ -598,7 +597,7 @@ class Table():
             self.move_left_flipper_up()
         else:
             self.velocity_left = 1
-            self.force_applied_to_ball_left = 0.0;
+            self.force_applied_to_ball_left = 0.1;
 
         if (self.right_flipper_up == False) and (self.h_right < 0):
             self.move_right_flipper_down()
@@ -606,7 +605,7 @@ class Table():
             self.move_right_flipper_up()
         else:
             self.velocity_right = 1
-            self.force_applied_to_ball_right = 0.0;
+            self.force_applied_to_ball_right = 0.1;
 
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
