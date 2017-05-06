@@ -38,7 +38,7 @@ class Game():
         self.reset_score()
         self.scoreboard.text_object.destroy()
         self.scoreboard = Scoreboard(
-            self.score, self.max_balls, self.balls_used)
+            self.score, self.max_balls, self.balls_used, self.button_enabled)
         self.place_ball()
 
     def place_ball(self):
