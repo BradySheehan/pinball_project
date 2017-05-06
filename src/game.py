@@ -27,14 +27,14 @@ class Game():
     def start(self):
         self.not_first_time = False
         self.enable_buttons(self.button_enabled)
-        self.landing_screen.display()
+        # self.landing_screen.display()
         self.scoreboard = Scoreboard(
-            self.score, self.max_balls, self.balls_used)
+            self.score, self.max_balls, self.balls_used, self.button_enabled)
         self.place_ball()
         base.run()
 
     def restart(self):
-        self.landing_screen.display()
+        # self.landing_screen.display()
         self.reset_score()
         self.scoreboard.text_object.destroy()
         self.scoreboard = Scoreboard(
@@ -219,7 +219,7 @@ class Game():
         print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
-            self.scoreboard.displayLostGame(self.score, self.balls_used)
+            self.scoreboard.displayLostGame(self.score)
             if self.button_enabled:
                 base.acceptOnce('button_enter', self.restart)
                 taskMgr.doMethodLater(
