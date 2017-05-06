@@ -25,6 +25,7 @@ class Game():
         os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
 
     def start(self):
+        self.not_first_time = False
         self.enable_buttons(self.button_enabled)
         self.landing_screen.display()
         self.scoreboard = Scoreboard(
@@ -44,7 +45,8 @@ class Game():
         self.table.ball.setPos(4.4, 2.85, 0.1)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
-        self.table.open_launcher()
+        if self.not_first_time:
+            self.table.open_launcher()
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
@@ -53,7 +55,7 @@ class Game():
                 'start_button_launch')
         else:
             base.acceptOnce('space', self.launch_ball)
-
+        self.not_first_time = True
     def reset_score(self):
         self.balls_used = 0
         self.score = 0
