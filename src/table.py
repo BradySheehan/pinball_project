@@ -25,7 +25,7 @@ class Table():
         self.setup_camera()
         self.setup_light()
         self.load_models()
-
+        self.not_first_time = False
         # rotation angle for flippers
         self.h_left = 0
         self.h_right = 0
@@ -546,15 +546,17 @@ class Table():
         # boxNodepath2.reparentTo(render)
 
     def close_launcher(self):
-        print "close launcher"
+        if self.not_first_time == False:
+            self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
+            self.not_first_time = True
+        else:
+            self.door_geom.enable()
         self.door.reparentTo(render)
         self.door.flattenLight()
-        self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
 
     def open_launcher(self):
-        print "open launcher"
-        self.door.removeNode()
-        self.door_geom = None
+        self.door.detachNode()
+        self.door_geom.disable()
         self.door = self.door_holder
 
     def import_ball(self, ball_egg):
