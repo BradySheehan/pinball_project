@@ -493,6 +493,25 @@ class Table():
         ball_stopper = table_egg.find("**/Cube.028")
         self.ball_stopper_geom = self.add_innard_cube_to_physics(ball_stopper, .1, .5, .35)
 
+        #importing side pipe where ball will shoot out
+        pipe_left_wall = table_egg.find("**/Cylinder.009")
+        pipe_left_wall_geom = self.add_innard_cylinder_to_physics(pipe, .25, .05)
+        pipe_left_wall.reparentTo(render)
+        #side pipe rim, no physics
+        pipe_rim_left_wall = table_egg.find("**/Cylinder.010")
+        pipe_rim_left_wall.reparentTo(render)
+
+        #walls arround pipe
+        pipe_wall_bottom_left = table_egg.find("**/Cube.029")
+        pipe_wall_bottom_left_geom = self.add_innard_cube_to_physics(
+            pipe_wall_bottom_left, .5, .01, .5)
+        pipe_wall_bottom_left.reparentTo(render)
+
+        pipe_wall_top_left = table_egg.find("**/Cube.030")
+        pipe_wall_top_left_geom = self.add_innard_cube_to_physics(
+            pipe_wall_top_left, .5, .01, .5)
+        pipe_wall_top_left.reparentTo(render)
+
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
         self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.5, -1.95, 0.25)
