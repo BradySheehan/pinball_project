@@ -31,6 +31,6 @@ class Scoreboard():
         self.text = self.stats + self.button_text
         self.text_object.setText(self.text)
 
-    def displayLostGame(self, score, balls_used):
+    def displayLostGame(self, score):
         self.text = self.lost_message + self.lost_button_text + str(score)
         self.text_object.setText(self.text)
