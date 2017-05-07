@@ -74,8 +74,6 @@ class LandingScreen():
             #now we need to write it to the database
             #including the tab, then when we write the score, we will write a new line at the end of the score
             self.file.write(self.username + '\t')
-            # self.file.close()
-            # print "returning true"
             self.finished()
             return True
         else:
@@ -84,6 +82,8 @@ class LandingScreen():
         return False
 
     def finished(self):
+        #how we communicate inside Game that the username
+        #has been entered completel
         self.finished_entering = True
         return self.username
 

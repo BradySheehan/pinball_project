@@ -582,8 +582,9 @@ class Table():
         self.door.reparentTo(render)
 
     def open_launcher(self):
+        if self.not_first_time == True:
+             self.door_geom.disable()
         self.door.detachNode()
-        self.door_geom.disable()
         self.door = self.door_holder
 
     def import_ball(self, ball_egg):
