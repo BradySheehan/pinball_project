@@ -495,11 +495,14 @@ class Table():
 
         #importing side pipe where ball will shoot out
         pipe_left_wall = table_egg.find("**/Cylinder.009")
-        pipe_left_wall_geom = self.add_innard_cylinder_to_physics(pipe, .25, .05)
         pipe_left_wall.reparentTo(render)
         #side pipe rim, no physics
         pipe_rim_left_wall = table_egg.find("**/Cylinder.010")
         pipe_rim_left_wall.reparentTo(render)
+        # invisible wall in front of pipe
+        pipe_cover_left = table_egg.find("**/Cube.031")
+        self.pipe_cover_left_geom = self.add_innard_cube_to_physics(
+            pipe_cover_left, .5, .01, .5)
 
         #walls arround pipe
         pipe_wall_bottom_left = table_egg.find("**/Cube.029")
@@ -511,6 +514,8 @@ class Table():
         pipe_wall_top_left_geom = self.add_innard_cube_to_physics(
             pipe_wall_top_left, .5, .01, .5)
         pipe_wall_top_left.reparentTo(render)
+
+
 
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
@@ -676,10 +681,18 @@ class Table():
             self.ball_body.setPosition(self.ball.getPos())
         else:
             # shoot the ball out in a random place
-            self.ball.setPos(-1.05, -2.58, .1)
+            self.pipe_cover_left_geom.disable()
+            self.ball.setPos(-1.24, -2.89, .1)
             self.ball_body.setPosition(self.ball.getPos())
             self.ball_body.setForce(.05, 1.0, 0)
             self.ball_not_sinking = True
+            taskMgr.doMethodLater(
+                1,
+                self.enable_pipe_cover,
+                'enable_pipe_cover')
+
+    def enable_pipe_cover(self,task):
+        self.pipe_cover_left_geom.enable()
 
 
     def move_left_flipper_up(self):
