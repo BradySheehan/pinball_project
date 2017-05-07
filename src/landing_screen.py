@@ -7,8 +7,8 @@ class LandingScreen():
 
     def __init__(self, button_enabled):
         self.button_enabled = button_enabled
-        self.start = True
-        self.start_text = "Welcome to PINBall! \n By D. Ramsey and B. Sheehan. \n \n Enter your username \n"
+        self.finished_entering = False
+        self.start_text = "Welcome to PINBall!\nBy D. Ramsey and B. Sheehan.\nEnter your username:"
         self.cursor_position = 0 #highlight the letter of interst when we print the text (maybe make it a zero)
         self.initialize_highscore_list()
         self.accept_username_input()
@@ -22,8 +22,12 @@ class LandingScreen():
             scale=(0.75,0.3,0.4),
             hpr=(0,0,0))
 
+        self.username = ''
+        for x in range(0, 5):
+            self.username = self.username + chr(self.un[x])
+
         self.text_object = OnscreenText(
-            text=self.start_text,
+            text=self.start_text + '\n' + self.username,
             pos=(0, 0),
             scale=0.1,
             mayChange=True,
@@ -35,14 +39,14 @@ class LandingScreen():
         #loop over the username array and convert each number to the corresponding chracger,
         #concatenate them, and add them to the onscreen text to be displayed
         self.username = ''
-        for x in range(0, 4):
+        for x in range(0, 5):
             self.username = self.username + chr(self.un[x])
-        self.text = self.start_test + "\n \n" + self.username
+        self.text = self.start_text + "\n" + self.username
         self.text_object.setText(self.text)
 
     def remove_display(self):
-        self.text_object.delete()
-        self.image_object.delete()
+        self.text_object.destroy()
+        self.image_object.destroy()
         self.accept_username_input()
 
     def initialize_highscore_list(self):
@@ -56,10 +60,9 @@ class LandingScreen():
 
 
     def accept_username_input(self):
-        self.username =''
         self.un = [] #initialize username array
-        for x in range(0, 4):
-            self.un.insert(x,'')
+        for x in range(0, 5):
+            self.un.insert(x,65)
 
         # for x in range(65, 91):
         #     print chr(x)
@@ -81,24 +84,25 @@ class LandingScreen():
         #         refresh_text_display
 
     def enter_username(self):
-        if self.landing_screen.cursor_position > 4:
-            username = ''
+        if self.cursor_position > 4:
+            self.username = ''
             for x in range(0, 4):
-                username = username + chr(self.un[x])
+                self.username = self.username + chr(self.un[x])
             #now we need to write it to the database
             #including the tab, then when we write the score, we will write a new line at the end of the score
-            self.file.write(username + '\t')
-            self.file.close()
+            self.file.write(self.username + '\t')
+            # self.file.close()
+            # print "returning true"
+            self.finished()
             return True
         else:
-            if self.un[self.cursor_position] != '':
-                #cannot go to next slot if you didn't select a letter
-                self.cursor_position = self.cursor_position + 1
-            return False
+            #cannot go to next slot if you didn't select a letter
+            self.cursor_position = self.cursor_position + 1
+        return False
 
-    def write_final_score(self, score):
-        self.file.write(score + '\n')
-        self.file.close()
+    def finished(self):
+        self.finished_entering = True
+        return self.username
 
     def left_down_decrement(self):
         #left down
@@ -112,9 +116,14 @@ class LandingScreen():
         #right down
         #increment
         if self.cursor_position <= 4:
-            if self.un[self.cursor_position] < 92:
+            if self.un[self.cursor_position] < 90:
                 self.un[self.cursor_position] = self.un[self.cursor_position] + 1
                 self.update_display()
+
+    def write_final_score(self, score):
+        self.file.write(score + '\n')
+        self.file.close()
+
 
 if __name__ == '__main__':
     ls = LandingScreen(False)

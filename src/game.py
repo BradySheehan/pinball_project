@@ -16,25 +16,42 @@ class Game():
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
-        self.landing_screen = LandingScreen()
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = True
+        self.button_enabled = False
+        self.landing_screen = LandingScreen(self.button_enabled)
         self.table = Table(self.button_enabled)
-        os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
 
     def start(self):
         self.not_first_time = False
-        self.enable_buttons(self.button_enabled)
-        # self.landing_screen.display()
-        self.scoreboard = Scoreboard(
-            self.score, self.max_balls, self.balls_used, self.button_enabled)
-        self.place_ball()
+        if self.button_enabled:
+            self.start_button_handler()
+        else: #setup accepts for the a, d, and enter keys to work with landing_screen
+            base.accept('a', self.landing_screen.left_down_decrement)
+            base.accept('d', self.landing_screen.right_down_increment)
+            base.accept('enter', self.landing_screen.enter_username)
+        taskMgr.doMethodLater(
+            0,
+            self.listen_for_input,
+            'listen_for_input') #listens for input related to managing the landing screen controls
+        self.landing_screen.display()
         base.run()
+        #this might be wrong.. we don't want to place_ball() until
+        #landing screen is finished. Make sure this works
+        #additionally, we want the scoreboard to show the username of the current player
+    def finish_start(self):
+        #this function will do everything that needs to happen after the user picks their username
+        self.landing_screen.remove_display()
+        self.scoreboard = Scoreboard(
+            self.score, self.max_balls, self.balls_used, self.button_enabled, self.landing_screen.username)
+        self.enable_buttons(self.button_enabled)
+        self.place_ball()
+
+        #I don't think we should take them to the landing screen if they lose,
+        #give them the option to play again with the current username. this will take some work though
 
     def restart(self):
-        # self.landing_screen.display()
         self.reset_score()
         self.scoreboard.text_object.destroy()
         self.scoreboard = Scoreboard(
@@ -46,8 +63,7 @@ class Game():
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.not_first_time:
-            pass
-            # self.table.open_launcher()
+            self.table.open_launcher()
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
@@ -57,13 +73,14 @@ class Game():
         else:
             base.acceptOnce('space', self.launch_ball)
         self.not_first_time = True
+
     def reset_score(self):
         self.balls_used = 0
         self.score = 0
 
     def enable_buttons(self, on):
             if on :
-                self.start_button_handler()
+                #make sure start_button_handler is called before this
                 base.accept('left_down',self.table.move_left_flipper)
                 base.accept('left_up',self.table.stop_left_flipper)
                 base.accept('right_down',self.table.move_right_flipper)
@@ -78,9 +95,9 @@ class Game():
     def start_button_handler(self):
         import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) #right button
+        GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) #left button
+        GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP) #launch button
         # pass
 
     def launch_ball(self):
@@ -216,18 +233,50 @@ class Game():
             taskMgr.remove('listen_for_enter')
         return task.cont
 
+    def listen_for_input(self, task):
+        #this task is meant to work with the landing_screen
+        #it is how we communicate between the landing screen and the game class
+        if self.button_enabled:
+            import RPi.GPIO as GPIO
+            if GPIO.input(21) == False:
+                #left down decrement
+                self.landing_screen.left_down_decrement()
+            if GPIO.input(12) == False:
+                #right down increment
+                self.landing_screen.right_down_increment()
+            if GPIO.input(25) == False:
+                self.landing_screen.enter_username()
+
+        if self.landing_screen.finished_entering:
+            print "removing task for landing screen"
+            taskMgr.remove('listen_for_input')
+            if self.not_first_time:
+                self.restart()
+            else:
+                self.finish_start()
+        return task.cont
+
     def lose_ball(self):
         print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
+            #display lost game until someone hits launch button,
+            #then take them to the landing screen.
+            #then don't restart the game until they go through the landing_screen
             self.scoreboard.displayLostGame(self.score)
+            self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
-                base.acceptOnce('button_enter', self.restart)
+                base.acceptOnce('button_enter', self.self.landing_screen.display())
                 taskMgr.doMethodLater(
                     0,
                     self.listen_for_enter,
                     'listen_for_enter')
                 taskMgr.pause(0.5)
+                taskMgr.doMethodLater( #listens for closing the landing screen and starting game
+                    0,
+                    self.listen_for_input,
+                    'listen_for_input')
+
             else:
                 base.acceptOnce('enter', self.restart)
             return()

@@ -571,12 +571,13 @@ class Table():
 
     def close_launcher(self):
         if self.not_first_time == False:
+            # self.door.reparentTo(render)
+            # self.door.flattenLight()
             self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
             self.not_first_time = True
         else:
             self.door_geom.enable()
-            # self.door.reparentTo(render)
-            # self.door.flattenLight()
+        self.door.reparentTo(render)
 
     def open_launcher(self):
         self.door.detachNode()
@@ -630,6 +631,11 @@ class Table():
                     self.ball_body.getQuaternion()))
         else:
             self.start_ball_sink_task()
+        #the ball gets passed the launcher wall, close the launch opening
+
+        pos = self.ball_body.getPosition()
+        if pos[0] < -2.5 and pos[1] < 2:
+            self.close_launcher()
 
         if self.button_enabled:
             import RPi.GPIO as GPIO

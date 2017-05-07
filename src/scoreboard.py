@@ -5,13 +5,13 @@ class Scoreboard():
         self.max_balls = max_balls
         self.button_enabled = button_enabled
         self.username = username
-        self.lost_message = self.username + 'Your weak father should be ashamed of you! \n Your final score is '
-        self.stats = 'Score: ' + str(score) + "\n Balls Available: " + str(self.max_balls - balls_used)
+        self.stats = self.username + "'s" + ' Score: ' + str(score) + "\n Balls Available: " + str(self.max_balls - balls_used)
+        self.lost_message = self.username + ', Your weak father should be ashamed of you! \n Your final score is '
 
         if self.button_enabled:
             self.position = (0,2)
             self.button_text = ''
-            self.lost_button_text = '\n \n Press launch to return to the start screen'
+            self.lost_button_text = self.username + '\n \n Press launch to return to the start screen'
         else:
             self.position = (-1,0.9)
             self.button_text = '\n \n Space - launch ball \n a - toggle left flipper \n d - toggle right flipper \n ESC - quit'
@@ -28,7 +28,7 @@ class Scoreboard():
             bg=(0,0,0,1))
 
     def updateDisplay(self, score, balls_used):
-        self.stats = 'Score: ' + str(score) + "\n Balls Available: " + str(self.max_balls - balls_used)
+        self.stats = self.username + "'s Score: " + str(score) + "\n Balls Available: " + str(self.max_balls - balls_used)
         self.text = self.stats + self.button_text
         self.text_object.setText(self.text)
 
