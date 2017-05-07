@@ -266,6 +266,11 @@ class Table():
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
 
+        #bumper ring
+        lb_bumper_ring = table_egg.find("**/Cylinder.011")
+        lb_bumper_ring.reparentTo(render)
+        lb_bumper_ring.flattenLight()
+        
         angled_launch_wall = table_egg.find("**/Cube.005")
 
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
