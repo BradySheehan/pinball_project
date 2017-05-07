@@ -614,7 +614,6 @@ class Table():
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
         self.ball_body.setForce(-self.launch_force, -0.0, 0)
-        self.launch_force = 0.0;
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -674,6 +673,7 @@ class Table():
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
+        self.launch_force = 0.0;
         # self.close_launcher()
 
     def build_launch_force_task(self, task):
