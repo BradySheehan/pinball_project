@@ -258,10 +258,7 @@ class Game():
         if self.landing_screen.finished_entering:
             print "removing task for landing screen"
             taskMgr.remove('listen_for_input')
-            if self.not_first_time:
-                self.restart()
-            else:
-                self.finish_start()
+            self.finish_start()
         return task.cont
 
     def lose_ball(self):

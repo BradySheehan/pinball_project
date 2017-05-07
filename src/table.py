@@ -674,12 +674,17 @@ class Table():
 
     def apply_force_to_ball(self, flipper):
         if flipper == 0 and self.right_flipper_up:
-            self.ball_body.setForce(-self.force_applied_to_ball_right,0,0)
-            print self.force_applied_to_ball_right
+            #the ball must be y less than 0.6 and x greater than 4 
+            # pos = self.ball_body.getPosition
+            if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] < 0.6:
+                self.ball_body.setForce(-self.force_applied_to_ball_right,0,0)
+                print self.force_applied_to_ball_right
 
         if flipper == 1 and self.left_flipper_up:
-            self.ball_body.setForce(-self.force_applied_to_ball_left,0,0)
-            print self.force_applied_to_ball_left
+            #the ball must be y greater than -1.0 and x greater than 4 
+            if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] > -1.0:
+                self.ball_body.setForce(-self.force_applied_to_ball_left,0,0)
+                print self.force_applied_to_ball_left
 
     def start_ball_sink_task(self):
         if  self.ball.getZ()  >= .25:

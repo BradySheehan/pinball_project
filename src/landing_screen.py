@@ -15,6 +15,7 @@ class LandingScreen():
 
     def display(self):
         self.finished_entering = False
+        self.cursor_position = 0
         #every time the landing screen appears, play the song
         os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
         self.image_object = OnscreenImage(
