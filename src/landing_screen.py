@@ -66,25 +66,6 @@ class LandingScreen():
         for x in range(0, 5):
             self.un.insert(x,65)
 
-        # for x in range(65, 91):
-        #     print chr(x)
-        #right flipper increment, left flipper decrement
-
-        #"cursor" needs to default on the first spot of the username
-        #blanks are allowed... default of the string is all blanks
-        #numers are not allowed
-        # if side_button_pressed():
-        #     increment_letter_choice
-        #     refresh_text_display
-        # if launch_button_pressed():
-        #     if end_of_block:
-        #         write_username_to_db and make sure we can add score to the file later
-        #         delete_landing_screen
-        #     else:
-        #         save_letter_to_variable
-        #         move_cursor_to_next_slot
-        #         refresh_text_display
-
     def enter_username(self):
         if self.cursor_position > 4:
             self.username = ''
@@ -125,6 +106,8 @@ class LandingScreen():
     def write_final_score(self, score):
         self.file.write(str(score) + '\n')
 
+    def contains_name()
+    #returns nonzero value of the line that the 
 
 if __name__ == '__main__':
     ls = LandingScreen(False)
