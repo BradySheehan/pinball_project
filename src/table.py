@@ -413,6 +413,9 @@ class Table():
         lower_np = table_egg.find("**/Cylinder.008")
         self.import_launch_wall_bumper(upper_np, lower_np)
 
+        self.plunger = lower_np = table_egg.find("**/Cube.012")
+        self.plunger.reparentTo(render)
+
     def import_launch_wall_bumper(self, upper_np, lower_np):
         wall1 = self.add_wall_to_physics(1.1, 0.05, 0.5, -1, 2.25, 0.25)
         wall1 = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
@@ -618,6 +621,17 @@ class Table():
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
+    def release_plunger_task(self,task):
+        # code for moving plunger back to starting point
+        if self.plunger.getX() > 3.923:
+            self.plunger.setX(self.plunger.getX() - .25)
+            return task.cont
+        elif self.plunger.getX() <= 3.923:
+            self.plunger.setX(3.923)
+            taskMgr.doMethodLater(
+            0,
+            self.launch_ball_task,
+            'launch_ball')
 
     def gravity_task(self, task):
         # these two lines set up the ball cam for testing
@@ -680,6 +694,7 @@ class Table():
     def build_launch_force_task(self, task):
         if self.launch_force < 3.0:
             self.launch_force += .025;
+            self.plunger.setX(self.plunger.getX() + 0.025)
         return task.cont
 
     def apply_force_to_ball(self, flipper):
