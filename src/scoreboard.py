@@ -1,10 +1,11 @@
 from direct.gui.OnscreenText import OnscreenText
 class Scoreboard():
 
-    def __init__(self, score, max_balls, balls_used, button_enabled):
+    def __init__(self, score, max_balls, balls_used, button_enabled, username):
         self.max_balls = max_balls
         self.button_enabled = button_enabled
-        self.lost_message = 'Your weak father should be ashamed of you! \n Your final score is '
+        self.username = username
+        self.lost_message = self.username + 'Your weak father should be ashamed of you! \n Your final score is '
         self.stats = 'Score: ' + str(score) + "\n Balls Available: " + str(self.max_balls - balls_used)
 
         if self.button_enabled:

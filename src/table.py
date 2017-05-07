@@ -134,7 +134,7 @@ class Table():
         print "load models"
         # self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.table_egg = loader.loadModel(
-            "models/table2.egg")
+            "models/table_mods.egg")
         self.ball = self.import_ball(self.table_egg)
         self.setup_ball_physics(0.1, 0.1)
 
@@ -219,11 +219,11 @@ class Table():
         inner_wall.reparentTo(render)
         inner_wall.flattenLight()
 
-        # roof_for_launch_wall = table_egg.find("**/Cube.032")
-        # roof_for_launch_wall.reparentTo(render)
-        # roof_for_launch_wall.flattenLight()
-        # self.door = table_egg.find("**/Cube.031")
-        # self.door_holder = self.door
+        roof_for_launch_wall = table_egg.find("**/Cube.032")
+        roof_for_launch_wall.reparentTo(render)
+        roof_for_launch_wall.flattenLight()
+        self.door = table_egg.find("**/Cube.033")
+        self.door_holder = self.door
 
     def import_innards(self, table_egg):
         flipper_r_wall = table_egg.find("**/Cube.002")
@@ -270,7 +270,7 @@ class Table():
         lb_bumper_ring = table_egg.find("**/Cylinder.011")
         lb_bumper_ring.reparentTo(render)
         lb_bumper_ring.flattenLight()
-        
+
         angled_launch_wall = table_egg.find("**/Cube.005")
 
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
@@ -396,21 +396,16 @@ class Table():
         upper_wall8.flattenLight()
 
 
-        lower_wall4 = table_egg.find("**/Cube.012")
-        lower_wall4_geom = self.add_innard_cube_to_physics(
-            lower_wall4, 1.0, 0.1, 0.5)
-        lower_wall4.reparentTo(render)
-        lower_wall4.flattenLight()
+        # lower_wall4 = table_egg.find("**/Cube.012")
+        # lower_wall4_geom = self.add_innard_cube_to_physics(
+        #     lower_wall4, 1.0, 0.1, 0.5)
+        # lower_wall4.reparentTo(render)
+        # lower_wall4.flattenLight()
 
-        # lower_wall5 = table_egg.find("**/Cube.033")
-        # lower_wall5geom = self.add_innard_cube_to_physics(
-        #     lower_wall5, 0.35, 0.01, 0.5)
-        # lower_wall5.reparentTo(render)
-        # lower_wall5.flattenLight()
-
-        # lower_wall6 = table_egg.find("**/Cylinder.011")
-        # lower_wall6.reparentTo(render)
-        # lower_wall6.flattenLight()
+        lower_wall6 = table_egg.find("**/Cylinder.012")
+        lower_wall6.reparentTo(render)
+        lower_wall6.flattenLight()
+        #BS need to add this to physics
 
         upper_np = table_egg.find("**/Cylinder.007")
         lower_np = table_egg.find("**/Cylinder.008")
@@ -574,19 +569,19 @@ class Table():
         # boxNodepath2.setHpr(-125, 0, 0)
         # boxNodepath2.reparentTo(render)
 
-    # def close_launcher(self):
-    #     if self.not_first_time == False:
-    #         self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
-    #         self.not_first_time = True
-    #     else:
-    #         self.door_geom.enable()
-    #     self.door.reparentTo(render)
-    #     self.door.flattenLight()
+    def close_launcher(self):
+        if self.not_first_time == False:
+            self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
+            self.not_first_time = True
+        else:
+            self.door_geom.enable()
+            # self.door.reparentTo(render)
+            # self.door.flattenLight()
 
-    # def open_launcher(self):
-    #     self.door.detachNode()
-    #     self.door_geom.disable()
-    #     self.door = self.door_holder
+    def open_launcher(self):
+        self.door.detachNode()
+        self.door_geom.disable()
+        self.door = self.door_holder
 
     def import_ball(self, ball_egg):
         print "\t import ball egg"
