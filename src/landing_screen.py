@@ -2,12 +2,15 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.gui.OnscreenImage import OnscreenImage
 from direct.directbase import DirectStart
 import os
+import errno
+
 
 class LandingScreen():
 
     def __init__(self, button_enabled):
         self.button_enabled = button_enabled
         self.finished_entering = False
+        self.file_name = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'highscores/highscores.dat')
         self.start_text = "Welcome to PINBall!\nBy D. Ramsey and B. Sheehan.\nEnter your username:"
         self.cursor_position = 0 #highlight the letter of interst when we print the text (maybe make it a zero)
         self.initialize_highscore_list()
@@ -52,14 +55,21 @@ class LandingScreen():
         self.accept_username_input()
 
     def initialize_highscore_list(self):
-        self.file = open('highscores/highscores.dat', 'w+')
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        size = os.stat(os.path.join(dir_path, 'highscores/highscores.dat')).st_size
-        if size == 0:
-            #write the header to the file (not that we really need it,
-            #but so that it is easier to visualize later)
-            self.file.write("USERNAME \t SCORE\n")
-
+        #see http://stackoverflow.com/questions/10978869/safely-create-a-file-if-and-only-if-it-does-not-exist-with-python
+        flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY
+        try:
+            self.file = os.open(self.file_name, flags)
+        except OSError as e:
+            if e.errno == errno.EEXIST:  # Failed as the file already exists.
+                pass
+            else:  # Something unexpected went wrong so reraise the exception.
+                raise
+        else:  # No exception, so the file must have been created successfully.
+            with os.fdopen(self.file, 'w') as file_obj:
+                # Using `os.fdopen` converts the handle to an object that acts like a
+                # regular Python file object, and the `with` context manager means the
+                # file will be automatically closed when we're done with it.
+                self.file = file_obj
 
     def accept_username_input(self):
         self.un = [] #initialize username array
@@ -69,11 +79,10 @@ class LandingScreen():
     def enter_username(self):
         if self.cursor_position > 4:
             self.username = ''
-            for x in range(0, 4):
+            for x in range(0, 5):
                 self.username = self.username + chr(self.un[x])
             #now we need to write it to the database
             #including the tab, then when we write the score, we will write a new line at the end of the score
-            self.file.write(self.username + '\t')
             self.finished()
             return True
         else:
@@ -104,12 +113,37 @@ class LandingScreen():
                 self.update_display()
 
     def write_final_score(self, score):
-        self.file.write(str(score) + '\n')
+        with open(self.file_name, 'w+') as file:
+            self.update_score(self.username, score)
 
-    #def contains_name():
-    #returns nonzero value of the line that the 
+    def update_score(self, username, score):
+        #maintain ordering of the list so that the highest
+        #score is at the top of the file
+        # self.file.close()
+        updated = False
+        with open(self.file_name,'r+') as f:
+            print f
+            data = f.readlines()
+        if len(data) == 0:
+            with open(self.file_name, 'w+') as file:
+                    file.write(username + ' ' + str(score))
+        else:
+            for i, d in enumerate(data):
+                if d[0:5] == username:
+                    if d[5:len(d)] < str(score):
+                        #new entry is 
+                        updated = True
+                        data[i] = username + ' ' + str(score)
+            #now sort the data
+            if updated:
+                data = sorted(data, key = lambda x: int(x.split()[1]), reverse=True)
+                #now write the data back out to the list
+                with open(self.file_name, 'w+') as file:
+                    for item in data:
+                        file.write("%s\n" % item)
 
 if __name__ == '__main__':
     ls = LandingScreen(False)
     ls.display()
+    ls.update_score('AAAAA', 65)
     base.run()
