@@ -20,7 +20,7 @@ class Game():
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = False
+        self.button_enabled = True
         self.table = Table(self.button_enabled)
         os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
 
@@ -46,7 +46,8 @@ class Game():
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.not_first_time:
-            self.table.open_launcher()
+            pass
+            # self.table.open_launcher()
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
