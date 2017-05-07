@@ -31,11 +31,11 @@ class Game():
             base.accept('a', self.landing_screen.left_down_decrement)
             base.accept('d', self.landing_screen.right_down_increment)
             base.accept('enter', self.landing_screen.enter_username)
+        self.landing_screen.display()
         taskMgr.doMethodLater(
             0,
             self.listen_for_input,
             'listen_for_input') #listens for input related to managing the landing screen controls
-        self.landing_screen.display()
         base.run()
         #this might be wrong.. we don't want to place_ball() until
         #landing screen is finished. Make sure this works
@@ -54,9 +54,17 @@ class Game():
     def restart(self):
         self.reset_score()
         self.scoreboard.text_object.destroy()
-        self.scoreboard = Scoreboard(
-            self.score, self.max_balls, self.balls_used, self.button_enabled)
-        self.place_ball()
+        self.landing_screen.display()
+        if self.button_enabled:
+            self.start_button_handler()
+        else: #setup accepts for the a, d, and enter keys to work with landing_screen
+            base.accept('a', self.landing_screen.left_down_decrement)
+            base.accept('d', self.landing_screen.right_down_increment)
+            base.accept('enter', self.landing_screen.enter_username)
+            taskMgr.doMethodLater(
+                0,
+                self.listen_for_input,
+                'listen_for_input') #listens for input related to managing the landing screen controls
 
     def place_ball(self):
         self.table.ball.setPos(4.4, 2.85, 0.1)
@@ -266,17 +274,11 @@ class Game():
             self.scoreboard.displayLostGame(self.score)
             self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
-                base.acceptOnce('button_enter', self.self.landing_screen.display())
+                base.acceptOnce('button_enter', self.restart())
                 taskMgr.doMethodLater(
                     0,
                     self.listen_for_enter,
                     'listen_for_enter')
-                taskMgr.pause(0.5)
-                taskMgr.doMethodLater( #listens for closing the landing screen and starting game
-                    0,
-                    self.listen_for_input,
-                    'listen_for_input')
-
             else:
                 base.acceptOnce('enter', self.restart)
             return()

@@ -14,6 +14,7 @@ class LandingScreen():
         self.accept_username_input()
 
     def display(self):
+        self.finished_entering = False
         #every time the landing screen appears, play the song
         os.system('sudo mpg123 -q audio/intro_song1.mp3 &')
         self.image_object = OnscreenImage(
@@ -121,8 +122,7 @@ class LandingScreen():
                 self.update_display()
 
     def write_final_score(self, score):
-        self.file.write(score + '\n')
-        self.file.close()
+        self.file.write(str(score) + '\n')
 
 
 if __name__ == '__main__':
