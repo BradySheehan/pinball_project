@@ -44,6 +44,8 @@ class Table():
         #frame rate
         self.simTimeStep = 1.0/35
         self.ball_not_sinking = True
+        #force applied on ball launch
+        self.launch_force = 0.0
 
     def move_left_flipper(self):
         self.left_flipper_up = True
@@ -606,11 +608,13 @@ class Table():
         self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
         self.world.quickStep(globalClock.getDt())
+        taskMgr.remove('build_launch_force')
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
-        self.ball_body.setForce(-3.0, -0.0, 0)
+        self.ball_body.setForce(-self.launch_force, -0.0, 0)
+        self.launch_force = 0.0;
         self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
@@ -671,6 +675,11 @@ class Table():
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
         # self.close_launcher()
+
+    def build_launch_force_task(self, task):
+        if self.launch_force < 3.0:
+            self.launch_force += .025;
+        return task.cont
 
     def apply_force_to_ball(self, flipper):
         if flipper == 0 and self.right_flipper_up:

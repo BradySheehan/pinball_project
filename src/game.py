@@ -79,7 +79,8 @@ class Game():
                 self.start_button_launch,
                 'start_button_launch')
         else:
-            base.acceptOnce('space', self.launch_ball)
+            base.acceptOnce('space', self.build_launch_force)
+            base.acceptOnce('space-up', self.launch_ball)
         self.not_first_time = True
 
     def reset_score(self):
@@ -107,6 +108,12 @@ class Game():
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) #left button
         GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP) #launch button
         # pass
+
+    def build_launch_force(self):
+        taskMgr.doMethodLater(
+            0,
+            self.table.build_launch_force_task,
+            'build_launch_force')
 
     def launch_ball(self):
         self.start_gravity_task()
