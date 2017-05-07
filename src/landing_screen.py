@@ -106,7 +106,7 @@ class LandingScreen():
     def write_final_score(self, score):
         self.file.write(str(score) + '\n')
 
-    def contains_name()
+    #def contains_name():
     #returns nonzero value of the line that the 
 
 if __name__ == '__main__':
