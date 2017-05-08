@@ -641,7 +641,6 @@ class Table():
         ball_geom.setBody(self.ball_body)
 
     def launch_ball_task(self, task):
-        print 'button is up'
         # self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
         # self.world.quickStep(globalClock.getDt())
