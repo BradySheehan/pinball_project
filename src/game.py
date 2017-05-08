@@ -31,9 +31,13 @@ class Game():
         wp = WindowProperties()
         wp.setFullscreen(True)
         base.win.requestProperties(wp)
+        self.jump_sound = loader.loadMusic("audio/jump.mp3")
+        self.intro_song = loader.loadMusic("audio/intro_song1.mp3")
 
     def start(self):
         self.not_first_time = False
+        self.intro_song.setLoopCount(0)
+        self.intro_song.play()
         if self.button_enabled:
             self.start_button_handler()
         else: #setup accepts for the a, d, and enter keys to work with landing_screen
@@ -184,45 +188,53 @@ class Game():
             self.lose_ball()
 
         if self.bumped_triangle_bumper(geom1, geom2, body1, body2):
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.score = self.score + 300
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
             self.score = self.score + 200
             self.scoreboard.updateDisplay(self.score, self.balls_used)
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
             if self.table.ball.getZ() > .48 :
                 self.table.ball_not_sinking = False
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
             self.score = self.score + 100
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_wall_triangle):
             self.score = self.score + 100
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_launch_wall):
             self.score = self.score + 100
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_launch_wall):
             self.score = self.score + 100
-            os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
