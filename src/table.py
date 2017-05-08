@@ -466,10 +466,10 @@ class Table():
         v = VBase3(rotation, 0.0, 0.0)
         quat.setHpr(v)
         geom.setQuaternion(quat)
-        box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
-        box_wall1.setPos(geom.getPosition())
-        box_wall1.setQuat(geom.getQuaternion())
-        box_wall1.reparentTo(render)
+        # box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
+        # box_wall1.setPos(geom.getPosition())
+        # box_wall1.setQuat(geom.getQuaternion())
+        # box_wall1.reparentTo(render)
         return geom
 
     def import_flippers(self, table_egg):
