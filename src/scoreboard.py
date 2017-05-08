@@ -11,7 +11,7 @@ class Scoreboard():
         if self.button_enabled:
             self.position = (0,-1.5)
             self.button_text = ''
-            self.lost_button_text = self.username + '\n \n Press launch to return to the start screen'
+            self.lost_button_text = '\n \n Press launch to return to the start screen'
         else:
             self.position = (-1.04,0.9)
             self.button_text = '\n \n Space - launch ball \n a - toggle left flipper \n d - toggle right flipper \n ESC - quit'
