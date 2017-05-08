@@ -714,7 +714,7 @@ class Table():
             self.force_applied_to_ball_right = 0.1;
 
         self.contactgroup.empty()  # Clear the contact joints
-        return task.cont
+        return task.again
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')

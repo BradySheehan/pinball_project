@@ -138,7 +138,7 @@ class Game():
             'bump_ball_task')
 
     def start_gravity_task(self):
-        taskMgr.add(self.table.gravity_task, 'gravity_task')
+        taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
 
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')

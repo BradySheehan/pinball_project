@@ -9,7 +9,7 @@ class Scoreboard():
         self.lost_message = self.username + ', Your weak father should be ashamed of you! \n Your final score is '
 
         if self.button_enabled:
-            self.position = (0,1.5)
+            self.position = (0,-1.5)
             self.button_text = ''
             self.lost_button_text = self.username + '\n \n Press launch to return to the start screen'
         else:
