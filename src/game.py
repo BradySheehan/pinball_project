@@ -354,7 +354,7 @@ class Game():
             self.scoreboard.displayLostGame(self.score)
             self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
-                base.acceptOnce('button_enter', self.restart())
+                base.acceptOnce('button_enter', self.restart)
                 taskMgr.doMethodLater(
                     0,
                     self.listen_for_enter,
