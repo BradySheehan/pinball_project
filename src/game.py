@@ -33,6 +33,7 @@ class Game():
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.mp3")
         self.intro_song = loader.loadMusic("audio/intro_song1.mp3")
+        self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.mp3")
 
     def start(self):
         self.not_first_time = False
@@ -53,6 +54,7 @@ class Game():
         #this might be wrong.. we don't want to place_ball() until
         #landing screen is finished. Make sure this works
         #additionally, we want the scoreboard to show the username of the current player
+
     def finish_start(self):
         from scoreboard import Scoreboard
         #this function will do everything that needs to happen after the user picks their username
@@ -210,7 +212,7 @@ class Game():
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
             #os.system('sudo mpg123 -q audio/jump.mp3 &')
-            self.jump_sound.play()
+            self.lasor_cannon.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
@@ -309,7 +311,7 @@ class Game():
 
     #button up task
     def wait_for_plunger_release(self,task):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         if GPIO.input(25) == True:
             messenger.send("button_launch")
             taskMgr.remove('wait_for_plunger_release')
