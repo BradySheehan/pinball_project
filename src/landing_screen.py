@@ -176,7 +176,7 @@ class LandingScreen():
                 text = text + item[0] + "\t" + item[1] + "\n"
 
         if self.button_enabled:
-            position = (0,0,0)
+            position = (0,1.75,0)
         else:
             position = (1,0.9)
         self.high_score_text = OnscreenText(
