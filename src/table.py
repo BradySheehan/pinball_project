@@ -269,10 +269,26 @@ class Table():
         lb_bumper.reparentTo(render)
         lb_bumper.flattenLight()
 
-        #bumper ring
+        #bumper rings
         lb_bumper_ring = table_egg.find("**/Cylinder.011")
         lb_bumper_ring.reparentTo(render)
         lb_bumper_ring.flattenLight()
+
+        rb_bumper_ring = table_egg.find("**/Cylinder.013")
+        rb_bumper_ring.reparentTo(render)
+        rb_bumper_ring.flattenLight()
+
+        tall_bumper_ring1 = table_egg.find("**/Cylinder.014")
+        tall_bumper_ring1.reparentTo(render)
+        tall_bumper_ring1.flattenLight()
+
+        tall_bumper_ring2 = table_egg.find("**/Cylinder.015")
+        tall_bumper_ring2.reparentTo(render)
+        tall_bumper_ring2.flattenLight()
+
+        tall_bumper_ring3 = table_egg.find("**/Cylinder.016")
+        tall_bumper_ring3.reparentTo(render)
+        tall_bumper_ring3.flattenLight()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
 
