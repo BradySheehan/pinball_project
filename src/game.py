@@ -32,7 +32,7 @@ class Game():
         wp.setFullscreen(False)
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.mp3")
-        self.intro_song = loader.loadMusic("audio/intro_song1.mp3")
+        self.intro_song = loader.loadMusic("audio/intro_song1.wav")
         self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.mp3")
 
     def start(self):
