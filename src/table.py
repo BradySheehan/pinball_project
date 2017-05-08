@@ -14,6 +14,9 @@ class Table():
     # class that sets up the graphics and physics
 
     def __init__(self, button_enabled):
+        if button_enabled:
+            from RPi import GPIO
+            global GPIO
         self.quat_right = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(27.0, 0.0, 0.0)
         self.quat_right.setHpr(v)
@@ -64,12 +67,12 @@ class Table():
     #     self.ignoreAll()
 
     def setup_camera(self):
-        print "setup camera"
+        # print "setup camera"
         base.camera.setPos(10, 0, 15)
         base.camera.lookAt(0, 0, 0)
 
     def setup_light(self):
-        print "setup light"
+        # print "setup light"
         # set light in panda3d from blender
         ambientLight = AmbientLight('ambientLight')
         ambientLight.setColor(Vec4(0.0, 0.0, 0.0, 1))
@@ -88,7 +91,7 @@ class Table():
 
 
     def setup_ode_world_params(self):
-        print "setup ode world params"
+        # print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
         # self.world.setGravity(4.5, 0, -10)
@@ -134,7 +137,7 @@ class Table():
         self.space1.setAutoCollideJointGroup(self.contactgroup)
 
     def load_models(self):
-        print "load models"
+        # print "load models"
         # self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.table_egg = loader.loadModel(
             "models/table_mods.egg")
@@ -190,7 +193,7 @@ class Table():
 
 
     def setup_table_physics(self):
-        print "\t \t setup table physics"
+        # print "\t \t setup table physics"
         self.ground_plane = self.add_plane_to_physics(0, 0, 1, 0)
         self.space1.setSurfaceType(self.ground_plane,0)
         self.wall_west = self.add_wall_to_physics(10, 0.1, 2.5, 0, -3, 1)
@@ -201,30 +204,30 @@ class Table():
             6.5, 0.2, 0.5, 1.75, 2.6, 0.25)
 
     def import_table(self, table_egg):
-        print "\t import table egg"
+        # print "\t import table egg"
         plane1 = table_egg.find("**/Plane.001")
         plane1.reparentTo(render)
-        plane1.flattenLight()
+        plane1.flattenStrong()
         plane2 = table_egg.find("**/Plane.002")
         plane2.reparentTo(render)
-        plane2.flattenLight()
+        plane2.flattenStrong()
         plane3 = table_egg.find("**/Plane.003")
         plane3.reparentTo(render)
-        plane3.flattenLight()
+        plane3.flattenStrong()
         plane4 = table_egg.find("**/Plane.004")
         plane4.reparentTo(render)
-        plane4.flattenLight()
+        plane4.flattenStrong()
         plane5 = table_egg.find("**/Plane.005")
         plane5.reparentTo(render)
-        plane5.flattenLight()
+        plane5.flattenStrong()
 
         inner_wall = table_egg.find("**/Cube")
         inner_wall.reparentTo(render)
-        inner_wall.flattenLight()
+        inner_wall.flattenStrong()
 
         roof_for_launch_wall = table_egg.find("**/Cube.032")
         roof_for_launch_wall.reparentTo(render)
-        roof_for_launch_wall.flattenLight()
+        roof_for_launch_wall.flattenStrong()
         self.door = table_egg.find("**/Cube.033")
         self.door_holder = self.door
 
@@ -233,19 +236,19 @@ class Table():
         flipper_r_wall_geom = self.add_innard_cube_to_physics(
             flipper_r_wall, 1.5, 0.05, 0.5)
         flipper_r_wall.reparentTo(render)
-        flipper_r_wall.flattenLight()
+        flipper_r_wall.flattenStrong()
 
         flipper_l_wall = table_egg.find("**/Cube.001")
         flipper_l_wall_geom = self.add_innard_cube_to_physics(
             flipper_l_wall, 1.5, 0.05, 0.5)
         flipper_l_wall.reparentTo(render)
-        flipper_l_wall.flattenLight()
+        flipper_l_wall.flattenStrong()
 
         l_bumper_wall = table_egg.find("**/Cube.003")
         l_bumper_wall_geom = self.add_innard_cube_to_physics(
             l_bumper_wall, 1.5, 0.2, 0.5)
         l_bumper_wall.reparentTo(render)
-        l_bumper_wall.flattenLight()
+        l_bumper_wall.flattenStrong()
 
         r_bumper_wall = table_egg.find("**/Cube.004")
         r_bumper_wall_geom = self.add_innard_cube_to_physics(
@@ -254,48 +257,48 @@ class Table():
         # test.setPos(r_bumper_wall.getPos())
         # test.reparentTo(render)
         r_bumper_wall.reparentTo(render)
-        r_bumper_wall.flattenLight()
+        r_bumper_wall.flattenStrong()
 
         rb_bumper = table_egg.find("**/Cylinder")
         #left triangle bottom of table
         self.setup_physics_rb_bumper(rb_bumper)
 
         rb_bumper.reparentTo(render)
-        rb_bumper.flattenLight()
+        rb_bumper.flattenStrong()
 
         lb_bumper = table_egg.find("**/Cylinder.001")
         #right triangle bottom of table
         self.setup_physics_lb_bumper(lb_bumper)
         lb_bumper.reparentTo(render)
-        lb_bumper.flattenLight()
+        lb_bumper.flattenStrong()
 
         #bumper rings
         lb_bumper_ring = table_egg.find("**/Cylinder.011")
         lb_bumper_ring.reparentTo(render)
-        lb_bumper_ring.flattenLight()
+        lb_bumper_ring.flattenStrong()
 
         rb_bumper_ring = table_egg.find("**/Cylinder.013")
         rb_bumper_ring.reparentTo(render)
-        rb_bumper_ring.flattenLight()
+        rb_bumper_ring.flattenStrong()
 
         tall_bumper_ring1 = table_egg.find("**/Cylinder.014")
         tall_bumper_ring1.reparentTo(render)
-        tall_bumper_ring1.flattenLight()
+        tall_bumper_ring1.flattenStrong()
 
         tall_bumper_ring2 = table_egg.find("**/Cylinder.015")
         tall_bumper_ring2.reparentTo(render)
-        tall_bumper_ring2.flattenLight()
+        tall_bumper_ring2.flattenStrong()
 
         tall_bumper_ring3 = table_egg.find("**/Cylinder.016")
         tall_bumper_ring3.reparentTo(render)
-        tall_bumper_ring3.flattenLight()
+        tall_bumper_ring3.flattenStrong()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
 
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
             angled_launch_wall, 1.0, 0.1, 0.5)
         angled_launch_wall.reparentTo(render)
-        angled_launch_wall.flattenLight()
+        angled_launch_wall.flattenStrong()
 
         # input pink bumpers Cylinder.002 and Cylinder.003
         round_bumper_left = table_egg.find("**/Cylinder.002")
@@ -303,127 +306,127 @@ class Table():
             round_bumper_left, float(0.5/2), 0.5)
         self.space1.setSurfaceType(self.round_bumper_left_geom,2)
         round_bumper_left.reparentTo(render)
-        round_bumper_left.flattenLight()
+        round_bumper_left.flattenStrong()
         round_bumper_right = table_egg.find("**/Cylinder.003")
         self.round_bumper_right_geom = self.add_innard_cylinder_to_physics(
             round_bumper_right, float(0.5/2), 0.5)
         self.space1.setSurfaceType(self.round_bumper_right_geom,2)
         round_bumper_right.reparentTo(render)
-        round_bumper_right.flattenLight()
+        round_bumper_right.flattenStrong()
 
         #tall green bumper
         angled_wall_bumper = table_egg.find("**/Cylinder.004")
         self.tall_round_bumper_geom = self.add_innard_cylinder_to_physics(angled_wall_bumper, float(0.35/2), 1)
         self.space1.setSurfaceType(self.tall_round_bumper_geom,2)
         angled_wall_bumper.reparentTo(render)
-        angled_wall_bumper.flattenLight()
+        angled_wall_bumper.flattenStrong()
 
         angled_launch_wall2 = table_egg.find("**/Cube.006")
 
         angled_launch_wall_geom2 = self.add_innard_cube_to_physics(
             angled_launch_wall2, 1.0, 0.1, 0.5)
         angled_launch_wall2.reparentTo(render)
-        angled_launch_wall2.flattenLight()
+        angled_launch_wall2.flattenStrong()
 
         angled_launch_wall3 = table_egg.find("**/Cube.007")
         angled_launch_wall_geom3 = self.add_innard_cube_to_physics(
             angled_launch_wall3, 1.0, 0.1, 0.5)
         angled_launch_wall3.reparentTo(render)
-        angled_launch_wall3.flattenLight()
+        angled_launch_wall3.flattenStrong()
 
         angled_launch_wall4 = table_egg.find("**/Cube.008")
 
         angled_launch_wall_geom4 = self.add_innard_cube_to_physics(
             angled_launch_wall4, 1.0, 0.1, 0.5)
         angled_launch_wall4.reparentTo(render)
-        angled_launch_wall4.flattenLight()
+        angled_launch_wall4.flattenStrong()
 
         angled_launch_wall5 = table_egg.find("**/Cube.009")
 
         angled_launch_wall_geom5 = self.add_innard_cube_to_physics(
             angled_launch_wall5, 1.0, 0.1, 0.5)
         angled_launch_wall5.reparentTo(render)
-        angled_launch_wall5.flattenLight()
+        angled_launch_wall5.flattenStrong()
 
         # cubes 17 - 21 are the upper half of the angled wall, load those now
         upper_wall1 = table_egg.find("**/Cube.017")
         upper_wall1_geom = self.add_innard_cube_to_physics(
             upper_wall1, 1.0, 0.1, 0.5)
         upper_wall1.reparentTo(render)
-        upper_wall1.flattenLight()
+        upper_wall1.flattenStrong()
 
         upper_wall2 = table_egg.find("**/Cube.018")
         upper_wall2_geom = self.add_innard_cube_to_physics(
             upper_wall2, 1.0, 0.1, 0.5)
         upper_wall2.reparentTo(render)
-        upper_wall2.flattenLight()
+        upper_wall2.flattenStrong()
 
         upper_wall3 = table_egg.find("**/Cube.019")
         upper_wall3_geom = self.add_innard_cube_to_physics(
             upper_wall3, 1.0, 0.1, 0.5)
         upper_wall3.reparentTo(render)
-        upper_wall3.flattenLight()
+        upper_wall3.flattenStrong()
 
         upper_wall4 = table_egg.find("**/Cube.020")
         upper_wall4_geom = self.add_innard_cube_to_physics(
             upper_wall4, 1.0, 0.1, 0.5)
         upper_wall4.reparentTo(render)
-        upper_wall4.flattenLight()
+        upper_wall4.flattenStrong()
 
 
         upper_wall5 = table_egg.find("**/Cube.021")
         upper_wall5_geom = self.add_innard_cube_to_physics(
             upper_wall5, 1.0, 0.1, 0.5)
         upper_wall5.reparentTo(render)
-        upper_wall5.flattenLight()
+        upper_wall5.flattenStrong()
 
         #22 - 27 are more parts of the angled launch wall
         lower_wall1 = table_egg.find("**/Cube.022")
         lower_wall1_geom = self.add_innard_cube_to_physics(
             lower_wall1, 1.0, 0.1, 0.5)
         lower_wall1.reparentTo(render)
-        lower_wall1.flattenLight()
+        lower_wall1.flattenStrong()
 
         upper_wall6 = table_egg.find("**/Cube.023")
         upper_wall6_geom = self.add_innard_cube_to_physics(
             upper_wall6, 1.0, 0.1, 0.5)
         upper_wall6.reparentTo(render)
-        upper_wall6.flattenLight()
+        upper_wall6.flattenStrong()
 
         lower_wall2 = table_egg.find("**/Cube.024")
         lower_wall2_geom = self.add_innard_cube_to_physics(
             lower_wall2, 1.0, 0.1, 0.5)
         lower_wall2.reparentTo(render)
-        lower_wall2.flattenLight()
+        lower_wall2.flattenStrong()
 
         upper_wall7 = table_egg.find("**/Cube.025")
         upper_wall7_geom = self.add_innard_cube_to_physics(
             upper_wall7, 1.0, 0.1, 0.5)
         upper_wall7.reparentTo(render)
-        upper_wall7.flattenLight()
+        upper_wall7.flattenStrong()
 
         lower_wall3 = table_egg.find("**/Cube.026")
         lower_wall3_geom = self.add_innard_cube_to_physics(
             lower_wall3, 1.0, 0.1, 0.5)
         lower_wall3.reparentTo(render)
-        lower_wall3.flattenLight()
+        lower_wall3.flattenStrong()
 
         upper_wall8 = table_egg.find("**/Cube.027")
         upper_wall8_geom = self.add_innard_cube_to_physics(
             upper_wall8, 1.0, 0.1, 0.5)
         upper_wall8.reparentTo(render)
-        upper_wall8.flattenLight()
+        upper_wall8.flattenStrong()
 
 
         # lower_wall4 = table_egg.find("**/Cube.012")
         # lower_wall4_geom = self.add_innard_cube_to_physics(
         #     lower_wall4, 1.0, 0.1, 0.5)
         # lower_wall4.reparentTo(render)
-        # lower_wall4.flattenLight()
+        # lower_wall4.flattenStrong()
 
         lower_wall6 = table_egg.find("**/Cylinder.012")
         lower_wall6.reparentTo(render)
-        lower_wall6.flattenLight()
+        lower_wall6.flattenStrong()
         #need to add this to physics
         upper_wall_triangle = self.add_wall_to_physics(
             1.0, 0.01, 0.5, -0.0, -2.7, 0.25)
@@ -457,19 +460,19 @@ class Table():
         wall3 = self.launch_wall_helper(wall3, -15, 0.65, 0.05, 0.5)
 
         upper_np.reparentTo(render)
-        upper_np.flattenLight()
+        upper_np.flattenStrong()
         lower_np.reparentTo(render)
-        lower_np.flattenLight()
+        lower_np.flattenStrong()
 
     def launch_wall_helper(self, geom, rotation, dimx, dimy, dimz):
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(rotation, 0.0, 0.0)
         quat.setHpr(v)
         geom.setQuaternion(quat)
-        box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
-        box_wall1.setPos(geom.getPosition())
-        box_wall1.setQuat(geom.getQuaternion())
-        box_wall1.reparentTo(render)
+        # box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
+        # box_wall1.setPos(geom.getPosition())
+        # box_wall1.setQuat(geom.getQuaternion())
+        # box_wall1.reparentTo(render)
         return geom
 
     def import_flippers(self, table_egg):
@@ -479,11 +482,11 @@ class Table():
         self.pivot_right.setPos(4.29, 0.56, .09)
         self.flipper_body_right = self.add_flipper_to_physics(self.flipper, 1)
 
-        flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
-        flip_wire.setPos(self.flipper_body_right.getPosition())
-        flip_wire.setHpr(
-            Quat(self.flipper_body_right.getQuaternion()).getHpr())
-        flip_wire.wrtReparentTo(self.pivot_right)
+        # flip_wire = wireGeom().generate('box', extents=((.25, .720, .338)))
+        # flip_wire.setPos(self.flipper_body_right.getPosition())
+        # flip_wire.setHpr(
+        #     Quat(self.flipper_body_right.getQuaternion()).getHpr())
+        # flip_wire.wrtReparentTo(self.pivot_right)
 
         self.flipper.wrtReparentTo(self.pivot_right)
 
@@ -493,10 +496,10 @@ class Table():
         self.pivot_left.setPos(4.29, -1.06, .09) #was -1.0
         self.flipper_body_left = self.add_flipper_to_physics(self.flipper2, 2)
 
-        flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
-        flip_wire2.setPos(self.flipper_body_left.getPosition())
-        flip_wire2.setHpr(Quat(self.flipper_body_left.getQuaternion()).getHpr())
-        flip_wire2.wrtReparentTo(self.pivot_left)
+        # flip_wire2 = wireGeom().generate('box', extents=((.25, .720, .338)))
+        # flip_wire2.setPos(self.flipper_body_left.getPosition())
+        # flip_wire2.setHpr(Quat(self.flipper_body_left.getQuaternion()).getHpr())
+        # flip_wire2.wrtReparentTo(self.pivot_left)
         self.flipper2.wrtReparentTo(self.pivot_left)
 
     def import_ramp(self, table_egg):
@@ -606,7 +609,7 @@ class Table():
     def close_launcher(self):
         if self.not_first_time == False:
             # self.door.reparentTo(render)
-            # self.door.flattenLight()
+            # self.door.flattenStrong()
             self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
             self.not_first_time = True
         else:
@@ -620,13 +623,13 @@ class Table():
         self.door = self.door_holder
 
     def import_ball(self, ball_egg):
-        print "\t import ball egg"
+        # print "\t import ball egg"
         sphere = ball_egg.find("**/Sphere")
         sphere.reparentTo(render)
         return sphere
 
     def setup_ball_physics(self, radius, mass):
-        print "\t \t setup ball physics"
+        # print "\t \t setup ball physics"
         ball_mass = OdeMass()
         ball_mass.setSphere(25, 0.1)
         self.ball_body = OdeBody(self.world)
@@ -686,7 +689,6 @@ class Table():
             self.close_launcher()
 
         if self.button_enabled:
-            import RPi.GPIO as GPIO
             if GPIO.input(21) == False:
                 messenger.send("left_down")
             else :
@@ -714,7 +716,10 @@ class Table():
             self.force_applied_to_ball_right = 0.1;
 
         self.contactgroup.empty()  # Clear the contact joints
-        return task.again
+        if self.button_enabled:
+            return task.cont
+        else:
+            return task.again
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
@@ -733,13 +738,13 @@ class Table():
             #the ball must be y less than 0.6 and x greater than 4 
             if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] < 0.6:
                 self.ball_body.setForce(-self.force_applied_to_ball_right,0,0)
-                print self.force_applied_to_ball_right
+                # print self.force_applied_to_ball_right
 
         if flipper == 1 and self.left_flipper_up:
             #the ball must be y greater than -1.0 and x greater than 4 
             if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] > -1.0:
                 self.ball_body.setForce(-self.force_applied_to_ball_left,0,0)
-                print self.force_applied_to_ball_left
+                # print self.force_applied_to_ball_left
 
     def start_ball_sink_task(self):
         if  self.ball.getZ()  >= .25:

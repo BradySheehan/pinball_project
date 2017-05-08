@@ -5,23 +5,33 @@ from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
 import os
-from table import Table
-from scoreboard import Scoreboard
-from landing_screen import LandingScreen
+# from table import Table
+# from scoreboard import Scoreboard
+# from landing_screen import LandingScreen
 
 
 class Game():
 
-    def __init__(self):
+    def __init__(self, button_enabled):
+        from table import Table
+        from scoreboard import Scoreboard
+        from landing_screen import LandingScreen
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = False
+        self.button_enabled = button_enabled
         self.landing_screen = LandingScreen(self.button_enabled)
         self.table = Table(self.button_enabled)
+        if self.button_enabled:
+            from RPi import GPIO
+            global GPIO
+        from panda3d.core import WindowProperties
+        wp = WindowProperties() 
+        wp.setFullscreen(True) 
+        base.win.requestProperties(wp)
 
     def start(self):
         self.not_first_time = False
@@ -109,7 +119,7 @@ class Game():
                 base.accept('d-up', self.table.stop_right_flipper)
 
     def start_button_handler(self):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) #right button
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) #left button
@@ -123,7 +133,7 @@ class Game():
             'build_launch_force')
 
     def launch_ball(self):
-        print 'gravity task is started'
+        # print 'gravity task is started'
         self.start_gravity_task()
         taskMgr.doMethodLater(
             0,
@@ -139,7 +149,10 @@ class Game():
             'bump_ball_task')
 
     def start_gravity_task(self):
-        taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
+        if self.button_enabled:
+            taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
+        else:
+            taskMgr.doMethodLater(0, self.table.gravity_task, 'gravity_task')
 
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')
@@ -153,11 +166,12 @@ class Game():
         if self.table.can_launch:
             if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
                 self.table.can_launch = False
-                print 'here'
-                print 'gravity task is removed'
+                # print 'here'
+                # print 'gravity task is removed'
                 self.remove_gravity_task()
                 self.allow_launch()
 
+        #below is a check for if the ball hits the back wall of the table
         if (
             (
                 geom1 and geom1 == self.table.wall_south) and (
@@ -274,7 +288,7 @@ class Game():
 
     #button down task
     def start_button_launch(self, task):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_build_force")
             taskMgr.remove('start_button_launch')
@@ -290,13 +304,13 @@ class Game():
         return task.cont
 
     def start_bump_ball_task(self, task):
-        print "start trigger miss task"
+        # print "start trigger miss task"
         self.table.space1.setCollisionEvent("bump_event")
-        print self.table.space1.getCollisionEvent()
+        # print self.table.space1.getCollisionEvent()
         base.accept("bump_event", self.bump_ball_event)
 
     def listen_for_enter(self, task):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_enter")
             taskMgr.remove('listen_for_enter')
@@ -306,7 +320,7 @@ class Game():
         #this task is meant to work with the landing_screen
         #it is how we communicate between the landing screen and the game class
         if self.button_enabled:
-            import RPi.GPIO as GPIO
+            # import RPi.GPIO as GPIO
             if GPIO.input(21) == False:
                 #left down decrement
                 self.landing_screen.left_down_decrement()
@@ -317,13 +331,13 @@ class Game():
                 self.landing_screen.enter_username()
 
         if self.landing_screen.finished_entering:
-            print "removing task for landing screen"
+            # print "removing task for landing screen"
             taskMgr.remove('listen_for_input')
             self.finish_start()
         return task.cont
 
     def lose_ball(self):
-        print "lost ball"
+        # print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             #display lost game until someone hits launch button,
