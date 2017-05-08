@@ -43,6 +43,7 @@ class Game():
     def finish_start(self):
         #this function will do everything that needs to happen after the user picks their username
         self.landing_screen.remove_display()
+        self.landing_screen.display_high_scores()
         self.scoreboard = Scoreboard(
             self.score, self.max_balls, self.balls_used, self.button_enabled, self.landing_screen.username)
         self.enable_buttons(self.button_enabled)
@@ -54,6 +55,7 @@ class Game():
     def restart(self):
         self.reset_score()
         self.scoreboard.text_object.destroy()
+        self.landing_screen.high_score_text.destroy()
         self.landing_screen.display()
         if self.button_enabled:
             self.start_button_handler()

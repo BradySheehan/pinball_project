@@ -162,6 +162,31 @@ class LandingScreen():
                     if item != '' and item != '\n':
                         file.write("%s\n" % item)
 
+    def display_high_scores(self):
+        with open(self.file_name,'r+') as f:
+            data = f.readlines()
+            #now we want to loop over the top 5 scores and add them to an
+            #object we can print to the screen
+        text = 'Username\tScore\n\n'
+        for i, d in enumerate(data):
+            if i > 5:
+                break
+            else:
+                item = d.strip().split()
+                text = text + item[0] + "\t" + item[1] + "\n"
+
+        if self.button_enabled:
+            position = (0,0,0)
+        else:
+            position = (1,0.9)
+        self.high_score_text = OnscreenText(
+            text=text,
+            pos=position,
+            scale=0.065,
+            mayChange=False,
+            fg=(255,255,255,255),
+            bg=(0,0,0,1))
+
 if __name__ == '__main__':
     ls = LandingScreen(False)
     ls.display()
