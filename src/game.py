@@ -31,9 +31,12 @@ class Game():
         wp = WindowProperties()
         wp.setFullscreen(False)
         base.win.requestProperties(wp)
-        self.jump_sound = loader.loadMusic("audio/jump.mp3")
+        self.jump_sound = loader.loadMusic("audio/jump.wav")
         self.intro_song = loader.loadMusic("audio/intro_song1.wav")
-        self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.mp3")
+        self.power_up_ray = loader.loadMusic("audio/Power_Up_Ray.wav")
+        self.electrical_sweep = loader.loadMusic("audio/Electrical_Sweep.wav")
+        self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.wav")
+        self.strong_punch = loader.loadMusic("audio/Strong_Punch.wav")
 
     def start(self):
         self.not_first_time = False
@@ -132,6 +135,7 @@ class Game():
         # pass
 
     def build_launch_force(self):
+        self.power_up_ray.play()
         taskMgr.doMethodLater(
             0,
             self.table.build_launch_force_task,
@@ -139,6 +143,7 @@ class Game():
 
     def launch_ball(self):
         # print 'gravity task is started'
+        self.strong_punch.play()
         self.start_gravity_task()
         taskMgr.doMethodLater(
             0,

@@ -50,6 +50,7 @@ class Table():
         #force applied on ball launch
         self.launch_force = 0.0
         self.can_launch = True
+        self.metroid_door = loader.loadMusic("audio/Metroid_Door.wav")
 
     def move_left_flipper(self):
         self.left_flipper_up = True
@@ -607,6 +608,7 @@ class Table():
         # boxNodepath2.reparentTo(render)
 
     def close_launcher(self):
+        self.metroid_door.play()
         if self.not_first_time == False:
             self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
             self.not_first_time = True
