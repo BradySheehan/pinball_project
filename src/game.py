@@ -14,7 +14,6 @@ class Game():
 
     def __init__(self, button_enabled):
         from table import Table
-        from scoreboard import Scoreboard
         from landing_screen import LandingScreen
         base.disableMouse()
         base.setFrameRateMeter(True)
@@ -29,8 +28,8 @@ class Game():
             from RPi import GPIO
             global GPIO
         from panda3d.core import WindowProperties
-        wp = WindowProperties() 
-        wp.setFullscreen(True) 
+        wp = WindowProperties()
+        wp.setFullscreen(True)
         base.win.requestProperties(wp)
 
     def start(self):
@@ -51,6 +50,7 @@ class Game():
         #landing screen is finished. Make sure this works
         #additionally, we want the scoreboard to show the username of the current player
     def finish_start(self):
+        from scoreboard import Scoreboard
         #this function will do everything that needs to happen after the user picks their username
         self.landing_screen.remove_display()
         self.landing_screen.display_high_scores()
@@ -97,8 +97,8 @@ class Game():
                 self.start_button_launch,
                 'start_button_launch')
         else:
-        base.acceptOnce('space', self.build_launch_force)
-        base.acceptOnce('space-up', self.launch_ball)
+            base.acceptOnce('space', self.build_launch_force)
+            base.acceptOnce('space-up', self.launch_ball)
 
     def reset_score(self):
         self.balls_used = 0
