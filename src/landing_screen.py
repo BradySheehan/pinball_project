@@ -122,26 +122,26 @@ class LandingScreen():
         updated_score = False
         found_username = False
         with open(self.file_name,'r+') as f:
-            print f
+            # print f
             self.data = f.readlines()
-            print self.data
+            # print self.data
         for i, d in enumerate(self.data):
             dsplit = d.split()
             if len(dsplit) > 0:
                 if dsplit[0] == username:
                     found_username = True
-                    print "found username"
-                    print dsplit[0]
-                    print str(score)
-                    print int(dsplit[1])
+                    # print "found username"
+                    # print dsplit[0]
+                    # print str(score)
+                    # print int(dsplit[1])
                     if int(dsplit[1]) < int(score):
                         #new entry is 
-                        print "updated = true"
+                        # print "updated = true"
                         updated_score = True
                         self.data[i] = username + ' ' + str(score)
 
         if found_username is False:
-            print "did not find username"
+            # print "did not find username"
             #add data to end of data list
             self.data.append(username + ' ' + str(score))
             self.data = sorted(self.data, key = lambda x: int(x.split()[1]), reverse=True)
@@ -153,7 +153,7 @@ class LandingScreen():
                         file.write("%s \n" % item)
 
         if updated_score:
-            print "updated score"
+            # print "updated score"
             self.data = sorted(self.data, key = lambda x: int(x.split()[1]), reverse=True)
             #now write the data back out to the list
             with open(self.file_name, 'w') as file:

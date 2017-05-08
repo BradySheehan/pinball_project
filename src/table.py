@@ -67,12 +67,12 @@ class Table():
     #     self.ignoreAll()
 
     def setup_camera(self):
-        print "setup camera"
+        # print "setup camera"
         base.camera.setPos(10, 0, 15)
         base.camera.lookAt(0, 0, 0)
 
     def setup_light(self):
-        print "setup light"
+        # print "setup light"
         # set light in panda3d from blender
         ambientLight = AmbientLight('ambientLight')
         ambientLight.setColor(Vec4(0.0, 0.0, 0.0, 1))
@@ -91,7 +91,7 @@ class Table():
 
 
     def setup_ode_world_params(self):
-        print "setup ode world params"
+        # print "setup ode world params"
         self.world = OdeWorld()
         # gravity needs to be adjusted (to simulate table being tilted)
         # self.world.setGravity(4.5, 0, -10)
@@ -137,7 +137,7 @@ class Table():
         self.space1.setAutoCollideJointGroup(self.contactgroup)
 
     def load_models(self):
-        print "load models"
+        # print "load models"
         # self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.table_egg = loader.loadModel(
             "models/table_mods.egg")
@@ -193,7 +193,7 @@ class Table():
 
 
     def setup_table_physics(self):
-        print "\t \t setup table physics"
+        # print "\t \t setup table physics"
         self.ground_plane = self.add_plane_to_physics(0, 0, 1, 0)
         self.space1.setSurfaceType(self.ground_plane,0)
         self.wall_west = self.add_wall_to_physics(10, 0.1, 2.5, 0, -3, 1)
@@ -204,7 +204,7 @@ class Table():
             6.5, 0.2, 0.5, 1.75, 2.6, 0.25)
 
     def import_table(self, table_egg):
-        print "\t import table egg"
+        # print "\t import table egg"
         plane1 = table_egg.find("**/Plane.001")
         plane1.reparentTo(render)
         plane1.flattenLight()
@@ -623,13 +623,13 @@ class Table():
         self.door = self.door_holder
 
     def import_ball(self, ball_egg):
-        print "\t import ball egg"
+        # print "\t import ball egg"
         sphere = ball_egg.find("**/Sphere")
         sphere.reparentTo(render)
         return sphere
 
     def setup_ball_physics(self, radius, mass):
-        print "\t \t setup ball physics"
+        # print "\t \t setup ball physics"
         ball_mass = OdeMass()
         ball_mass.setSphere(25, 0.1)
         self.ball_body = OdeBody(self.world)
@@ -738,13 +738,13 @@ class Table():
             #the ball must be y less than 0.6 and x greater than 4 
             if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] < 0.6:
                 self.ball_body.setForce(-self.force_applied_to_ball_right,0,0)
-                print self.force_applied_to_ball_right
+                # print self.force_applied_to_ball_right
 
         if flipper == 1 and self.left_flipper_up:
             #the ball must be y greater than -1.0 and x greater than 4 
             if self.ball_body.getPosition()[0] > 4 and self.ball_body.getPosition()[1] > -1.0:
                 self.ball_body.setForce(-self.force_applied_to_ball_left,0,0)
-                print self.force_applied_to_ball_left
+                # print self.force_applied_to_ball_left
 
     def start_ball_sink_task(self):
         if  self.ball.getZ()  >= .25:

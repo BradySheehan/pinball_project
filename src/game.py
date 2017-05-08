@@ -111,7 +111,7 @@ class Game():
                 base.accept('d-up', self.table.stop_right_flipper)
 
     def start_button_handler(self):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) #right button
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) #left button
@@ -125,7 +125,7 @@ class Game():
             'build_launch_force')
 
     def launch_ball(self):
-        print 'gravity task is started'
+        # print 'gravity task is started'
         self.start_gravity_task()
         taskMgr.doMethodLater(
             0,
@@ -158,8 +158,8 @@ class Game():
         if self.table.can_launch:
             if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
                 self.table.can_launch = False
-                print 'here'
-                print 'gravity task is removed'
+                # print 'here'
+                # print 'gravity task is removed'
                 self.remove_gravity_task()
                 self.allow_launch()
 
@@ -285,9 +285,9 @@ class Game():
         return task.cont
 
     def start_bump_ball_task(self, task):
-        print "start trigger miss task"
+        # print "start trigger miss task"
         self.table.space1.setCollisionEvent("bump_event")
-        print self.table.space1.getCollisionEvent()
+        # print self.table.space1.getCollisionEvent()
         base.accept("bump_event", self.bump_ball_event)
 
     def listen_for_enter(self, task):
@@ -312,13 +312,13 @@ class Game():
                 self.landing_screen.enter_username()
 
         if self.landing_screen.finished_entering:
-            print "removing task for landing screen"
+            # print "removing task for landing screen"
             taskMgr.remove('listen_for_input')
             self.finish_start()
         return task.cont
 
     def lose_ball(self):
-        print "lost ball"
+        # print "lost ball"
         self.balls_used = self.balls_used + 1
         if self.balls_used >= self.max_balls:
             #display lost game until someone hits launch button,
