@@ -113,34 +113,43 @@ class LandingScreen():
                 self.update_display()
 
     def write_final_score(self, score):
-        with open(self.file_name, 'w+') as file:
-            self.update_score(self.username, score)
+        self.update_score(self.username, score)
 
     def update_score(self, username, score):
         #maintain ordering of the list so that the highest
         #score is at the top of the file
         # self.file.close()
-        updated = False
+        updated_score = False
+        found_username = False
         with open(self.file_name,'r+') as f:
             print f
-            data = f.readlines()
-        if len(data) == 0:
-            with open(self.file_name, 'w+') as file:
-                    file.write(username + ' ' + str(score))
-        else:
-            for i, d in enumerate(data):
-                if d[0:5] == username:
-                    if d[5:len(d)] < str(score):
-                        #new entry is 
-                        updated = True
-                        data[i] = username + ' ' + str(score)
-            #now sort the data
-            if updated:
-                data = sorted(data, key = lambda x: int(x.split()[1]), reverse=True)
-                #now write the data back out to the list
-                with open(self.file_name, 'w+') as file:
-                    for item in data:
-                        file.write("%s\n" % item)
+            self.data = f.readlines()
+            print self.data
+        for i, d in enumerate(self.data):
+            if d[0:5] == username:
+                found_username = True
+                if d[5:len(d)] < str(score):
+                    #new entry is 
+                    updated = True
+                    self.data[i] = username + ' ' + str(score)
+
+        if found_username is False:
+            print "did not find username"
+            #add data to end of data list
+            self.data.append(username + ' ' + str(score))
+            self.data = sorted(self.data, key = lambda x: int(x.split()[1]), reverse=True)
+            #then sort the data and write tthe file
+            with open(self.file_name, 'w') as file:
+                for item in self.data:
+                    file.write("%s \n" % item)
+
+        if updated_score:
+            print "updated score"
+            self.data = sorted(self.data, key = lambda x: int(x.split()[1]), reverse=True)
+            #now write the data back out to the list
+            with open(self.file_name, 'w') as file:
+                for item in self.data:
+                    file.write("%s\n" % item)
 
 if __name__ == '__main__':
     ls = LandingScreen(False)

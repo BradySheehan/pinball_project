@@ -407,7 +407,16 @@ class Table():
         lower_wall6 = table_egg.find("**/Cylinder.012")
         lower_wall6.reparentTo(render)
         lower_wall6.flattenLight()
-        #BS need to add this to physics
+        #need to add this to physics
+        upper_wall_triangle = self.add_wall_to_physics(
+            1.0, 0.01, 0.5, -0.0, -2.7, 0.25)
+        upper_wall_triangle = self.launch_wall_helper(
+            upper_wall_triangle, 35, 1, 0.1, 0.5)
+
+        lower_wall_triangle = self.add_wall_to_physics(
+            0.9, 0.01, 0.5, 0.7, -2.71, 0.25)
+        lower_wall_triangle = self.launch_wall_helper(
+            lower_wall_triangle, -35, 0.9, 0.1, 0.5)
 
         upper_np = table_egg.find("**/Cylinder.007")
         lower_np = table_egg.find("**/Cylinder.008")
@@ -437,10 +446,10 @@ class Table():
         v = VBase3(rotation, 0.0, 0.0)
         quat.setHpr(v)
         geom.setQuaternion(quat)
-        # box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
-        # box_wall1.setPos(geom.getPosition())
-        # box_wall1.setQuat(geom.getQuaternion())
-        # box_wall1.reparentTo(render)
+        box_wall1 = wireGeom().generate('box', extents=(dimx, dimy, dimz))
+        box_wall1.setPos(geom.getPosition())
+        box_wall1.setQuat(geom.getQuaternion())
+        box_wall1.reparentTo(render)
         return geom
 
     def import_flippers(self, table_egg):
