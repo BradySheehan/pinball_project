@@ -14,6 +14,9 @@ class Table():
     # class that sets up the graphics and physics
 
     def __init__(self, button_enabled):
+        if button_enabled:
+            from RPi import GPIO
+            global GPIO
         self.quat_right = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(27.0, 0.0, 0.0)
         self.quat_right.setHpr(v)
@@ -686,7 +689,6 @@ class Table():
             self.close_launcher()
 
         if self.button_enabled:
-            import RPi.GPIO as GPIO
             if GPIO.input(21) == False:
                 messenger.send("left_down")
             else :

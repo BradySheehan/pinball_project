@@ -19,9 +19,12 @@ class Game():
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = True
+        self.button_enabled = False
         self.landing_screen = LandingScreen(self.button_enabled)
         self.table = Table(self.button_enabled)
+        if self.button_enabled:
+            from RPi import GPIO
+            global GPIO
 
     def start(self):
         self.not_first_time = False
@@ -138,7 +141,10 @@ class Game():
             'bump_ball_task')
 
     def start_gravity_task(self):
-        taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
+        if self.button_enabled:
+            taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
+        else:
+            taskMgr.doMethodLater(0, self.table.gravity_task, 'gravity_task')
 
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')
@@ -272,7 +278,7 @@ class Game():
             return 1
 
     def start_button_launch(self, task):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_launch")
             taskMgr.remove('start_button_launch')
@@ -285,7 +291,7 @@ class Game():
         base.accept("bump_event", self.bump_ball_event)
 
     def listen_for_enter(self, task):
-        import RPi.GPIO as GPIO
+        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_enter")
             taskMgr.remove('listen_for_enter')
@@ -295,7 +301,7 @@ class Game():
         #this task is meant to work with the landing_screen
         #it is how we communicate between the landing screen and the game class
         if self.button_enabled:
-            import RPi.GPIO as GPIO
+            # import RPi.GPIO as GPIO
             if GPIO.input(21) == False:
                 #left down decrement
                 self.landing_screen.left_down_decrement()
