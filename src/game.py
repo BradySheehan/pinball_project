@@ -125,7 +125,6 @@ class Game():
                 base.accept('d-up', self.table.stop_right_flipper)
 
     def start_button_handler(self):
-        # import RPi.GPIO as GPIO
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) #right button
         GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) #left button
@@ -311,7 +310,6 @@ class Game():
 
     #button up task
     def wait_for_plunger_release(self,task):
-        # import RPi.GPIO as GPIO
         if GPIO.input(25) == True:
             messenger.send("button_launch")
             taskMgr.remove('wait_for_plunger_release')
@@ -334,7 +332,6 @@ class Game():
         #this task is meant to work with the landing_screen
         #it is how we communicate between the landing screen and the game class
         if self.button_enabled:
-            # import RPi.GPIO as GPIO
             if GPIO.input(21) == False:
                 #left down decrement
                 self.landing_screen.left_down_decrement()
