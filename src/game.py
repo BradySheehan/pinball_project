@@ -73,6 +73,7 @@ class Game():
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.not_first_time:
+            self.table.can_launch = False
             self.table.open_launcher()
         if self.button_enabled:
             base.acceptOnce("button_launch", self.launch_ball)
@@ -81,9 +82,12 @@ class Game():
                 self.start_button_launch,
                 'start_button_launch')
         else:
-            base.acceptOnce('space', self.build_launch_force)
-            base.acceptOnce('space-up', self.launch_ball)
+            self.allow_launch()
         self.not_first_time = True
+
+    def allow_launch(self):
+        base.acceptOnce('space', self.build_launch_force)
+        base.acceptOnce('space-up', self.launch_ball)
 
     def reset_score(self):
         self.balls_used = 0
@@ -118,6 +122,7 @@ class Game():
             'build_launch_force')
 
     def launch_ball(self):
+        print 'gravity task is started'
         self.start_gravity_task()
         taskMgr.doMethodLater(
             0,
@@ -144,6 +149,14 @@ class Game():
         body1 = entry.getBody1()
         body2 = entry.getBody2()
         self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
+        if self.table.can_launch:
+            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
+                self.table.can_launch = False
+                print 'here'
+                print 'gravity task is removed'
+                self.remove_gravity_task()
+                self.allow_launch()
+
         if (
             (
                 geom1 and geom1 == self.table.wall_south) and (

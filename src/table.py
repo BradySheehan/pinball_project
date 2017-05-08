@@ -46,6 +46,7 @@ class Table():
         self.ball_not_sinking = True
         #force applied on ball launch
         self.launch_force = 0.0
+        self.can_launch = True
 
     def move_left_flipper(self):
         self.left_flipper_up = True
@@ -423,6 +424,9 @@ class Table():
         self.import_launch_wall_bumper(upper_np, lower_np)
 
         self.plunger = lower_np = table_egg.find("**/Cube.012")
+        # the ode geom should stay static, just there to stop the ball from falling
+        self.plunger_geom = self.add_innard_cube_to_physics(
+            self.plunger, .25, 0.25, 0.25)
         self.plunger.reparentTo(render)
 
     def import_launch_wall_bumper(self, upper_np, lower_np):
@@ -622,6 +626,7 @@ class Table():
         # Step the simulation and set the new positions
         self.world.quickStep(globalClock.getDt())
         taskMgr.remove('build_launch_force')
+        taskMgr.remove('release_plunger')
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
@@ -697,7 +702,8 @@ class Table():
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
-        self.launch_force = 0.0;
+        self.launch_force = 0.0
+        self.can_launch = True
         # self.close_launcher()
 
     def build_launch_force_task(self, task):
