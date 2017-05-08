@@ -1,1 +1,3 @@
-sudo python /home/pi/Desktop/pinball_project-dev/src/pinball.py
+#!/bin/bash
+
+sudo bin/python /home/pi/Desktop/pinball-project/src/main.py
