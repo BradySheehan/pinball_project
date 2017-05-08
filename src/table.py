@@ -427,10 +427,10 @@ class Table():
 
     def import_launch_wall_bumper(self, upper_np, lower_np):
         wall1 = self.add_wall_to_physics(1.1, 0.05, 0.5, -1, 2.25, 0.25)
-        self.launch_wall1 = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
+        self.upper_launch_wall = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
 
         wall2 = self.add_wall_to_physics(0.75, 0.05, 0.5, 0.35, 2.15, 0.25)
-        self.launch_wall2= self.launch_wall_helper(wall2, 70, 0.75, 0.05, 0.5)
+        self.lower_launch_wall= self.launch_wall_helper(wall2, 70, 0.75, 0.05, 0.5)
 
 
         wall3 = self.add_wall_to_physics(0.65, 0.05, 0.5, -0.1, 1.9, 0.25)

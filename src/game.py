@@ -173,22 +173,28 @@ class Game():
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
             os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
             self.score = self.score + 100
             os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_wall_triangle):
             self.score = self.score + 100
             os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.launch_wall1):
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_launch_wall):
             self.score = self.score + 100
             os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.launch_wall2):
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_launch_wall):
             self.score = self.score + 100
             os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
             (

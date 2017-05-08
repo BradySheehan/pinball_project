@@ -131,7 +131,9 @@ class LandingScreen():
             if dsplit[0] == username:
                 found_username = True
                 print "found username"
-                if dsplit[1]< str(score):
+                print dsplit
+                print str(score)
+                if int(dsplit[1]) < int(score):
                     #new entry is 
                     updated = True
                     self.data[i] = username + ' ' + str(score)
