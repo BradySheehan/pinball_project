@@ -173,7 +173,8 @@ class LandingScreen():
                 break
             else:
                 item = d.strip().split()
-                text = text + item[0] + "\t" + item[1] + "\n"
+                if len(item) > 0:
+                    text = text + item[0] + "\t" + item[1] + "\n"
 
         if self.button_enabled:
             position = (0,1.65,0)
