@@ -19,7 +19,7 @@ class Game():
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = False
+        self.button_enabled = True
         self.landing_screen = LandingScreen(self.button_enabled)
         self.table = Table(self.button_enabled)
 
