@@ -608,8 +608,6 @@ class Table():
 
     def close_launcher(self):
         if self.not_first_time == False:
-            # self.door.reparentTo(render)
-            # self.door.flattenStrong()
             self.door_geom = self.add_innard_cube_to_physics(self.door, 1.1, 0.01, 0.5)
             self.not_first_time = True
         else:
@@ -642,17 +640,14 @@ class Table():
 
     def launch_ball_task(self, task):
         print 'button is up'
-        # self.space1.autoCollide()  # Setup the contact joints
-        # Step the simulation and set the new positions
-        # self.world.quickStep(globalClock.getDt())
         taskMgr.remove('build_launch_force')
         taskMgr.remove('release_plunger')
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
-        self.ball_body.setForce(-self.launch_force, -0.0, 0)
-        # self.contactgroup.empty()  # Clear the contact joints
+        self.ball_body.setForce(-self.launch_force, 0.0, 0)
+        self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
     def release_plunger_task(self,task):
@@ -660,7 +655,7 @@ class Table():
         if self.plunger.getX() > 3.923:
             self.plunger.setX(self.plunger.getX() - .25)
             return task.cont
-        elif self.plunger.getX() <= 3.923:
+        else:
             self.plunger.setX(3.923)
             taskMgr.doMethodLater(
             0,
@@ -717,10 +712,7 @@ class Table():
             self.force_applied_to_ball_right = 0.1;
 
         self.contactgroup.empty()  # Clear the contact joints
-        if self.button_enabled:
-            return task.cont
-        else:
-            return task.again
+        return task.cont
 
     def stop_launch_ball_task(self, task):
         taskMgr.remove('launch_ball')
