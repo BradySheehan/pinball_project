@@ -1,12 +1,13 @@
 for_pi = False
 
 if for_pi is False:
+	pass
 #Change resolution 
-	from panda3d.core import loadPrcFileData
+	# from panda3d.core import loadPrcFileData
 
-	loadPrcFileData("", "win-size 1024 768")
-	#make full screen
-	loadPrcFileData("", "fullscreen t")
+	# loadPrcFileData("", "win-size 1024 768")
+	# #make full screen
+	# loadPrcFileData("", "fullscreen t")
 
 from game import Game
 

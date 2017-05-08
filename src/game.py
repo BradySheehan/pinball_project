@@ -5,14 +5,17 @@ from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
 import os
-from table import Table
-from scoreboard import Scoreboard
-from landing_screen import LandingScreen
+# from table import Table
+# from scoreboard import Scoreboard
+# from landing_screen import LandingScreen
 
 
 class Game():
 
     def __init__(self, button_enabled):
+        from table import Table
+        from scoreboard import Scoreboard
+        from landing_screen import LandingScreen
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
@@ -25,6 +28,10 @@ class Game():
         if self.button_enabled:
             from RPi import GPIO
             global GPIO
+        from panda3d.core import WindowProperties
+        wp = WindowProperties() 
+        wp.setFullscreen(True) 
+        base.win.requestProperties(wp)
 
     def start(self):
         self.not_first_time = False
