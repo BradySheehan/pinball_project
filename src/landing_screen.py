@@ -126,9 +126,12 @@ class LandingScreen():
             self.data = f.readlines()
             print self.data
         for i, d in enumerate(self.data):
-            if d[0:5] == username:
+            dsplit = d.split()
+            print dsplit
+            if dsplit[0] == username:
                 found_username = True
-                if d[5:len(d)] < str(score):
+                print "found username"
+                if dsplit[1]< str(score):
                     #new entry is 
                     updated = True
                     self.data[i] = username + ' ' + str(score)
@@ -141,7 +144,9 @@ class LandingScreen():
             #then sort the data and write tthe file
             with open(self.file_name, 'w') as file:
                 for item in self.data:
-                    file.write("%s \n" % item)
+                    item = item.strip()
+                    if item != '' and item != '\n':
+                        file.write("%s \n" % item)
 
         if updated_score:
             print "updated score"
@@ -149,7 +154,8 @@ class LandingScreen():
             #now write the data back out to the list
             with open(self.file_name, 'w') as file:
                 for item in self.data:
-                    file.write("%s\n" % item)
+                    if item != '' and item != '\n':
+                        file.write("%s\n" % item)
 
 if __name__ == '__main__':
     ls = LandingScreen(False)

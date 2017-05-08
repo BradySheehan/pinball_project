@@ -410,12 +410,12 @@ class Table():
         #need to add this to physics
         upper_wall_triangle = self.add_wall_to_physics(
             1.0, 0.01, 0.5, -0.0, -2.7, 0.25)
-        upper_wall_triangle = self.launch_wall_helper(
+        self.upper_wall_triangle = self.launch_wall_helper(
             upper_wall_triangle, 35, 1, 0.1, 0.5)
 
         lower_wall_triangle = self.add_wall_to_physics(
             0.9, 0.01, 0.5, 0.7, -2.71, 0.25)
-        lower_wall_triangle = self.launch_wall_helper(
+        self.lower_wall_triangle = self.launch_wall_helper(
             lower_wall_triangle, -35, 0.9, 0.1, 0.5)
 
         upper_np = table_egg.find("**/Cylinder.007")
@@ -427,10 +427,10 @@ class Table():
 
     def import_launch_wall_bumper(self, upper_np, lower_np):
         wall1 = self.add_wall_to_physics(1.1, 0.05, 0.5, -1, 2.25, 0.25)
-        wall1 = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
+        self.launch_wall1 = self.launch_wall_helper(wall1, -26, 1.1, 0.05, 0.5)
 
         wall2 = self.add_wall_to_physics(0.75, 0.05, 0.5, 0.35, 2.15, 0.25)
-        wall2= self.launch_wall_helper(wall2, 70, 0.75, 0.05, 0.5)
+        self.launch_wall2= self.launch_wall_helper(wall2, 70, 0.75, 0.05, 0.5)
 
 
         wall3 = self.add_wall_to_physics(0.65, 0.05, 0.5, -0.1, 1.9, 0.25)

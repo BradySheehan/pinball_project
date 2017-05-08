@@ -152,21 +152,43 @@ class Game():
                             body2 and body2 == self.table.ball_body))):
             self.remove_gravity_task()
             self.lose_ball()
+
         if self.bumped_triangle_bumper(geom1, geom2, body1, body2):
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
             self.score = self.score + 10
             self.scoreboard.updateDisplay(self.score, self.balls_used)
+
         if self.bumped_round_bumper(geom1, geom2, body1, body2):
             os.system('sudo mpg123 -q audio/jump.mp3 &')
             self.score = self.score + 50
             self.scoreboard.updateDisplay(self.score, self.balls_used)
+
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
             self.score = self.score + 200
             self.scoreboard.updateDisplay(self.score, self.balls_used)
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
             if self.table.ball.getZ() > .48 :
                 self.table.ball_not_sinking = False
+
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
 
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
+            self.score = self.score + 100
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
+
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_wall_triangle):
+            self.score = self.score + 100
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
+
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.launch_wall1):
+            self.score = self.score + 100
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
+
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.launch_wall2):
+            self.score = self.score + 100
+            os.system('sudo mpg123 -q audio/jump.mp3 &')
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
             (
