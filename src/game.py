@@ -154,10 +154,7 @@ class Game():
             'bump_ball_task')
 
     def start_gravity_task(self):
-        if self.button_enabled:
-            taskMgr.doMethodLater(0.01, self.table.gravity_task, 'gravity_task')
-        else:
-            taskMgr.doMethodLater(0, self.table.gravity_task, 'gravity_task')
+        taskMgr.doMethodLater(0, self.table.gravity_task, 'gravity_task')
 
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')
@@ -301,7 +298,6 @@ class Game():
 
     #button down task
     def start_button_launch(self, task):
-        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_build_force")
             taskMgr.doMethodLater(0, self.wait_for_plunger_release, 'wait_for_plunger_release')
@@ -310,6 +306,7 @@ class Game():
 
     #button up task
     def wait_for_plunger_release(self,task):
+        #checks for when the launch button is released
         if GPIO.input(25) == True:
             messenger.send("button_launch")
             taskMgr.remove('wait_for_plunger_release')
@@ -357,7 +354,7 @@ class Game():
             self.scoreboard.displayLostGame(self.score)
             self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
-                base.acceptOnce('button_enter', self.restart())
+                base.acceptOnce('button_enter', self.restart)
                 taskMgr.doMethodLater(
                     0,
                     self.listen_for_enter,
