@@ -163,6 +163,7 @@ class Game():
                 self.remove_gravity_task()
                 self.allow_launch()
 
+        #below is a check for if the ball hits the back wall of the table
         if (
             (
                 geom1 and geom1 == self.table.wall_south) and (
