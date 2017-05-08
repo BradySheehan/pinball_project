@@ -75,17 +75,18 @@ class Game():
         if self.not_first_time:
             self.table.can_launch = False
             self.table.open_launcher()
+        self.allow_launch()
+        self.not_first_time = True
+
+    def allow_launch(self):
         if self.button_enabled:
+            base.acceptOnce("button_build_force", self.build_launch_force)
             base.acceptOnce("button_launch", self.launch_ball)
             taskMgr.doMethodLater(
                 0,
                 self.start_button_launch,
                 'start_button_launch')
         else:
-            self.allow_launch()
-        self.not_first_time = True
-
-    def allow_launch(self):
         base.acceptOnce('space', self.build_launch_force)
         base.acceptOnce('space-up', self.launch_ball)
 
@@ -271,11 +272,21 @@ class Game():
         if two:
             return 1
 
+    #button down task
     def start_button_launch(self, task):
         import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
-            messenger.send("button_launch")
+            messenger.send("button_build_force")
             taskMgr.remove('start_button_launch')
+            taskMgr.doMethodLater(0, self.wait_for_plunger_release, 'wait_for_plunger_release')
+        return task.cont
+
+    #button up task
+    def wait_for_plunger_release(self,task):
+        import RPi.GPIO as GPIO
+        if GPIO.input(25) == True:
+            messenger.send("button_launch")
+            taskMgr.remove('wait_for_plunger_release')
         return task.cont
 
     def start_bump_ball_task(self, task):
