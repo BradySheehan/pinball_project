@@ -12,14 +12,14 @@ from landing_screen import LandingScreen
 
 class Game():
 
-    def __init__(self):
+    def __init__(self, button_enabled):
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
         self.max_balls = 1
         self.balls_used = 0
         self.score = 0
-        self.button_enabled = False
+        self.button_enabled = button_enabled
         self.landing_screen = LandingScreen(self.button_enabled)
         self.table = Table(self.button_enabled)
         if self.button_enabled:
