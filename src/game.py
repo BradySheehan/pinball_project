@@ -29,7 +29,7 @@ class Game():
             global GPIO
         from panda3d.core import WindowProperties
         wp = WindowProperties()
-        wp.setFullscreen(True)
+        wp.setFullscreen(False)
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.mp3")
         self.intro_song = loader.loadMusic("audio/intro_song1.mp3")
@@ -207,7 +207,7 @@ class Game():
             #os.system('sudo mpg123 -q audio/jump.mp3 &')
             if self.table.ball.getZ() > .48 :
                 self.table.ball_not_sinking = False
-
+        # check for ball sink task
         if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
             self.table.ball_not_sinking = False
             #os.system('sudo mpg123 -q audio/jump.mp3 &')
@@ -304,8 +304,8 @@ class Game():
         # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_build_force")
-            taskMgr.remove('start_button_launch')
             taskMgr.doMethodLater(0, self.wait_for_plunger_release, 'wait_for_plunger_release')
+            taskMgr.remove('start_button_launch')
         return task.cont
 
     #button up task

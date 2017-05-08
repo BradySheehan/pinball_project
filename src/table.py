@@ -641,9 +641,10 @@ class Table():
         ball_geom.setBody(self.ball_body)
 
     def launch_ball_task(self, task):
-        self.space1.autoCollide()  # Setup the contact joints
+        print 'button is up'
+        # self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
-        self.world.quickStep(globalClock.getDt())
+        # self.world.quickStep(globalClock.getDt())
         taskMgr.remove('build_launch_force')
         taskMgr.remove('release_plunger')
         self.ball.setPosQuat(
@@ -651,7 +652,7 @@ class Table():
                 self.ball_body.getQuaternion()))
         # self.ball_body.setForce(1.4, 1.1, 0)
         self.ball_body.setForce(-self.launch_force, -0.0, 0)
-        self.contactgroup.empty()  # Clear the contact joints
+        # self.contactgroup.empty()  # Clear the contact joints
         return task.cont
 
     def release_plunger_task(self,task):
