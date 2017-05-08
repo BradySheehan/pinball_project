@@ -127,16 +127,18 @@ class LandingScreen():
             print self.data
         for i, d in enumerate(self.data):
             dsplit = d.split()
-            print dsplit
-            if dsplit[0] == username:
-                found_username = True
-                print "found username"
-                print dsplit
-                print str(score)
-                if int(dsplit[1]) < int(score):
-                    #new entry is 
-                    updated = True
-                    self.data[i] = username + ' ' + str(score)
+            if len(dsplit) > 0:
+                if dsplit[0] == username:
+                    found_username = True
+                    print "found username"
+                    print dsplit[0]
+                    print str(score)
+                    print int(dsplit[1])
+                    if int(dsplit[1]) < int(score):
+                        #new entry is 
+                        print "updated = true"
+                        updated_score = True
+                        self.data[i] = username + ' ' + str(score)
 
         if found_username is False:
             print "did not find username"
@@ -156,6 +158,7 @@ class LandingScreen():
             #now write the data back out to the list
             with open(self.file_name, 'w') as file:
                 for item in self.data:
+                    item = item.strip()
                     if item != '' and item != '\n':
                         file.write("%s\n" % item)
 
