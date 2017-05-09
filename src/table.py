@@ -80,12 +80,12 @@ class Table():
         ambientLightNP = render.attachNewNode(ambientLight)
         render.setLight(ambientLightNP)
         directionalLight = DirectionalLight('directionalLight')
-        directionalLight.setColor(Vec4(1.0, 1.0, 1.0, 1))
+        directionalLight.setColor(Vec4(.85, .85, .85, 1))
         directionalLightNP = render.attachNewNode(directionalLight)
         directionalLightNP.setHpr(180, -20, 0)
         render.setLight(directionalLightNP)
         directionalLight = DirectionalLight('directionalLight')
-        directionalLight.setColor(Vec4(0.0, 1.0, 1.0, 1))
+        directionalLight.setColor(Vec4(.85, .85, .85, 1))
         directionalLightNP = render.attachNewNode(directionalLight)
         directionalLightNP.setHpr(0, -20, 0)
         render.setLight(directionalLightNP)
@@ -319,6 +319,37 @@ class Table():
         self.space1.setSurfaceType(self.wide_round_bumper_geom_left,2)
         wide_round_bumper_left.reparentTo(render)
         wide_round_bumper_left.flattenStrong()
+
+        #tesla coils kinda
+        tesla_tall = table_egg.find("**/Cylinder.022")
+        self.tesla_tall_geom = self.add_innard_cylinder_to_physics(tesla_tall, .2, 1)
+        self.space1.setSurfaceType(self.tesla_tall_geom,2)
+        tesla_tall.reparentTo(render)
+        tesla_tall.flattenStrong()
+
+        tesla_tall_top = table_egg.find("**/Cylinder.023")
+        tesla_tall_top.reparentTo(render)
+        tesla_tall_top.flattenStrong()
+
+        tesla_middle = table_egg.find("**/Cylinder.025")
+        self.tesla_middle_geom = self.add_innard_cylinder_to_physics(tesla_middle, .2, 1)
+        self.space1.setSurfaceType(self.tesla_middle_geom,2)
+        tesla_middle.reparentTo(render)
+        tesla_middle.flattenStrong()
+
+        tesla_tall_middle = table_egg.find("**/Cylinder.024")
+        tesla_tall_middle.reparentTo(render)
+        tesla_tall_middle.flattenStrong()
+
+        tesla_short = table_egg.find("**/Cylinder.026")
+        self.tesla_short_geom = self.add_innard_cylinder_to_physics(tesla_short, .2, 1)
+        self.space1.setSurfaceType(self.tesla_short_geom,2)
+        tesla_short.reparentTo(render)
+        tesla_short.flattenStrong()
+
+        tesla_tall_short = table_egg.find("**/Cylinder.027")
+        tesla_tall_short.reparentTo(render)
+        tesla_tall_short.flattenStrong()
 
         angled_launch_wall = table_egg.find("**/Cube.005")
 
