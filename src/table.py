@@ -151,7 +151,7 @@ class Table():
         # print "load models"
         # self.ball_egg = loader.loadModel("models/table_collide_no_culling.egg")
         self.table_egg = loader.loadModel(
-            "models/table_mods.egg")
+            "models/table_mods_same_materials.egg")
         self.ball = self.import_ball(self.table_egg)
         self.setup_ball_physics(0.1, 0.1)
 

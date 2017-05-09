@@ -168,6 +168,10 @@ class Game():
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')
 
+
+#if we hit an object, don't hit that object again until some time passes
+#or we hit another object
+
     def bump_ball_event(self, entry):
         import time
         curr_time = time.time()
