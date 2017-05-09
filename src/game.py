@@ -5,9 +5,6 @@ from panda3d.core import BitMask32, Vec4, Quat, VBase3
 from panda3d.core import Light, AmbientLight, DirectionalLight
 import sys
 import os
-# from table import Table
-# from scoreboard import Scoreboard
-# from landing_screen import LandingScreen
 
 
 class Game():
@@ -169,15 +166,15 @@ class Game():
     def remove_gravity_task(self):
         taskMgr.remove('gravity_task')
 
-
 #if we hit an object, don't hit that object again until some time passes
 #or we hit another object
 
     def bump_ball_event(self, entry):
-        # import time
-        # curr_time = time.time()
+        import time
+        curr_time = time.time()
         # if curr_time - self.start_time > 0.25:
             # start_time = curr_time
+        # if curr_time - self.prev_time:
         geom1 = entry.getGeom1()
         geom2 = entry.getGeom2()
         body1 = entry.getBody1()
@@ -373,7 +370,6 @@ class Game():
         # self.start_time = time.time()
 
     def listen_for_enter(self, task):
-        # import RPi.GPIO as GPIO
         if GPIO.input(25) == False:
             messenger.send("button_enter")
             taskMgr.remove('listen_for_enter')

@@ -240,7 +240,6 @@ class Table():
         roof_for_launch_wall.reparentTo(render)
         roof_for_launch_wall.flattenStrong()
         self.door = table_egg.find("**/Cube.033")
-        self.door_holder = self.door
 
     def import_innards(self, table_egg):
         flipper_r_wall = table_egg.find("**/Cube.002")
@@ -693,7 +692,6 @@ class Table():
         if self.not_first_time == True:
              self.door_geom.disable()
         self.door.detachNode()
-        self.door = self.door_holder
 
     def import_ball(self, ball_egg):
         # print "\t import ball egg"
