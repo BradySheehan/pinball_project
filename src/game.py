@@ -308,6 +308,7 @@ class Game():
             messenger.send("button_build_force")
             taskMgr.doMethodLater(0, self.wait_for_plunger_release, 'wait_for_plunger_release')
             taskMgr.remove('start_button_launch')
+            return task.done
         return task.cont
 
     #button up task
@@ -316,6 +317,7 @@ class Game():
         if GPIO.input(25) == True:
             messenger.send("button_launch")
             taskMgr.remove('wait_for_plunger_release')
+            return task.done
         return task.cont
 
     def start_bump_ball_task(self, task):
@@ -329,6 +331,7 @@ class Game():
         if GPIO.input(25) == False:
             messenger.send("button_enter")
             taskMgr.remove('listen_for_enter')
+            return task.done
         return task.cont
 
     def listen_for_input(self, task):
@@ -348,6 +351,7 @@ class Game():
             # print "removing task for landing screen"
             taskMgr.remove('listen_for_input')
             self.finish_start()
+            return task.done
         return task.cont
 
     def lose_ball(self):
@@ -367,6 +371,6 @@ class Game():
                     'listen_for_enter')
             else:
                 base.acceptOnce('enter', self.restart)
-            return()
-        self.place_ball()
-        self.scoreboard.updateDisplay(self.score, self.balls_used)
+        else:
+            self.place_ball()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
