@@ -701,8 +701,6 @@ class Table():
         # self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
         # self.world.quickStep(globalClock.getDt())
-        taskMgr.remove('build_launch_force')
-        taskMgr.remove('release_plunger')
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
@@ -722,6 +720,9 @@ class Table():
             0,
             self.launch_ball_task,
             'launch_ball')
+            taskMgr.remove('build_launch_force')
+            taskMgr.remove('release_plunger')
+            return task.done
 
     def gravity_task(self, task):
         # these two lines set up the ball cam for testing
@@ -743,7 +744,7 @@ class Table():
 
         pos = self.ball_body.getPosition()
         if pos[0] < -2.5 and pos[1] < 2:
-            self.close_launcher()
+            messenger.send("close_launcher")
 
         if self.button_enabled:
             if GPIO.input(21) == False:
@@ -754,7 +755,6 @@ class Table():
                 messenger.send("right_down")
             else  :
                 messenger.send("right_up")
-            # pass
 
         if (self.left_flipper_up == False) and (self.h_left > 0):
             self.move_left_flipper_down()
@@ -779,13 +779,14 @@ class Table():
         taskMgr.remove('launch_ball')
         self.launch_force = 0.0
         self.can_launch = True
-        # self.close_launcher()
 
     def build_launch_force_task(self, task):
         if self.launch_force < 3.0:
             self.launch_force += .025;
             self.plunger.setX(self.plunger.getX() + 0.025)
-        return task.cont
+            return task.cont
+        else:
+            return task.done
 
     def apply_force_to_ball(self, flipper):
         if flipper == 0 and self.right_flipper_up:
@@ -816,7 +817,7 @@ class Table():
                 self.enable_pipe_cover,
                 'enable_pipe_cover')
 
-    def enable_pipe_cover(self,task):
+    def enable_pipe_cover(self, task):
         self.pipe_cover_left_geom.enable()
 
 

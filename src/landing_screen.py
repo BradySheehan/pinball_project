@@ -40,7 +40,7 @@ class LandingScreen():
             shadow=(0,0,0,1))
 
     def update_display(self):
-        #loop over the username array and convert each number to the corresponding chracger,
+        #loop over the username array and convert each number to the corresponding chracter,
         #concatenate them, and add them to the onscreen text to be displayed
         self.username = ''
         for x in range(0, 5):
