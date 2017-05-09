@@ -168,7 +168,7 @@ class Game():
         taskMgr.remove('gravity_task')
 
     def bump_ball_event(self, entry):
-        import time
+        # import time
         # curr_time = time.time()
         geom1 = entry.getGeom1()
         geom2 = entry.getGeom2()
