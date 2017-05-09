@@ -80,7 +80,8 @@ class Game():
         self.landing_screen.high_score_text.destroy()
         self.landing_screen.display()
         if self.button_enabled:
-            self.start_button_handler()
+            # self.start_button_handler()
+            pass
         else: #setup accepts for the a, d, and enter keys to work with landing_screen
             base.accept('a', self.landing_screen.left_down_decrement)
             base.accept('d', self.landing_screen.right_down_increment)
