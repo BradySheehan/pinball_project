@@ -91,7 +91,7 @@ class Game():
                 'listen_for_input') #listens for input related to managing the landing screen controls
 
     def place_ball(self):
-        self.table.ball.setPos(3.705, 2.85, 0.1)
+        self.table.ball.setPos(3.59, 2.85, 0.1)
         self.table.ball_body.setPosition(self.table.ball.getPos(render))
         self.table.ball_body.setQuaternion(self.table.ball.getQuat(render))
         if self.not_first_time:
