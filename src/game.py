@@ -371,7 +371,7 @@ class Game():
 
     def listen_for_enter(self, task):
         if GPIO.input(25) == False:
-            messenger.send("button_enter")
+            messenger.send('button_enter')
             taskMgr.remove('listen_for_enter')
             return task.done
         return task.cont
