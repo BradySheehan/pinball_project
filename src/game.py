@@ -15,7 +15,7 @@ class Game():
         base.disableMouse()
         base.setFrameRateMeter(True)
         base.accept("escape", sys.exit)  # Escape quits
-        self.max_balls = 3
+        self.max_balls = 1
         self.balls_used = 0
         self.score = 0
         self.button_enabled = button_enabled
