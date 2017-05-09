@@ -170,13 +170,13 @@ class Game():
     def bump_ball_event(self, entry):
         import time
         curr_time = time.time()
-        if curr_time - self.start_time > 0.25:
-            start_time = curr_time
-            geom1 = entry.getGeom1()
-            geom2 = entry.getGeom2()
-            body1 = entry.getBody1()
-            body2 = entry.getBody2()
-            self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
+        geom1 = entry.getGeom1()
+        geom2 = entry.getGeom2()
+        body1 = entry.getBody1()
+        body2 = entry.getBody2()
+        self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
+        if curr_time - self.start_time > 0.01:
+            self.start_time = curr_time
             if self.table.can_launch:
                 if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
                     self.table.can_launch = False
@@ -184,7 +184,6 @@ class Game():
                     # print 'gravity task is removed'
                     self.remove_gravity_task()
                     self.allow_launch()
-
             #below is a check for if the ball hits the back wall of the table
             if (
                 (
@@ -259,7 +258,8 @@ class Game():
                 #os.system('sudo mpg123 -q audio/jump.mp3 &')
                 self.jump_sound.play()
                 self.scoreboard.updateDisplay(self.score, self.balls_used)
-
+        else:
+            print str(curr_time - self.start_time)
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
