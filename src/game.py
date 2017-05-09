@@ -379,6 +379,10 @@ class Game():
             return task.done
         return task.cont
 
+    def remove_listen_for_input(self, task):
+        taskMgr.remove('listen_for_input')
+        self.finish_start()
+
     def listen_for_input(self, task):
         #this task is meant to work with the landing_screen
         #it is how we communicate between the landing screen and the game class
@@ -394,8 +398,9 @@ class Game():
 
         if self.landing_screen.finished_entering:
             # print "removing task for landing screen"
-            taskMgr.remove('listen_for_input')
-            self.finish_start()
+            self.landing_screen.remove_display()
+            self.landing_screen.display_high_scores()
+            taskMgr.doMethodLater(1, self.remove_listen_for_input, "remove_list_for_input")
             return task.done
         return task.cont
 
