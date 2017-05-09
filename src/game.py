@@ -66,6 +66,7 @@ class Game():
         self.scoreboard = Scoreboard(
             self.score, self.max_balls, self.balls_used, self.button_enabled, self.landing_screen.username)
         self.enable_buttons(self.button_enabled)
+        base.acceptOnce("close_launcher", self.table.close_launcher)
         self.place_ball()
 
         #I don't think we should take them to the landing screen if they lose,

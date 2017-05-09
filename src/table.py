@@ -686,7 +686,7 @@ class Table():
 
         pos = self.ball_body.getPosition()
         if pos[0] < -2.5 and pos[1] < 2:
-            self.close_launcher()
+            messenger.send("close_launcher")
 
         if self.button_enabled:
             if GPIO.input(21) == False:
