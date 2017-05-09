@@ -241,6 +241,19 @@ class Game():
             self.jump_sound.play()
             self.scoreboard.updateDisplay(self.score, self.balls_used)
 
+        #check tesle coil hits
+        if self.bumped_tesla(geom1, geom2, body1, body2):
+            self.jump_sound.play()
+            self.score = self.score + 150
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+
+        #wide cylinder
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.wide_round_bumper_geom_left):
+            self.score = self.score + 100
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
             (
@@ -281,6 +294,18 @@ class Game():
         else:
             return False
 
+    def bumped_tesla(self, geom1, geom2, body1, body2):
+        one = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tesla_tall_geom)
+        two = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tesla_middle_geom)
+        three = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tesla_short_geom)
+        if one or two or three:
+            return True
+        else:
+            return False
+
     def bumped_round_bumper(self, geom1, geom2, body1, body2):
         # if you bump the left pink triangle
         one = self.bumped_by_ball(
@@ -289,7 +314,9 @@ class Game():
             geom1, geom2, body1, body2, self.table.round_bumper_right_geom)
         three = self.bumped_by_ball(
             geom1, geom2, body1, body2, self.table.tall_round_bumper_geom)
-        if one or two or three:
+        four = self.bumped_by_ball(
+            geom1, geom2, body1, body2, self.table.tall_round_bumper_geom_left)
+        if one or two or three or four:
             return True
         else:
             return False

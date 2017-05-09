@@ -97,7 +97,7 @@ class Table():
         # gravity needs to be adjusted (to simulate table being tilted)
         # self.world.setGravity(4.5, 0, -10)
         self.world.setGravity(1.0, 0, -10)
-        self.world.initSurfaceTable(3)  # we need to figure out what this does
+        self.world.initSurfaceTable(4)  # we need to figure out what this does
         self.world.setSurfaceEntry(
             0,
             0,
@@ -131,7 +131,17 @@ class Table():
             0.0000,
             0.0, #slip
             0.00) #damping
-
+        #for triangle bumpers
+        self.world.setSurfaceEntry(
+            0, #surface ID
+            3, #surface ID
+            50,  #Friction (mu)
+            .3,  # bounce
+            0.0,  # bounce velocity (minimum velocity a body must have before it bounces)
+            0.0,
+            0.0000,
+            1.0, #slip
+            0.00) #damping
         self.space1 = OdeSimpleSpace()
         self.space1.setAutoCollideWorld(self.world)
         self.contactgroup = OdeJointGroup()
@@ -615,11 +625,13 @@ class Table():
     def setup_physics_lb_bumper(self, node_path):
         #tl stands for trigger left
         self.tl_l_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.5, -1.95, 0.25)
+        self.space1.setSurfaceType(self.tl_l_wall,3)
         # boxNodepath = wireGeom().generate('box', extents=(0.5, 0.05, 0.5))
         # boxNodepath.setPos(2.5,-1.95, 0.25)
         # boxNodepath.reparentTo(render)
 
         self.tl_rb_wall = self.add_wall_to_physics(0.635 , 0.05, 0.5, 2.45, -1.70, .25)
+        self.space1.setSurfaceType(self.tl_rb_wall,3)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(55.0, 0.0, 0.0)
         quat.setHpr(v)
@@ -631,6 +643,7 @@ class Table():
 
 
         self.tl_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.79, -1.75, .25)
+        self.space1.setSurfaceType(self.tl_rt_wall,3)
         quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(125, 0, 0)
         quat2.setHpr(v2)
@@ -643,12 +656,15 @@ class Table():
     def setup_physics_rb_bumper(self, node_path):
         #tr stands for triangle right
         self.tr_r_wall = self.add_wall_to_physics(0.75, 0.05, 0.5, 2.6, 1.45, 0.25)
+        self.space1.setSurfaceType(self.tr_r_wall,3)
         self.tr_lb_wall = self.add_wall_to_physics(0.5, 0.05, 0.5, 2.4, 1.2, 0.25)
+        self.space1.setSurfaceType(self.tr_lb_wall,3)
         quat = Quat(0.0, 0.0, 0.0, 0.0)
         v = VBase3(-55.0, 0.0, 0.0)
         quat.setHpr(v)
         self.tr_lb_wall.setQuaternion(quat)
         self.tr_rt_wall = self.add_wall_to_physics(0.6, 0.05, 0.5, 2.75, 1.2, 0.25)
+        self.space1.setSurfaceType(self.tr_rt_wall,3)
         quat2 = Quat(0.0, 0.0, 0.0, 0.0)
         v2 = VBase3(-125, 0, 0)
         quat2.setHpr(v2)
