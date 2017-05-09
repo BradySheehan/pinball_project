@@ -37,6 +37,8 @@ class Game():
         self.electrical_sweep = loader.loadMusic("audio/Electrical_Sweep.wav")
         self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.wav")
         self.strong_punch = loader.loadMusic("audio/Strong_Punch.wav")
+        self.electric_shock = loader.loadMusic("audio/Electrical_Shock.wav")
+        self.electricity = loader.loadMusic("audio/Electricity.wav")
 
     def start(self):
         self.not_first_time = False
@@ -258,6 +260,7 @@ class Game():
                 self.jump_sound.play()
                 self.scoreboard.updateDisplay(self.score, self.balls_used)
 
+
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
         if (
             (
@@ -305,7 +308,11 @@ class Game():
             geom1, geom2, body1, body2, self.table.tesla_middle_geom)
         three = self.bumped_by_ball(
             geom1, geom2, body1, body2, self.table.tesla_short_geom)
-        if one or two or three:
+        if one or two:
+            self.electricity.play()
+            return True
+        elif three:
+            self.electric_shock.play()
             return True
         else:
             return False
