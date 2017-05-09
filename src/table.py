@@ -798,7 +798,7 @@ class Table():
     def build_launch_force_task(self, task):
         if self.launch_force < 3.0:
             self.launch_force += .025;
-            self.plunger.setX(self.plunger.getX() + 0.025)
+            self.plunger.setX(self.plunger.getX() + 0.025/3)
             return task.cont
         else:
             return task.done
