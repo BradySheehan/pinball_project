@@ -31,11 +31,11 @@ class Game():
         self.jump_sound = loader.loadMusic("audio/jump.wav")
         self.intro_song = loader.loadMusic("audio/intro_song1.wav")
         self.power_up_ray = loader.loadMusic("audio/Power_Up_Ray.wav")
-        self.electrical_sweep = loader.loadMusic("audio/Electrical_Sweep.wav")
+        # self.electrical_sweep = loader.loadMusic("audio/Electrical_Sweep.wav")
         self.lasor_cannon = loader.loadMusic("audio/Laser_Cannon.wav")
         self.strong_punch = loader.loadMusic("audio/Strong_Punch.wav")
-        self.electric_shock = loader.loadMusic("audio/Electrical_Shock.wav")
-        self.electricity = loader.loadMusic("audio/Electricity.wav")
+        # self.electric_shock = loader.loadMusic("audio/Electrical_Shock.wav")
+        # self.electricity = loader.loadMusic("audio/Electricity.wav")
 
     def start(self):
         self.not_first_time = False
