@@ -83,10 +83,10 @@ class Game():
             base.accept('a', self.landing_screen.left_down_decrement)
             base.accept('d', self.landing_screen.right_down_increment)
             base.accept('enter', self.landing_screen.enter_username)
-            taskMgr.doMethodLater(
-                0,
-                self.listen_for_input,
-                'listen_for_input') #listens for input related to managing the landing screen controls
+        taskMgr.doMethodLater(
+            0,
+            self.listen_for_input,
+            'listen_for_input') #listens for input related to managing the landing screen controls
 
     def place_ball(self):
         self.table.ball.setPos(3.59, 2.85, 0.1)
@@ -410,10 +410,6 @@ class Game():
             self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
                 base.acceptOnce('button_enter', self.restart)
-                taskMgr.doMethodLater(
-                    0,
-                    self.listen_for_input,
-                    'listen_for_input')
             else:
                 base.acceptOnce('enter', self.restart)
         else:
