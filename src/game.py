@@ -173,84 +173,84 @@ class Game():
 #or we hit another object
 
     def bump_ball_event(self, entry):
-        import time
-        curr_time = time.time()
-        if curr_time - self.start_time > 0.25:
-            start_time = curr_time
-            geom1 = entry.getGeom1()
-            geom2 = entry.getGeom2()
-            body1 = entry.getBody1()
-            body2 = entry.getBody2()
-            self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
-            if self.table.can_launch:
-                if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
-                    self.table.can_launch = False
-                    # print 'here'
-                    # print 'gravity task is removed'
-                    self.remove_gravity_task()
-                    self.allow_launch()
-
-            #below is a check for if the ball hits the back wall of the table
-            if (
-                (
-                    geom1 and geom1 == self.table.wall_south) and (
-                    (body1 and body1 == self.table.ball_body) or (
-                    body2 and body2 == self.table.ball_body))) or (
-                        (geom2 and geom2 == self.table.wall_south) and (
-                            (body1 and body1 == self.table.ball_body) or (
-                                body2 and body2 == self.table.ball_body))):
+        # import time
+        # curr_time = time.time()
+        # if curr_time - self.start_time > 0.25:
+            # start_time = curr_time
+        geom1 = entry.getGeom1()
+        geom2 = entry.getGeom2()
+        body1 = entry.getBody1()
+        body2 = entry.getBody2()
+        self.table.apply_force_to_ball(self.bumped_by_flipper(geom1, geom2, body1, body2))
+        if self.table.can_launch:
+            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.plunger_geom):
+                self.table.can_launch = False
+                # print 'here'
+                # print 'gravity task is removed'
                 self.remove_gravity_task()
-                self.lose_ball()
+                self.allow_launch()
 
-            if self.bumped_triangle_bumper(geom1, geom2, body1, body2):
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.score = self.score + 10
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        #below is a check for if the ball hits the back wall of the table
+        if (
+            (
+                geom1 and geom1 == self.table.wall_south) and (
+                (body1 and body1 == self.table.ball_body) or (
+                body2 and body2 == self.table.ball_body))) or (
+                    (geom2 and geom2 == self.table.wall_south) and (
+                        (body1 and body1 == self.table.ball_body) or (
+                            body2 and body2 == self.table.ball_body))):
+            self.remove_gravity_task()
+            self.lose_ball()
 
-            if self.bumped_round_bumper(geom1, geom2, body1, body2):
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.score = self.score + 300
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_triangle_bumper(geom1, geom2, body1, body2):
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.score = self.score + 10
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
-                self.score = self.score + 200
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
-                self.jump_sound.play()
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                if self.table.ball.getZ() > .48 :
-                    self.table.ball_not_sinking = False
-            # check for ball sink task
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
+        if self.bumped_round_bumper(geom1, geom2, body1, body2):
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.score = self.score + 300
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.pipe_geom) and self.table.ball_not_sinking:
+            self.score = self.score + 200
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
+            self.jump_sound.play()
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            if self.table.ball.getZ() > .48 :
                 self.table.ball_not_sinking = False
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.lasor_cannon.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        # check for ball sink task
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.ball_stopper_geom) and self.table.ball_not_sinking:
+            self.table.ball_not_sinking = False
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.lasor_cannon.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
-                self.score = self.score + 100
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_wall_triangle):
+            self.score = self.score + 100
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_wall_triangle):
-                self.score = self.score + 100
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_wall_triangle):
+            self.score = self.score + 100
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_launch_wall):
-                self.score = self.score + 100
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.upper_launch_wall):
+            self.score = self.score + 100
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_launch_wall):
-                self.score = self.score + 100
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+        if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.lower_launch_wall):
+            self.score = self.score + 100
+            #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            self.jump_sound.play()
+            self.scoreboard.updateDisplay(self.score, self.balls_used)
 
             #check tesle coil hits
             # if self.bumped_tesla(geom1, geom2, body1, body2):
@@ -368,8 +368,8 @@ class Game():
         self.table.space1.setCollisionEvent("bump_event")
         # print self.table.space1.getCollisionEvent()
         base.accept("bump_event", self.bump_ball_event)
-        import time
-        self.start_time = time.time()
+        # import time
+        # self.start_time = time.time()
 
     def listen_for_enter(self, task):
         # import RPi.GPIO as GPIO
