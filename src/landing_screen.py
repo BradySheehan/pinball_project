@@ -4,6 +4,7 @@ from direct.directbase import DirectStart
 import os
 import errno
 
+#interacts with the game.py class and the highscores/highscores.dat file to maintain the highscores list
 
 class LandingScreen():
 

@@ -159,6 +159,8 @@ class Game():
             0.5,
             self.start_bump_ball_task,
             'bump_ball_task')
+        self.intro_song.setLoopCount(0)
+        self.intro_song.play()
 
     def start_gravity_task(self):
         taskMgr.doMethodLater(0, self.table.gravity_task, 'gravity_task')
