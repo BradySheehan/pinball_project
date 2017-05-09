@@ -29,7 +29,7 @@ class Game():
             global GPIO
         from panda3d.core import WindowProperties
         wp = WindowProperties()
-        wp.setFullscreen(True)
+        wp.setFullscreen(False)
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.wav")
         self.intro_song = loader.loadMusic("audio/intro_song1.wav")
