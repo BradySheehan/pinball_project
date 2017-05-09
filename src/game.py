@@ -29,7 +29,7 @@ class Game():
             global GPIO
         from panda3d.core import WindowProperties
         wp = WindowProperties()
-        wp.setFullscreen(False)
+        wp.setFullscreen(True)
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.wav")
         self.intro_song = loader.loadMusic("audio/intro_song1.wav")
@@ -148,10 +148,11 @@ class Game():
         # print 'gravity task is started'
         self.strong_punch.play()
         self.start_gravity_task()
+        self.table.plunger.setX(3.92999)
         taskMgr.doMethodLater(
             0,
-            self.table.release_plunger_task,
-            'release_plunger')
+            self.table.launch_ball_task,
+            'launch_ball')
         taskMgr.doMethodLater(
             1,
             self.table.stop_launch_ball_task,
@@ -248,17 +249,17 @@ class Game():
                 self.scoreboard.updateDisplay(self.score, self.balls_used)
 
             #check tesle coil hits
-            if self.bumped_tesla(geom1, geom2, body1, body2):
-                self.jump_sound.play()
-                self.score = self.score + 150
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+            # if self.bumped_tesla(geom1, geom2, body1, body2):
+            #     self.jump_sound.play()
+            #     self.score = self.score + 150
+            #     self.scoreboard.updateDisplay(self.score, self.balls_used)
 
             #wide cylinder
-            if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.wide_round_bumper_geom_left):
-                self.score = self.score + 100
-                #os.system('sudo mpg123 -q audio/jump.mp3 &')
-                self.jump_sound.play()
-                self.scoreboard.updateDisplay(self.score, self.balls_used)
+            # if self.bumped_by_ball(geom1, geom2, body1, body2, self.table.wide_round_bumper_geom_left):
+            #     self.score = self.score + 100
+            #     #os.system('sudo mpg123 -q audio/jump.mp3 &')
+            #     self.jump_sound.play()
+            #     self.scoreboard.updateDisplay(self.score, self.balls_used)
 
 
     def bumped_by_ball(self, geom1, geom2, body1, body2, geomOfInterest):
@@ -301,21 +302,21 @@ class Game():
         else:
             return False
 
-    def bumped_tesla(self, geom1, geom2, body1, body2):
-        one = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.tesla_tall_geom)
-        two = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.tesla_middle_geom)
-        three = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.tesla_short_geom)
-        if one or two:
-            self.electricity.play()
-            return True
-        elif three:
-            self.electric_shock.play()
-            return True
-        else:
-            return False
+    # def bumped_tesla(self, geom1, geom2, body1, body2):
+    #     one = self.bumped_by_ball(
+    #         geom1, geom2, body1, body2, self.table.tesla_tall_geom)
+    #     two = self.bumped_by_ball(
+    #         geom1, geom2, body1, body2, self.table.tesla_middle_geom)
+    #     three = self.bumped_by_ball(
+    #         geom1, geom2, body1, body2, self.table.tesla_short_geom)
+    #     if one or two:
+    #         self.electricity.play()
+    #         return True
+    #     # elif three:
+    #     #     self.electric_shock.play()
+    #     #     return True
+    #     else:
+    #         return False
 
     def bumped_round_bumper(self, geom1, geom2, body1, body2):
         # if you bump the left pink triangle
@@ -325,9 +326,9 @@ class Game():
             geom1, geom2, body1, body2, self.table.round_bumper_right_geom)
         three = self.bumped_by_ball(
             geom1, geom2, body1, body2, self.table.tall_round_bumper_geom)
-        four = self.bumped_by_ball(
-            geom1, geom2, body1, body2, self.table.tall_round_bumper_geom_left)
-        if one or two or three or four:
+        # four = self.bumped_by_ball(
+        #     geom1, geom2, body1, body2, self.table.tall_round_bumper_geom_left)
+        if one or two or three:
             return True
         else:
             return False

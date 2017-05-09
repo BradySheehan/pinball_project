@@ -1,0 +1,57 @@
+<CoordinateSystem> { Z-up } 
+<Material> Material {
+  <Scalar> diffr { 0.115919 }
+  <Scalar> diffg { 0.082371 }
+  <Scalar> diffb { 0.640000 }
+  <Scalar> specr { 0.128489 }
+  <Scalar> specg { 0.161494 }
+  <Scalar> specb { 0.500000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 1.000000 }
+  <Scalar> ambg { 1.000000 }
+  <Scalar> ambb { 1.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+  <Group> square {
+    <Transform> {
+      <Matrix4> {
+        1.0 0.0 0.0 0.0 
+        0.0 1.0 0.0 0.0 
+        0.0 0.0 1.0 0.0 
+        0.0 0.0 0.0 1.0 
+      }
+    }
+    
+    <VertexPool> square {
+    
+      <Vertex> 0 {1.000000 1.000000 -1.000000
+        <UV> ORCO {
+          1.000000 1.000000 
+        }
+      }
+      <Vertex> 1 {1.000000 -1.000000 -1.000000
+        <UV> ORCO {
+          1.000000 0.000000 
+        }
+      }
+      <Vertex> 2 {-1.000000 -1.000000 -1.000000
+        <UV> ORCO {
+          0.000000 0.000000 
+        }
+      }
+      <Vertex> 3 {-1.000000 1.000000 -1.000000
+        <UV> ORCO {
+          0.000000 1.000000 
+        }
+      }}
+    
+    
+    <Polygon> {
+      <MRef> { Material }
+      <Normal> {0.000000 0.000000 -1.000000}
+      <VertexRef> { 0 1 2 3 <Ref> { square }} 
+    }
+  }
