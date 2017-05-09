@@ -294,6 +294,32 @@ class Table():
         tall_bumper_ring3.reparentTo(render)
         tall_bumper_ring3.flattenStrong()
 
+        #tall bumper left
+        tall_round_bumper_left = table_egg.find("**/Cylinder.021")
+        self.tall_round_bumper_geom_left = self.add_innard_cylinder_to_physics(tall_round_bumper_left, float(0.35/2), 1)
+        self.space1.setSurfaceType(self.tall_round_bumper_geom_left,2)
+        tall_round_bumper_left.reparentTo(render)
+        tall_round_bumper_left.flattenStrong()
+
+        tall_bumper_ring1_left = table_egg.find("**/Cylinder.018")
+        tall_bumper_ring1_left.reparentTo(render)
+        tall_bumper_ring1_left.flattenStrong()
+
+        tall_bumper_ring2_left = table_egg.find("**/Cylinder.019")
+        tall_bumper_ring2_left.reparentTo(render)
+        tall_bumper_ring2_left.flattenStrong()
+
+        tall_bumper_ring3_left = table_egg.find("**/Cylinder.020")
+        tall_bumper_ring3_left.reparentTo(render)
+        tall_bumper_ring3_left.flattenStrong()
+
+        #wide round bumper
+        wide_round_bumper_left = table_egg.find("**/Cylinder.017")
+        self.wide_round_bumper_geom_left = self.add_innard_cylinder_to_physics(wide_round_bumper_left, .5, .25)
+        self.space1.setSurfaceType(self.wide_round_bumper_geom_left,2)
+        wide_round_bumper_left.reparentTo(render)
+        wide_round_bumper_left.flattenStrong()
+
         angled_launch_wall = table_egg.find("**/Cube.005")
 
         angled_launch_wall_geom = self.add_innard_cube_to_physics(
