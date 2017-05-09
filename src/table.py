@@ -670,8 +670,6 @@ class Table():
         # self.space1.autoCollide()  # Setup the contact joints
         # Step the simulation and set the new positions
         # self.world.quickStep(globalClock.getDt())
-        taskMgr.remove('build_launch_force')
-        taskMgr.remove('release_plunger')
         self.ball.setPosQuat(
             render, self.ball_body.getPosition(), Quat(
                 self.ball_body.getQuaternion()))
@@ -691,6 +689,9 @@ class Table():
             0,
             self.launch_ball_task,
             'launch_ball')
+            taskMgr.remove('build_launch_force')
+            taskMgr.remove('release_plunger')
+            return task.done
 
     def gravity_task(self, task):
         # these two lines set up the ball cam for testing
