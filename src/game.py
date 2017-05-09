@@ -416,8 +416,8 @@ class Game():
                 base.acceptOnce('button_enter', self.restart)
                 taskMgr.doMethodLater(
                     0,
-                    self.listen_for_enter,
-                    'listen_for_enter')
+                    self.listen_for_input,
+                    'listen_for_input')
             else:
                 base.acceptOnce('enter', self.restart)
         else:
