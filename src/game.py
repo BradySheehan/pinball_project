@@ -399,9 +399,7 @@ class Game():
 
         if self.landing_screen.finished_entering:
             # print "removing task for landing screen"
-            self.landing_screen.remove_display()
-            self.landing_screen.display_high_scores()
-            taskMgr.doMethodLater(1, self.remove_listen_for_input, "remove_list_for_input")
+            taskMgr.doMethodLater(0.5, self.remove_listen_for_input, "remove_list_for_input")
             return task.done
         return task.cont
 
