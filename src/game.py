@@ -29,7 +29,7 @@ class Game():
             global GPIO
         from panda3d.core import WindowProperties
         wp = WindowProperties()
-        wp.setFullscreen(False)
+        wp.setFullscreen(True)
         base.win.requestProperties(wp)
         self.jump_sound = loader.loadMusic("audio/jump.wav")
         self.intro_song = loader.loadMusic("audio/intro_song1.wav")
@@ -401,6 +401,7 @@ class Game():
             #display lost game until someone hits launch button,
             #then take them to the landing screen.
             #then don't restart the game until they go through the landing_screen
+            print('Lost Ball')
             self.scoreboard.displayLostGame(self.score)
             self.landing_screen.write_final_score(self.score)
             if self.button_enabled:
